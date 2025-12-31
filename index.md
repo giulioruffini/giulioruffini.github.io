@@ -10,11 +10,13 @@ Feel free to explore:
 - Papers on [Kolmogorov theory / algorithmic neuroscience (KT)](/kt/)
 - Papers on [Computational neuroscience (neurotwins, LaNMM)](/lanmm/)
 - Papers on [tES (brain stimulation, tDCS, tACS, tRNS)](/tES/)
-- [Slides](https://giulioruffini.github.io/slides/)
+- [Slides](https://giulioruffini.github.io/slides/) repo on various topics
 - My [GitHub](https://github.com/giulioruffini) and [Substack](https://platoniapirate.substack.com)
+- My [Zenodo](https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Ruffini%2C%20Giulio%22&l=list&p=1&s=10&sort=bestmatch) repo
 
 Other:
 - Companies I co-founded: [Neuroelectrics](https://neuroelectrics.com) and [Starlab](https://starlab.es)
+- Foundations: The Barcelona Computational Foundation: [BCOM](https://bcom.one)
 
 Main projects:   
 - [Neurotwin EU project](https://neurotwin.eu)
