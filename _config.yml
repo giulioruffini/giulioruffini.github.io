@@ -16,7 +16,7 @@
 # Tell Jekyll to use Minimal Mistakes
 # Tell Jekyll which theme to load
 # testing_flag: "MY_CONFIG_IS_LOADED"
-remote_theme: "mmistakes/minimal-mistakes"
+remote_theme: "mmistakes/minimal-mistakes@4.26.2"
 
 plugins:
   - jekyll-remote-theme
@@ -24,7 +24,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
-  #- jekyll-include-cache
+  - jekyll-include-cache
 
 # (near where you put your old custom.html)
 head:
