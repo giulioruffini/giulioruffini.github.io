@@ -19,7 +19,7 @@ Institutions I have co-founded:
 
 - [Neuroelectrics](https://neuroelectrics.com, 2011- ) is a creative, high-tech company offering the best in class non-invasive and high definition electrical brain stimulation technology for personalized neuromodulation based on computational modeling of the brain. By measuring and modifying brain function, we aim to restore brain health, minimize disabilities and create a better life for patients.
 
-- The *Barcelona Computational Foundation* or [BCOM](https://bcom.one, 2025- ) is a visionary non-profit research foundation dedicated to understanding and recreating life, brains, and minds as fundamentally computational phenomena. Our mission is to advance computational neuropsychiatry and neurophenomenology, pioneer neurosynthetic AI, and ultimately provide means for better lives and societies- biological, hybrid or synthetic.
+- The *Barcelona Computational Foundation* or [BCOM](https://bcom.one, 2025- ) is a visionary non-profit research foundation dedicated to understanding and recreating life, brains, and minds as fundamentally computational phenomena. Our mission is to advance computational neuropsychiatry and neurophenomenology, pioneer neurosynthetic AI, and ultimately provide means for better lives and societies - may these be biological, hybrid or synthetic.
 
 Main recent funded projects:   
 - [Neurotwin EU project](https://neurotwin.eu)

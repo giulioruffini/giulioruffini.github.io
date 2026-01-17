@@ -5,5 +5,8 @@ search: false
 
 @charset "utf-8";
 
+/* Make overall site text a bit smaller (default is 16px) */
+$doc-font-size: 14px;
+
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
