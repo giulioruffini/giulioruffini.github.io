@@ -1,0 +1,16 @@
+# Local dev config (used only on your computer).
+# This avoids fetching the remote theme over HTTPS, which can fail due to SSL cert issues.
+
+theme: minimal-mistakes-jekyll
+# Force-disable remote_theme locally.
+# Note: Jekyll's config merge doesn't reliably "unset" keys with null, so use `false`.
+remote_theme: false
+
+# Override plugins list so `jekyll-remote-theme` doesn't run locally.
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-include-cache
+
