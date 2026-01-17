@@ -42,7 +42,7 @@ Presents an AIT framework for quantifying structured experience from neurophysio
 ## 2025 – [Structured Dynamics in the Algorithmic Agent](https://www.mdpi.com/1099-4300/27/1/90) (Entropy)  
  Formalizes generative models via Lie‑group symmetry and demonstrates that data‑tracking constrains an agent’s dynamical repertoire to mirror world symmetries, supporting structured experience and the manifold hypothesis. Examines how compressive models and symmetry constraints shape an agent’s structural and dynamical repertoire, bridging AIT, group theory, and dynamical conservation laws.
 
- ## 2025 – [Compositional Symmetry as Compression: Lie Pseudogroup Structure in Algorithmic Agents](https://arxiv.org/abs/2510.10586) (arXiv)  
+## 2025 – [Compositional Symmetry as Compression: Lie Pseudogroup Structure in Algorithmic Agents](https://arxiv.org/abs/2510.10586) (arXiv)  
  Proposes that agents make sense of sensory data by exploiting compositional symmetry—modeling the world using geometric transformations (Lie pseudogroups). They demonstrate that for a neural system to track the world accurately, it must mirror these external symmetries internally (equivariance). This constraint forces the agent's neural dynamics onto efficient, low-dimensional manifolds, providing a geometric explanation for why deep learning works ("the blessing of compositionality") and suggesting a predictive coding model where layers process unresolved residual transformations.
  
 ## 2025 – [The Algorithmic Regulator](https://arxiv.org/abs/2510.10586) (arXiv)  
