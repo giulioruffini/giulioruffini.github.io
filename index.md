@@ -26,4 +26,4 @@ Main recent funded projects:
 - [Galvani ERC Synergy project](https://galvani-lab.eu)
 
 
-- My *PhD Students*: Francois Soulat (Space/Radar GNSS-R), Alejandro Riera  Sardà (Neuroscience, EEG), Josep Marco-Pallarés (Neuroscience, EEG), Alejandro Ejido Ejido (Space/Radar, GNSS-R), Laura Dubreuil Vall (Neuroscience, EEG and tDCS), Roser Sanchez-Todo (Computational Neuroscience), Edmundo Lopez-Solá (Computational Neuroscience).
+My **PhD Students**: Francois Soulat (Space/Radar GNSS-R), Alejandro Riera  Sardà (Neuroscience, EEG), Josep Marco-Pallarés (Neuroscience, EEG), Alejandro Ejido Ejido (Space/Radar, GNSS-R), Laura Dubreuil Vall (Neuroscience, EEG and tDCS), Roser Sanchez-Todo (Computational Neuroscience), Edmundo Lopez-Solá (Computational Neuroscience).
