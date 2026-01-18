@@ -7,7 +7,7 @@ author_profile: true
 I am a theoretical physicist and computational neuroscientist researching consciousness through the lens of algorithmic information theory and computational neuroscience. In the past I worked on theoretical physics ([quantum gravity](https://arxiv.org/abs/gr-qc/9806058) as a PhD student) and, then, radar applications (GNSS-R, GPS-R). My current work (last ~20 yrs) involves creating computational/biophysical models to emulate and understand brain dynamics (epilepsy, Alzheimer's disease, other neuroelogical conditions) and **structured experience** (psychiatric conditions), and translating these insights into clinical applications—particularly in the field of noninvasive brain stimulation, where computational neuropsychiatry and computational neurophenomenology will play a key role. I’m especially interested in how these models shed light on human experience and their broader implications for artificial intelligence and other life forms. ([Google Profile](https://scholar.google.com/citations?hl=en&user=IxDxqksAAAAJ&view_op=list_works&sortby=pubdate))
 
 <figure class="home-broccoli align-center">
-  <img src="{{ '/assets/images/broccoli.png' | relative_url }}" alt="Broccoli" style="max-width: 520px; width: 100%; height: auto;">
+  <img src="{{ '/assets/images/broccoli2.png' | relative_url }}" alt="Broccoli" style="max-width: 520px; width: 100%; height: auto;">
   <figcaption style="text-align:center;"></figcaption>
 </figure>
 
