@@ -13,10 +13,10 @@ Type a query below to search and get answers grounded in my paper collection.
 
 <!-- Search widget element is not visible by default -->
 <gen-search-widget
-  configId="65c0645c-a58e-4f55-8924-f1d22a0fa5b8"
-  location="global"
+  configId="6164134b-bf20-4d5b-9f1b-fa12cabab8c9"
+  location="eu"
   triggerId="searchWidgetTrigger">
 </gen-search-widget>
 
 <!-- Element that opens the widget on click. It does not have to be an input -->
-<input placeholder="Search here" id="searchWidgetTrigger" style="width: 100%; max-width: 520px; padding: 12px; font-size: 16px;" />
+<input placeholder="Search here" id="searchWidgetTrigger" />
