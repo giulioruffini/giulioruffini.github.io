@@ -4,7 +4,7 @@ title: Papers Chat
 permalink: /chat/
 ---
 
-# Chat with my papers
+# Chat with my KT papers
 
 Type a query below to search and get answers grounded in my paper collection.
 
