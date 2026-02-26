@@ -14,7 +14,7 @@ Type a query below to search and get answers grounded in my paper collection.
 <!-- Search widget element is not visible by default -->
 <gen-search-widget
   configId="65c0645c-a58e-4f55-8924-f1d22a0fa5b8"
-  location="eu"
+  location="global"
   triggerId="searchWidgetTrigger">
 </gen-search-widget>
 
