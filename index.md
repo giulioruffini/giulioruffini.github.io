@@ -12,7 +12,7 @@ I am a theoretical physicist and computational neuroscientist researching consci
 </figure>
 
 ### Feel free to explore:
-- Papers on [Kolmogorov theory / algorithmic neuroscience (KT)](/kt/)
+- Papers on [Kolmogorov theory / algorithmic neuroscience (KT)](/kt/) (chat with my KT papers [here[(https://giulioruffini.github.io/chat)]])
 - Papers on [Computational neuroscience (neurotwins, LaNMM)](/lanmm/)
 - Papers on [tES (brain stimulation, tDCS, tACS, tRNS)](/tES/)
 - [Slides](https://giulioruffini.github.io/slides/) repo on various topics
