@@ -15,6 +15,7 @@ I am a theoretical physicist and computational neuroscientist researching consci
 - Papers on [Kolmogorov theory / algorithmic neuroscience (KT)](/kt/) (chat with my KT papers [here](https://giulioruffini.github.io/chat))
 - Papers on [Computational neuroscience (neurotwins, LaNMM)](/lanmm/)
 - Papers on [tES (brain stimulation, tDCS, tACS, tRNS)](/tES/)
+- [Blogs](/blogs/) on computation, neuroscience, AI, and related topics
 - [Slides](https://giulioruffini.github.io/slides/) repo on various topics
 - My [GitHub](https://github.com/giulioruffini) and [Substack](https://platoniapirate.substack.com)
 - My [Zenodo](https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Ruffini%2C%20Giulio%22&l=list&p=1&s=10&sort=bestmatch) repo

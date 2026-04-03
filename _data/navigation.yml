@@ -3,9 +3,11 @@ main:
   - title: "Kolmogorov Theory"
     url: /kt/
   - title: "Computational Neuroscience"
-    url: /lanmm/  
+    url: /lanmm/
   - title: "Brain Stimulation"
     url: /tES/
+  - title: "Blogs"
+    url: /blogs/
 
 
   # - title: "About"
