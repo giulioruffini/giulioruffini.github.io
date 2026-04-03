@@ -11,6 +11,7 @@ A collection of blog posts on computation, neuroscience, AI, and related topics.
 
 ### Hosted here
 
+- [The Rosetta Stone of Neural Mass Models](/assets/blogs/rosetta-stone-neural-mass-models.html) — A shared language for brain dynamics and neural modeling
 - [From the Sorcerer's Apprentice to Crystal Nights](/assets/blogs/sorcerer.html) — On AI agency, autonomy, and the path from digital assistants to synthetic minds
 - [The Agentic Compressor](/assets/blogs/agentic-compressor-blog.html) — Agentic AI and the compression of intelligence
 - [Swapping Algebraic Twins Without Breaking Math](/assets/blogs/Swapping_Algebraic_Twins_Blog_Post.html) — An introduction to Galois Theory
