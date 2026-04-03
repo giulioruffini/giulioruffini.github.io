@@ -11,6 +11,8 @@ A collection of blog posts on computation, neuroscience, AI, and related topics.
 
 ### Hosted here
 
+- [What Is an Oscillation, Really? Topology, Compression, and the Circle at the Heart of Brain Rhythms](/assets/blogs/oscillations-topology-and-simplicity.html) — On the deep structure of oscillations
+- [Synapses as Springs: Linear Operators, Green–Laplace Tools, and the Origin of E–I Oscillations](/assets/blogs/linear-operators-green-laplace-ei-oscillations.html) — Linear operator theory meets excitatory-inhibitory dynamics
 - [The Rosetta Stone of Neural Mass Models](/assets/blogs/rosetta-stone-neural-mass-models.html) — A shared language for brain dynamics and neural modeling
 - [From the Sorcerer's Apprentice to Crystal Nights](/assets/blogs/sorcerer.html) — On AI agency, autonomy, and the path from digital assistants to synthetic minds
 - [The Agentic Compressor](/assets/blogs/agentic-compressor-blog.html) — Agentic AI and the compression of intelligence
