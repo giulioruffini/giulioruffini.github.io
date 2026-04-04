@@ -11,6 +11,7 @@ A collection of blog posts on computation, neuroscience, AI, and related topics.
 
 ### Hosted here
 
+- ["Consciousness Is Not Computation" — A Confusion of Terms](/assets/blogs/consciousness-is-not-computation-blog.html) — On why the debate conflates different meanings of computation
 - [What Is an Oscillation, Really? Topology, Compression, and the Circle at the Heart of Brain Rhythms](/assets/blogs/oscillations-topology-and-simplicity.html) — On the deep structure of oscillations
 - [Synapses as Springs: Linear Operators, Green–Laplace Tools, and the Origin of E–I Oscillations](/assets/blogs/linear-operators-green-laplace-ei-oscillations.html) — Linear operator theory meets excitatory-inhibitory dynamics
 - [The Rosetta Stone of Neural Mass Models](/assets/blogs/rosetta-stone-neural-mass-models.html) — A shared language for brain dynamics and neural modeling
