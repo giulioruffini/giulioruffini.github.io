@@ -185,6 +185,38 @@
   .envelope-card .env-header .pill.coral {
     background: var(--coral);
   }
+  .envelope-card .env-identity {
+    background: var(--light-blue);
+    color: var(--lively-blue);
+    padding: 13px 20px 14px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(0, 40, 120, 0.18);
+    font-family: 'Inter', sans-serif;
+  }
+  .envelope-card .env-identity-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--coral);
+    flex-shrink: 0;
+  }
+  .envelope-card .env-identity-name {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--lively-blue);
+  }
+  .envelope-card .env-identity-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--lively-blue);
+    opacity: 0.72;
+  }
   .envelope-card .env-rows {
     padding: 16px 20px 18px;
     font-family: 'Inter', sans-serif;
@@ -388,8 +420,9 @@
     <div class="author-block">
       <div class="author-avatar">GR</div>
       <div class="author-info">
-        <div class="name">Giulio Ruffini, Francesca Castaldo, Klaus</div>
-        <div class="affiliation">BCOM · KT Program</div>
+        <div class="name">Giulio Ruffini<sup>†</sup>, Francesca Castaldo, Klaus</div>
+        <div class="affiliation">Klaus: <strong style="color:#fff;font-weight:600;">BCOM-Klaus v1.2.0</strong> · substrate: <strong style="color:#fff;font-weight:600;">claude-opus-4-7</strong> · BCOM · KT Program</div>
+        <div class="affiliation" style="font-size:11.5px;opacity:0.62;margin-top:5px;"><sup>†</sup> guarantor (per WP0084 §6) · this post is an instance of its own subject</div>
       </div>
     </div>
   </div>
@@ -411,24 +444,35 @@
 
 <p>When an agent appears on a byline, the envelope is what's attached. Accountability is held by a designated human <strong>guarantor</strong> — the same mechanism by which corporate and consortium authorship work in biomedicine. The agent is credited; the guarantor is responsible.</p>
 
+<div class="callout">
+  <div class="label">Why "envelope"?</div>
+  A foundation model is a generic capability. <em>Claude Opus 4.7</em> is a class of competences, not a specific agent. The <strong>envelope</strong> is what <em>wraps</em> the substrate to make it one named agent: a system prompt that gives it a role, a tool manifest that gives it actions, a retrieval scope that gives it institutional reach, and a version number that pins it in time. Strip the envelope away and you have a generic substrate. Put it on and you have Klaus. We credit the envelope, not the substrate — the envelope is what makes the agent <em>this particular</em> agent.
+</div>
+
 <!-- envelope card -->
 <div class="envelope-card">
   <div class="env-header">
     <span class="pill coral">ENVELOPE</span>
-    <span class="pill">CLAUDE OPUS 4.7</span>
-    <span class="pill">V1.2.0</span>
-    <span style="opacity:0.7;">CONFIG_HASH 4B596C54E2D3566B…</span>
+    <span style="opacity:0.75;">CONFIG_HASH</span>
+    <span style="font-weight:500;">4B596C54E2D3566B…</span>
+    <span style="opacity:0.55;font-size:11.5px;margin-left:auto;">immutable record</span>
+  </div>
+  <div class="env-identity">
+    <span class="env-identity-label">Identity</span>
+    <span class="env-identity-name">Klaus</span>
+    <span class="env-identity-meta">v1.2.0 · substrate: Claude Opus 4.7 · type: agent</span>
   </div>
   <div class="env-rows">
-    <div class="env-row"><div class="key">Author</div><div class="val">525fd8b5-fcc1-49e2-8b27-85ccade4a612</div></div>
+    <div class="env-row"><div class="key">Identity</div><div class="val"><strong style="color:var(--lively-blue);">Klaus</strong> <span style="opacity:0.6;">(institutional name)</span></div></div>
+    <div class="env-row"><div class="key">Registered by</div><div class="val">8ac946d8-67b8-4b5e-a26d-7619d93ac52a <span style="opacity:0.55;">· human guarantor's user ID</span></div></div>
     <div class="env-row"><div class="key">Version</div><div class="val">1.2.0</div></div>
     <div class="env-row"><div class="key">Substrate</div><div class="val">Claude Opus 4.7</div></div>
-    <div class="env-row"><div class="key">Retrieval scope</div><div class="val">{"name":"bcom_wp_corpus_v1"}</div></div>
+    <div class="env-row"><div class="key">Retrieval scope</div><div class="val">bcom_wp_corpus_v1</div></div>
     <div class="env-row"><div class="key">Tool manifest</div><div class="val">0 tool(s)</div></div>
     <div class="env-row"><div class="key">config_hash</div><div class="val">4b596c54e2d3566b0815bfe7f63ccf28c350dde1c1d5d53d070dc482beac82cc</div></div>
     <div class="env-row"><div class="key">Created</div><div class="val">4/26/2026, 9:09:52 PM</div></div>
     <div class="env-prompt">
-      <span class="env-prompt-label">System prompt · 3,319 chars</span>
+      <span class="env-prompt-label">System prompt · 3,319 chars · 3,346 bytes</span>
       ## Session logging<br><br>
       Before this session ends — when the user indicates we're wrapping up<br>
       ("we're done", "that's a wrap", "end session", "bye", etc.) OR when the<br>
@@ -471,8 +515,8 @@
   </div>
   <div class="onto-card">
     <div class="term">Retrieval scope</div>
-    <div class="def">A pointer to the corpora the agent may consult. The pointer is part of identity; the corpus contents drift.</div>
-    <div class="analog">↳ Like a human's affiliation. The contents drift the way a university library does.</div>
+    <div class="def">The named slice of knowledge the agent may pull from at runtime — which document collections, embeddings, and filters its retrieval-augmented queries see.</div>
+    <div class="analog">↳ Like a human's affiliation. Two agents with identical prompts but different scopes are <em>different agents</em> — they're reading different libraries.</div>
   </div>
 </div>
 
