@@ -11,6 +11,10 @@ A collection of blog posts on computation, neuroscience, AI, and related topics.
 
 ### Hosted here
 
+- [Who Is Klaus? Agent Authorship at BCOM](/assets/blogs/BLOG-Who_Is_Klaus-Agent_Authorship.html) — On BCOM's WP0084 agent-authorship policy and how it is operationalized in CALLIOPE
+- [Do Bonsai Suffer? Plants, Agency, and Valence under Kolmogorov Theory](/assets/blogs/bonsai-plant-agency-blog.html) — On plants, agency, valence, and the ethics of cultivation
+- [From Third- to First-Person Science](/assets/blogs/from-third-to-first-person-science-blog.html) — On closing the loop between objective brain science and first-person experience
+- [Telehomeostasis: How a Plant Hacked the Human Brain](/assets/blogs/telehomeostasis-nicotine-blog.html) — Nicotine as remote manipulation, on a continuum with mind-controlling parasites
 - ["Consciousness Is Not Computation" — A Confusion of Terms](/assets/blogs/consciousness-is-not-computation-blog.html) — On why the debate conflates different meanings of computation
 - [What Is an Oscillation, Really? Topology, Compression, and the Circle at the Heart of Brain Rhythms](/assets/blogs/oscillations-topology-and-simplicity.html) — On the deep structure of oscillations
 - [Synapses as Springs: Linear Operators, Green–Laplace Tools, and the Origin of E–I Oscillations](/assets/blogs/linear-operators-green-laplace-ei-oscillations.html) — Linear operator theory meets excitatory-inhibitory dynamics
