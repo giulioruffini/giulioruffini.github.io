@@ -11,6 +11,7 @@ A collection of blog posts on computation, neuroscience, AI, and related topics.
 
 ### Hosted here
 
+- [A Gentle Introduction to the Algorithmic Agent and Kolmogorov Theory](/assets/blogs/Gentle_Introduction_KT.html) — Minds compress, evaluate, and act: the central insight, the minimal architecture, and what KT buys us
 - [Who Is Klaus? Agent Authorship at BCOM](/assets/blogs/BLOG-Who_Is_Klaus-Agent_Authorship.html) — On BCOM's WP0084 agent-authorship policy and how it is operationalized in CALLIOPE
 - [Do Bonsai Suffer? Plants, Agency, and Valence under Kolmogorov Theory](/assets/blogs/bonsai-plant-agency-blog.html) — On plants, agency, valence, and the ethics of cultivation
 - [From Third- to First-Person Science](/assets/blogs/from-third-to-first-person-science-blog.html) — On closing the loop between objective brain science and first-person experience
