@@ -281,6 +281,65 @@
     line-height: 1.55;
   }
 
+  /* Fixed left-side nav (wide screens only) */
+  .side-nav {
+    position: fixed;
+    top: 56px;
+    left: 24px;
+    width: 168px;
+    font-family: 'Source Sans 3', sans-serif;
+    z-index: 100;
+  }
+  .side-nav .nav-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--navy);
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--navy);
+  }
+  .side-nav .nav-sub {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    color: #9aa5b1;
+    margin: 14px 0 4px;
+    padding-left: 10px;
+  }
+  .side-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .side-nav li { margin-bottom: 2px; }
+  .side-nav a {
+    font-size: 12.5px;
+    color: var(--muted);
+    text-decoration: none;
+    display: block;
+    padding: 4px 0 4px 10px;
+    border-left: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    line-height: 1.35;
+  }
+  .side-nav a:hover {
+    color: var(--navy);
+    border-left-color: var(--teal);
+  }
+  .side-nav a.current {
+    color: var(--navy);
+    font-weight: 600;
+    border-left-color: var(--navy);
+  }
+  .side-nav a.related {
+    color: var(--teal);
+    font-weight: 600;
+  }
+  .side-nav a.related:hover { border-left-color: var(--teal); }
+  @media (max-width: 1180px) {
+    .side-nav { display: none; }
+  }
+
   .footer-note {
     margin-top: 32px;
     padding-top: 16px;
@@ -305,6 +364,28 @@
 </style>
 </head>
 <body>
+
+<aside class="side-nav" aria-label="Trigon navigation">
+  <div class="nav-title">Trigon</div>
+
+  <div class="nav-sub">This page</div>
+  <ul>
+    <li><a href="#partners">What each partner brings</a></li>
+    <li><a href="#operating">Operating model</a></li>
+    <li><a href="#grants">Grants in flight</a></li>
+    <li><a href="#use-cases">Use cases</a></li>
+  </ul>
+
+  <div class="nav-sub">Related</div>
+  <ul>
+    <li><a class="related" href="affective_bci_market.html">Affective BCI market →</a></li>
+  </ul>
+
+  <div class="nav-sub">Collab</div>
+  <ul>
+    <li><a href="../">← index</a></li>
+  </ul>
+</aside>
 
 <div class="header">
   <div class="header-flex">
@@ -398,7 +479,7 @@
 </div>
 
 <!-- Entity cards -->
-<h2>What Each Partner Brings</h2>
+<h2 id="partners">What Each Partner Brings</h2>
 
 <div class="entity-grid">
 
@@ -466,7 +547,7 @@
 
 <!-- Synergy -->
 <div class="synergy-box">
-  <h2>Operating Model &amp; Synergy</h2>
+  <h2 id="operating">Operating Model &amp; Synergy</h2>
   <p>
     <strong>Two of the three entities commercialise; the third produces.</strong> Neuroelectrics owns the <strong>clinical</strong> commercialisation lane (Class IIa+ medical software, hospital channel, regulatory sponsor). Starlab owns the <strong>non-clinical</strong> commercialisation lane (cosmetics, fragrance, neuromarketing, content testing, research services). BCOM is a non-profit foundation that produces the deep tech both commercialisers depend on — Whole-Brain Model and personalisation, Kokoro neurophenomenology, the algorithmic-agent and emotion theory, the ALGA Engine — and is sustained by support from NE and Starlab in exchange (mechanism TBD).
   </p>
@@ -478,7 +559,7 @@
   </p>
 </div>
 
-<h2>The Triad in Flight: Two Recent Grant Proposals</h2>
+<h2 id="grants">The Triad in Flight: Two Recent Grant Proposals</h2>
 <p>
   The clearest way to see the triad in action is through the two proposals the consortium submitted in April 2026. Both are co-designed across NE, BCOM, and Starlab, and both rely on the same role split — theory and computational models from BCOM, EEG data pipelines and platform engineering from Starlab, devices, regulatory framing, and clinical-trial sponsorship from Neuroelectrics — but applied to very different scientific questions, populations, and regulatory regimes.
 </p>
@@ -541,7 +622,7 @@
 
 </div>
 
-<h2>Representative Use Cases</h2>
+<h2 id="use-cases">Representative Use Cases</h2>
 <p>
   <strong>Clinical trials (e.g., Horizon Europe, NIH):</strong> BCOM conceives the scientific rationale, the computational model linking intervention to mechanism, and the Kokoro phenomenology protocol for the subjective-outcome layer; Starlab provides the EEG analysis pipeline and biomarker endpoints; Neuroelectrics supplies devices, acts as clinical-trial sponsor, and delivers the software platform.
 </p>
