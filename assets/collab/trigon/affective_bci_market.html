@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Affective BCI Market Analysis — Trigon (NE · BCOM · Starlab)</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --paper: #fafaf8;
+    --accent: #2d5a8e;
+    --accent-light: #e8f0f8;
+    --accent-dark: #1a3a5c;
+    --warm: #c45a3c;
+    --warm-light: #fdf0ec;
+    --green: #2a7a5a;
+    --green-light: #eaf5f0;
+    --gold: #b8860b;
+    --gold-light: #fdf8ec;
+    --muted: #6b7280;
+    --border: #e5e5e0;
+    --tier1: #2d5a8e;
+    --tier2: #2a7a5a;
+    --tier3: #b8860b;
+    --tier4: #8b6bb2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  /* Header */
+  .doc-header {
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 32px;
+    margin-bottom: 48px;
+  }
+
+  .trigon-banner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 18px;
+  }
+  .trigon-mark {
+    width: 160px;
+    height: auto;
+    flex-shrink: 0;
+  }
+  .trigon-titles { flex: 1; min-width: 0; }
+
+  .trigon-logos {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin: 14px 0 4px;
+    flex-wrap: wrap;
+  }
+  .trigon-logos img {
+    height: 34px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.92;
+  }
+  .trigon-logos .sep {
+    color: #c5ccd3;
+    font-weight: 300;
+    user-select: none;
+  }
+
+  .doc-header .tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .doc-header h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 42px;
+    line-height: 1.15;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .doc-header .subtitle {
+    font-size: 18px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .doc-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .doc-meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* Sections */
+  section { margin-bottom: 48px; }
+
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+    margin-top: 24px;
+  }
+
+  p { margin-bottom: 14px; color: #333; }
+
+  /* Executive Summary Box */
+  .exec-summary {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 24px 28px;
+    margin-bottom: 40px;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .exec-summary h3 {
+    color: var(--accent-dark);
+    margin-top: 0;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .exec-summary p { color: var(--accent-dark); margin-bottom: 10px; }
+  .exec-summary p:last-child { margin-bottom: 0; }
+
+  /* Thesis box */
+  .thesis-box {
+    background: var(--ink);
+    color: #fff;
+    padding: 28px 32px;
+    border-radius: 8px;
+    margin: 32px 0;
+  }
+
+  .thesis-box .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 10px;
+  }
+
+  .thesis-box p {
+    color: rgba(255,255,255,0.92);
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* Segment Cards */
+  .segment-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px;
+    margin-bottom: 24px;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .segment-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+  }
+
+  .segment-card.tier1::before { background: var(--tier1); }
+  .segment-card.tier2::before { background: var(--tier2); }
+  .segment-card.tier3::before { background: var(--tier3); }
+  .segment-card.tier4::before { background: var(--tier4); }
+
+  .segment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .segment-header h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  .segment-rank {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .rank-primary { background: var(--accent-light); color: var(--tier1); }
+  .rank-strategic { background: var(--green-light); color: var(--tier2); }
+  .rank-growth { background: var(--gold-light); color: var(--tier3); }
+  .rank-emerging { background: #f3eff8; color: var(--tier4); }
+
+  .lane-pill {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+    border: 1px solid currentColor;
+  }
+  .lane-clinical { color: var(--accent); }
+  .lane-nonclinical { color: var(--gold); }
+
+  .segment-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+    padding: 16px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .metric {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .metric .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .metric .value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .metric .note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .segment-body p { font-size: 14px; line-height: 1.6; }
+
+  .segment-body ul {
+    margin: 8px 0 14px 20px;
+    font-size: 14px;
+    color: #333;
+  }
+
+  .segment-body li { margin-bottom: 6px; }
+
+  .moat-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .moat-tag.ne   { color: var(--accent-dark); background: var(--accent-light); }
+  .moat-tag.bcom { color: var(--green); background: var(--green-light); }
+  .moat-tag.sl   { color: var(--gold); background: var(--gold-light); }
+  .moat-tag .who {
+    font-weight: 700;
+    font-size: 10.5px;
+    letter-spacing: 0.7px;
+    opacity: 0.75;
+    margin-left: 4px;
+  }
+
+  /* Trigon stack — the new "who-brings-what" section */
+  .trigon-stack {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 24px 0;
+  }
+  .stack-card {
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 20px;
+    background: #fff;
+  }
+  .stack-card.ne   { border-top-color: var(--accent); }
+  .stack-card.bcom { border-top-color: var(--green); }
+  .stack-card.sl   { border-top-color: var(--gold); }
+  .stack-card h3 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 4px;
+  }
+  .stack-card.ne h3   { color: var(--accent); }
+  .stack-card.bcom h3 { color: var(--green); }
+  .stack-card.sl h3   { color: var(--gold); }
+  .stack-card .role-line {
+    font-family: 'Instrument Serif', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .stack-card ul {
+    margin: 8px 0 0 18px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #333;
+  }
+  .stack-card li { margin-bottom: 4px; }
+
+  .trigon-flows {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .flow-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 16px;
+    padding: 14px 18px;
+    border-left: 3px solid var(--accent);
+    background: #fafafa;
+    border-radius: 0 6px 6px 0;
+    align-items: start;
+  }
+  .flow-row .flow-name {
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 14px;
+  }
+  .flow-row .flow-body {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #333;
+  }
+  .flow-row .pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 1px 7px;
+    border-radius: 3px;
+    margin: 0 2px;
+  }
+  .pill.ne   { background: var(--accent-light); color: var(--accent-dark); }
+  .pill.bcom { background: var(--green-light);  color: var(--green); }
+  .pill.sl   { background: var(--gold-light);   color: var(--gold); }
+
+  @media (max-width: 700px) {
+    .trigon-stack { grid-template-columns: 1fr; }
+    .trigon-banner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .trigon-mark { width: 120px; }
+    .flow-row { grid-template-columns: 1fr; }
+  }
+
+  /* Ranking Table */
+  .rank-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+
+  .rank-table thead th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 12px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .rank-table tbody td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .rank-table tbody tr:hover { background: #fafafa; }
+
+  .rank-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 24px;
+    color: var(--accent);
+    width: 36px;
+  }
+
+  .score-bar {
+    display: inline-block;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--accent);
+    vertical-align: middle;
+  }
+
+  .score-bar.warm { background: var(--warm); }
+  .score-bar.green { background: var(--green); }
+  .score-bar.gold { background: var(--gold); }
+
+  /* TAM visual */
+  .tam-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    padding: 32px 0 0 0;
+    margin: 24px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .tam-bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 100px;
+  }
+
+  .tam-bar {
+    width: 64px;
+    border-radius: 6px 6px 0 0;
+    transition: height 0.3s;
+    position: relative;
+  }
+
+  .tam-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--muted);
+    max-width: 110px;
+    line-height: 1.3;
+  }
+
+  .tam-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    text-align: center;
+  }
+
+  /* Strategy section */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 24px 0;
+  }
+
+  .strategy-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    background: #fff;
+  }
+
+  .strategy-card h4 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .strategy-card p {
+    font-size: 13px;
+    line-height: 1.55;
+    color: #555;
+    margin-bottom: 0;
+  }
+
+  .phase-now h4 { color: var(--tier1); }
+  .phase-mid h4 { color: var(--tier2); }
+  .phase-long h4 { color: var(--gold); }
+  .phase-fund h4 { color: var(--warm); }
+
+  /* Footer */
+  .doc-footer {
+    border-top: 2px solid var(--ink);
+    padding-top: 20px;
+    margin-top: 60px;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .disclaimer {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 24px;
+    padding: 16px;
+    background: #f9f9f6;
+    border-radius: 6px;
+  }
+
+  @media (max-width: 700px) {
+    .page { padding: 32px 20px; }
+    .doc-header h1 { font-size: 28px; }
+    .strategy-grid { grid-template-columns: 1fr; }
+    .segment-metrics { grid-template-columns: 1fr 1fr; }
+    .doc-meta { flex-direction: column; gap: 8px; }
+  }
+
+  @media print {
+    .page { max-width: 100%; padding: 20px; }
+    .segment-card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="doc-header">
+    <div class="trigon-banner">
+      <svg class="trigon-mark" viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Trigon — a prism splitting a single white beam into coral, grey, and green">
+        <defs>
+          <linearGradient id="abciPrismBg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#070710"/>
+            <stop offset="100%" stop-color="#0d0d1a"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="260" height="150" rx="8" fill="url(#abciPrismBg)"/>
+        <line x1="2" y1="68" x2="101" y2="68" stroke="#ffffff" stroke-width="4.5" opacity="0.18"/>
+        <line x1="2" y1="68" x2="101" y2="68" stroke="#ffffff" stroke-width="1.7" opacity="0.98"/>
+        <line x1="101" y1="68" x2="159" y2="68" stroke="#c8e016" stroke-width="3"   opacity="0.30"/>
+        <line x1="101" y1="68" x2="159" y2="68" stroke="#c8e016" stroke-width="1.4" opacity="0.95"/>
+        <polygon points="130,20 73,117 187,117" fill="#ffffff" opacity="0.035"/>
+        <polygon points="130,20 73,117 187,117" fill="none" stroke="#ffffff" stroke-width="1.4" stroke-linejoin="round" opacity="0.94"/>
+        <line x1="159" y1="68" x2="258" y2="48"  stroke="#ff5e6c" stroke-width="5"   opacity="0.25"/>
+        <line x1="159" y1="68" x2="258" y2="48"  stroke="#ff5e6c" stroke-width="2.4" opacity="1"    stroke-linecap="round"/>
+        <line x1="159" y1="68" x2="258" y2="83"  stroke="#d4d4d4" stroke-width="5"   opacity="0.15"/>
+        <line x1="159" y1="68" x2="258" y2="83"  stroke="#d4d4d4" stroke-width="2.4" opacity="0.95" stroke-linecap="round"/>
+        <line x1="159" y1="68" x2="258" y2="118" stroke="#c8e016" stroke-width="5"   opacity="0.25"/>
+        <line x1="159" y1="68" x2="258" y2="118" stroke="#c8e016" stroke-width="2.4" opacity="1"    stroke-linecap="round"/>
+      </svg>
+      <div class="trigon-titles">
+        <div class="tag">Strategic Market Analysis · Trigon</div>
+        <h1>Affective BCI: A Trigon Opportunity Map</h1>
+        <div class="subtitle">Emotion-sensing EEG applications — segment sizing, the NE / BCOM / Starlab stack, and ranked opportunities</div>
+      </div>
+    </div>
+    <div class="trigon-logos">
+      <img src="ne-logo.png" alt="Neuroelectrics logo">
+      <span class="sep">·</span>
+      <img src="bcom-logo.png" alt="BCOM logo">
+      <span class="sep">·</span>
+      <img src="starlab-logo.png" alt="Starlab logo">
+    </div>
+    <div class="doc-meta">
+      <span>Trigon — Neuroelectrics · BCOM · Starlab</span>
+      <span>May 2026</span>
+      <span>Confidential — Internal</span>
+    </div>
+  </header>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="exec-summary">
+    <h3>Executive Summary</h3>
+    <p>Reliable measurement of affective state via EEG — operationalized as continuous valence (approach/withdrawal) and arousal (activation intensity) dynamics — opens six commercially viable market segments with a combined serviceable addressable market (SAM) of approximately <strong>€6.5–12.5B by 2030</strong>.</p>
+    <p>The <strong>Trigon</strong> (Neuroelectrics + BCOM + Starlab) holds a structurally unique position in this market because all four layers of the value chain sit inside the consortium: <strong>theory and mechanistic models</strong> (BCOM — Whole-Brain Model for Mood Disorders, predictive-coding framework, ALGA Engine), <strong>affective signal software</strong> (Starlab — EmoWave valence/arousal pipeline + curated EEG corpus), <strong>clinical-grade hardware and closed-loop stimulation</strong> (NE — Enobio, Starstim, Neurotwin), and <strong>regulatory, sponsor, and route-to-market</strong> (NE — ISO 13485, MDR/FDA, SaaS productisation). This read + interpret + write + ship stack is not replicated by any single competitor.</p>
+    <p>The Trigon's affective story is also not purely EEG. Three multimodal capabilities — <strong>principled quantification of subjective experience via Kokoro</strong>, <strong>per-individual Whole-Brain Models calibrated jointly from EEG and Kokoro</strong>, and <strong>foundational EEG models</strong> jointly built by Starlab and BCOM — extend the moat from "we measure a signal" to "we measure brain, mind, and behaviour in one personalised stack."</p>
+  </div>
+
+  <!-- STRATEGIC THESIS -->
+  <div class="thesis-box">
+    <div class="label">Core Strategic Thesis</div>
+    <p>The moat is not "we can measure emotion" — that capability is commoditising. The moat is <em>a clinical-grade signal interpreted through a mechanistic brain model and a principled phenomenology layer, looped back via stimulation, and shipped through the right commercial channel</em>. The Trigon is the only consortium in Europe that owns every link of that chain across <strong>two commercialisation lanes</strong> — clinical and non-clinical — fed by a single non-profit deep-tech source. Each entity is replaceable individually; the integrated Trigon is not.</p>
+  </div>
+
+  <!-- OPERATING MODEL -->
+  <section>
+    <h2>Operating Model</h2>
+    <p>Two of the three entities commercialise; the third produces. This split is the structure that shapes everything below — which entity leads which segment, how revenue flows, and where IP sits.</p>
+
+    <div class="trigon-stack">
+      <div class="stack-card ne">
+        <h3>Neuroelectrics · For-profit</h3>
+        <div class="role-line">Owns the <em>clinical</em> commercialisation lane.</div>
+        <ul>
+          <li>Clinical SaaS (Class IIa+), hospital and pharma channels, MDR/FDA sponsorship, ISO 13485 QMS.</li>
+          <li>Implements BCOM's Whole-Brain Model (Neurotwin) and Starlab's EEG pipelines as regulatory-grade clinical products.</li>
+          <li>Supplies CE-marked hardware (Enobio, Starstim) to <em>both</em> lanes — including Starlab's non-clinical applications.</li>
+        </ul>
+      </div>
+
+      <div class="stack-card sl">
+        <h3>Starlab · For-profit</h3>
+        <div class="role-line">Owns the <em>non-clinical</em> commercialisation lane.</div>
+        <ul>
+          <li>Cosmetics, fragrance, neuromarketing, content testing, research services. EmoWave is the flagship non-clinical product.</li>
+          <li>Owns EEG application development end-to-end; runs its apps on NE hardware.</li>
+          <li>Joint owner — with BCOM — of foundational EEG models (AI for EEG data analysis).</li>
+        </ul>
+      </div>
+
+      <div class="stack-card bcom">
+        <h3>BCOM · Non-profit Foundation</h3>
+        <div class="role-line">The think tank — does not commercialise.</div>
+        <ul>
+          <li>Owns the deep tech: Whole-Brain Model + personalisation, Kokoro neurophenomenology, algorithmic-agent / emotion theory, ALGA Engine.</li>
+          <li>Joint owner — with Starlab — of foundational EEG models.</li>
+          <li>Sustained by support from NE and Starlab in exchange for the science and deep tech it provides (mechanism TBD).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRIGON STACK FOR AFFECTIVE BCI -->
+  <section>
+    <h2>What Each Entity Brings to Affective BCI</h2>
+    <p>The operating-model split above shapes how affective BCI plays out. BCOM produces the models, Starlab develops EEG applications and runs the non-clinical channel, NE implements clinical products and supplies hardware to both. Below, the affective-BCI-specific artefacts each entity contributes.</p>
+
+    <div class="trigon-stack">
+      <div class="stack-card bcom">
+        <h3>BCOM · deep tech</h3>
+        <div class="role-line">Models, theory, phenomenology.</div>
+        <ul>
+          <li><strong>Whole-Brain Model for Mood Disorders</strong> — interpretive layer connecting valence/arousal dynamics to mechanism (predictive coding, plasticity windows, depressive attractors). Personalised per individual.</li>
+          <li><strong>Kokoro</strong> — principled <em>quantification</em> of subjective experience. Structured phenomenological interviews → comparable, longitudinal, machine-readable variables. A measurement layer that complements EEG.</li>
+          <li><strong>Algorithmic-agent and emotion theory</strong> — Kolmogorov Theory, predictive coding, the ALGA Engine for affect-modulating generative content.</li>
+          <li><strong>Archeon</strong> — literature-grounded archeograph for the affective-neuroscience evidence base.</li>
+        </ul>
+      </div>
+
+      <div class="stack-card sl">
+        <h3>Starlab · EEG apps + non-clinical channel</h3>
+        <div class="role-line">Develops the EEG software; sells non-clinical.</div>
+        <ul>
+          <li><strong>EmoWave</strong> — EEG valence/arousal software; the canonical affective output downstream products consume. Starlab's flagship non-clinical commercial product.</li>
+          <li><strong>EEG application development</strong> — pipelines, biomarker extraction, artefact handling, normative comparison. Licensed to NE for clinical use.</li>
+          <li><strong>Curated EEG corpus</strong> — the normative database that gives the Trigon a unique training and validation asset (and the substrate for foundational EEG models, co-owned with BCOM).</li>
+          <li><strong>Non-clinical commercialisation</strong> — direct channel into cosmetics, fragrance, neuromarketing, content, and research-services clients.</li>
+        </ul>
+      </div>
+
+      <div class="stack-card ne">
+        <h3>Neuroelectrics · hardware + clinical channel</h3>
+        <div class="role-line">Hardware everywhere; clinical implementation.</div>
+        <ul>
+          <li><strong>Enobio + Starstim</strong> — CE-marked / FDA-cleared EEG and tES hardware. The substrate every Trigon product runs on, clinical or non-clinical.</li>
+          <li><strong>Clinical implementation</strong> of BCOM's WBM and personalisation (Neurotwin) and Starlab's EEG pipelines, packaged as regulatory-grade SaaS.</li>
+          <li><strong>Clinical commercialisation</strong> — Class IIa+ medical software, hospital and pharma channels, MDR/FDA pathway, ISO 13485 QMS, trial sponsorship.</li>
+          <li><strong>Hardware supply</strong> to Starlab's non-clinical lines — bringing clinical-grade signal quality to consumer-facing applications.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px;">Three joint capabilities that go beyond EEG alone</h3>
+    <p>Each entity is strong on its own, but the assets that no competitor can replicate are the ones that only exist when two or three of them combine — and they extend the Trigon's affective offering well past pure EEG measurement.</p>
+
+    <div class="trigon-stack">
+      <div class="stack-card bcom">
+        <h3>Kokoro · the experience layer of every application</h3>
+        <div class="role-line">Owned by <span class="pill bcom">BCOM</span> · embedded in the apps themselves</div>
+        <ul>
+          <li><strong>At home:</strong> daily Kokoro check-in next to the home EEG session — turns "how are you feeling" into a quantified vector the clinician dashboard plots over time.</li>
+          <li><strong>In clinic:</strong> in-session structured phenomenology for CBT, exposure, EMDR, and psychedelic-assisted therapy — including the moments where the patient's reported state diverges from the EEG.</li>
+          <li><strong>In trials:</strong> a quantified subjective endpoint that pairs with the EEG biomarker for pharma sponsors — far better signal-to-noise than weekly PHQ-9 / HAM-D.</li>
+          <li><strong>In consumer studies (non-clinical):</strong> the same instrument captures fragrance hedonics, content response, qualitative consumer insight — structured rather than free-text.</li>
+          <li>Result: the Trigon ships every application as <em>EEG + Kokoro</em>, not just EEG — a measurement instrument competitors don't even know how to spec.</li>
+        </ul>
+      </div>
+
+      <div class="stack-card ne">
+        <h3>Personalised Whole-Brain Models</h3>
+        <div class="role-line">Owned by <span class="pill bcom">BCOM</span> · implemented by <span class="pill ne">NE</span> (clinical) and <span class="pill sl">SL</span> (non-clinical)</div>
+        <ul>
+          <li>Per-individual brain models calibrated jointly from <strong>EEG (Starlab pipelines) and Kokoro (BCOM)</strong> — fitted to neural dynamics <em>and</em> the patient's reported experience.</li>
+          <li><strong>Clinical implementation (NE):</strong> the natural evolution of Neurotwin — from "personalised tDCS dose" to "personalised affective model" driving response prediction and closed-loop stimulation.</li>
+          <li><strong>Non-clinical implementation (Starlab):</strong> participant-specific affective baselines for premium cosmetics, fragrance, and content studies.</li>
+        </ul>
+      </div>
+
+      <div class="stack-card sl">
+        <h3>Foundational EEG Models</h3>
+        <div class="role-line">Joint <span class="pill sl">SL</span> × <span class="pill bcom">BCOM</span> project · consumed by both lanes</div>
+        <ul>
+          <li>Self-supervised pretraining on <strong>Starlab's curated EEG corpus</strong>, with <strong>BCOM's mechanistic priors</strong> (Whole-Brain Model dynamics, predictive-coding objectives) baked into architecture and training.</li>
+          <li>Single shared backbone: EmoWave (Starlab non-clinical) and NE's clinical SaaS both fine-tune heads off the same foundation.</li>
+          <li>Strategic IP for the foundation-model era — a defensible asset competitors without a corpus or theoretical priors simply cannot build. Part of BCOM's deep-tech contribution to the consortium.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px;">Concrete cross-entity workflows</h3>
+    <div class="trigon-flows">
+      <div class="flow-row">
+        <div class="flow-name">Cosmetics / fragrance test</div>
+        <div class="flow-body">
+          <span class="pill sl">SL</span> EmoWave runs as the product — real-time valence/arousal trajectories during scent dry-down or texture trials.
+          <span class="pill ne">NE</span> Enobio supplies the regulatory-grade hardware lease and quality wrapper that justifies premium pricing.
+          <span class="pill bcom">BCOM</span> provides normative calibration against the EEG corpus and the published-method dossier that survives client due diligence.
+        </div>
+      </div>
+      <div class="flow-row">
+        <div class="flow-name">Pharma endpoint service</div>
+        <div class="flow-body">
+          <span class="pill bcom">BCOM</span> defines the mechanistic biomarker (Whole-Brain Model for Mood Disorders) <em>and</em> the Kokoro structured-experience protocol that produces a quantified subjective endpoint alongside the EEG one.
+          <span class="pill sl">SL</span> EmoWave + biomarker pipelines produce the endpoint values at scale across CRO sites.
+          <span class="pill ne">NE</span> sponsors the qualification work, deploys trial-grade hardware, and packages the regulatory dossier for EMA/FDA endpoint discussion.
+        </div>
+      </div>
+      <div class="flow-row">
+        <div class="flow-name">Clinical home monitoring → DTx</div>
+        <div class="flow-body">
+          <span class="pill ne">NE</span> Enobio Home + cloud SaaS deliver the daily 5-minute EEG assessment and the clinician dashboard under Class IIa / IIb clearance.
+          <span class="pill bcom">BCOM</span> Kokoro runs as the companion at-home phenomenology app — daily structured first-person check-ins paired with the EEG session, turning subjective state into quantified data the dashboard can plot next to the EEG. BCOM's Whole-Brain Model then interprets both streams mechanistically; the ALGA Engine supplies intervention content when the platform graduates to closed-loop DTx with Starstim.
+          <span class="pill sl">SL</span> EmoWave converts the raw EEG into longitudinal valence/arousal trajectories; biomarker pipelines flag drift and prodromal patterns.
+        </div>
+      </div>
+      <div class="flow-row">
+        <div class="flow-name">Objective pain assessment (research-to-product)</div>
+        <div class="flow-body">
+          <span class="pill bcom">BCOM</span> decomposes the affective signal into pain-specific vs. general negative-affect components via predictive-coding modelling — the missing scientific step.
+          <span class="pill sl">SL</span> EmoWave + bespoke pipelines extract the candidate biomarker against a validation corpus.
+          <span class="pill ne">NE</span> drives the regulatory and clinical-trial path (Class II–III) once the BCOM/SL scientific package clears validation gates.
+        </div>
+      </div>
+      <div class="flow-row">
+        <div class="flow-name">Personalised WBM from EEG + Kokoro</div>
+        <div class="flow-body">
+          <span class="pill sl">SL</span> processes the patient's EEG (resting and task) through EmoWave + biomarker pipelines.
+          <span class="pill bcom">BCOM</span> Kokoro captures a structured phenomenological profile in parallel; the Whole-Brain Model is then fitted to both data streams to produce a per-individual model that explains <em>this</em> patient's neural dynamics and reported experience together.
+          <span class="pill ne">NE</span> exposes the personalised model inside Neurotwin / the clinical SaaS — driving montage selection, response prediction, and (when paired with Starstim) personalised closed-loop stimulation.
+        </div>
+      </div>
+      <div class="flow-row">
+        <div class="flow-name">Foundational EEG model (Starlab × BCOM)</div>
+        <div class="flow-body">
+          <span class="pill sl">SL</span> contributes the curated EEG corpus and pretraining infrastructure.
+          <span class="pill bcom">BCOM</span> contributes mechanistic priors (Whole-Brain Model dynamics, predictive-coding objectives) that shape the architecture and self-supervised loss.
+          <span class="pill ne">NE</span> consumes the resulting foundation model across every product line — fine-tuning a head for EmoWave, pharma endpoints, home-monitoring biomarkers, and the closed-loop DTx — turning a single shared backbone into compounding leverage.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAM VISUALIZATION -->
+  <section>
+    <h2>Market Size by Segment (SAM 2030, €B)</h2>
+    <div class="tam-chart">
+      <div class="tam-bar-group">
+        <div class="tam-value">€2.5–5B</div>
+        <div class="tam-bar" style="height: 180px; background: var(--tier1);"></div>
+        <div class="tam-label">Clinical Home Monitoring</div>
+      </div>
+      <div class="tam-bar-group">
+        <div class="tam-value">€1.5–3B</div>
+        <div class="tam-bar" style="height: 130px; background: var(--tier1);"></div>
+        <div class="tam-label">Pharma Endpoint Services</div>
+      </div>
+      <div class="tam-bar-group">
+        <div class="tam-value">€1–2B</div>
+        <div class="tam-bar" style="height: 95px; background: var(--tier2);"></div>
+        <div class="tam-label">Cosmetics &amp; Fragrance</div>
+      </div>
+      <div class="tam-bar-group">
+        <div class="tam-value">€0.8–1.2B</div>
+        <div class="tam-bar" style="height: 70px; background: var(--tier3);"></div>
+        <div class="tam-label">Neuromarketing (Broad)</div>
+      </div>
+      <div class="tam-bar-group">
+        <div class="tam-value">€0.5–1B</div>
+        <div class="tam-bar" style="height: 52px; background: var(--tier4);"></div>
+        <div class="tam-label">Psychotherapy Tools</div>
+      </div>
+      <div class="tam-bar-group">
+        <div class="tam-value">€0.2–0.3B</div>
+        <div class="tam-bar" style="height: 28px; background: #aaa;"></div>
+        <div class="tam-label">Objective Pain Assessment</div>
+      </div>
+    </div>
+    <p class="disclaimer">SAM estimates based on adjacent market data (RPM, CRO services, consumer testing, behavioral health tech), segmented for EEG-specific affective applications. Pain assessment SAM is low despite massive TAM due to early-stage scientific validation. All figures are directional estimates for strategic planning.</p>
+  </section>
+
+  <!-- SEGMENT DEEP DIVES -->
+  <section>
+    <h2>Segment Analysis</h2>
+
+    <!-- 1. CLINICAL HOME MONITORING -->
+    <div class="segment-card tier1">
+      <div class="segment-header">
+        <h3>1. Clinical Home Monitoring — Psychiatric Remote Patient Monitoring</h3>
+        <span class="lane-pill lane-clinical">Clinical · NE-led</span>
+        <span class="segment-rank rank-primary">Primary Opportunity</span>
+      </div>
+      <div class="segment-metrics">
+        <div class="metric">
+          <span class="label">SAM 2030</span>
+          <span class="value">€2.5–5B</span>
+        </div>
+        <div class="metric">
+          <span class="label">Revenue Model</span>
+          <span class="value">€50–150</span>
+          <span class="note">per patient / month</span>
+        </div>
+        <div class="metric">
+          <span class="label">Time to Revenue</span>
+          <span class="value">18–30 mo</span>
+        </div>
+        <div class="metric">
+          <span class="label">Regulatory</span>
+          <span class="value">Class IIa</span>
+          <span class="note">monitoring only</span>
+        </div>
+      </div>
+      <div class="segment-body">
+        <p><strong>The opportunity:</strong> Psychiatric care relies on sparse, subjective self-reports (PHQ-9, HAM-D) collected every 4–8 weeks. Continuous remote monitoring — EEG <em>and</em> a structured phenomenological companion — transforms this into dense, longitudinal data on both brain state and lived experience, enabling early intervention, medication titration, and prodromal detection.</p>
+        <p><strong>What we sell:</strong> Daily 5-minute standardised EEG assessment at home (resting state + brief affective provocation) <em>paired</em> with a daily <strong>Kokoro</strong> phenomenological check-in — a few minutes of structured first-person reporting that turns "how do you feel?" into a quantified vector comparable across days, patients, and conditions. Both feed a clinician dashboard showing affective baseline trajectories, medication response curves, and divergence between physiological state and reported state — often the earliest warning of relapse.</p>
+        <p><strong>Who pays:</strong> Health systems and payers. Value proposition: reduced hospitalisation from early intervention, fewer medication trial-and-error cycles, fewer crisis ER presentations.</p>
+        <p><strong>Why the Trigon wins:</strong></p>
+        <div>
+          <span class="moat-tag ne">Enobio + Starstim <span class="who">NE</span></span>
+          <span class="moat-tag ne">Neurotwin · MDR/FDA <span class="who">NE</span></span>
+          <span class="moat-tag sl">EmoWave + EEG corpus <span class="who">SL</span></span>
+          <span class="moat-tag bcom">Whole-Brain Model · ALGA <span class="who">BCOM</span></span>
+        </div>
+        <p style="margin-top:12px">This is the natural wedge into the closed-loop digital therapeutic: start with EmoWave-driven monitoring (lower regulatory burden, Class IIa), build the longitudinal dataset interpreted through BCOM's Whole-Brain Model, then layer in Starstim-based stimulation (Class IIb/III) once the evidence base and clearance are in place.</p>
+      </div>
+    </div>
+
+    <!-- 2. PHARMA ENDPOINTS -->
+    <div class="segment-card tier1">
+      <div class="segment-header">
+        <h3>2. Pharma Endpoint-as-a-Service</h3>
+        <span class="lane-pill lane-clinical">Clinical · NE-led</span>
+        <span class="segment-rank rank-primary">Primary Opportunity</span>
+      </div>
+      <div class="segment-metrics">
+        <div class="metric">
+          <span class="label">SAM 2030</span>
+          <span class="value">€1.5–3B</span>
+        </div>
+        <div class="metric">
+          <span class="label">Revenue Model</span>
+          <span class="value">€200–500K</span>
+          <span class="note">per trial engagement</span>
+        </div>
+        <div class="metric">
+          <span class="label">Time to Revenue</span>
+          <span class="value">12–24 mo</span>
+        </div>
+        <div class="metric">
+          <span class="label">Regulatory</span>
+          <span class="value">Moderate</span>
+          <span class="note">endpoint qualification</span>
+        </div>
+      </div>
+      <div class="segment-body">
+        <p><strong>The opportunity:</strong> MDD/anxiety clinical trials fail at high rates partly because primary endpoints are subjective, noisy, and sparse. The Trigon's offer is a paired endpoint — <em>objective</em> EEG-derived affective biomarkers (EmoWave + WBM-MD interpretation) and <em>structured subjective</em> outcomes (Kokoro) — collected daily instead of every visit. Together they substantially improve signal-to-noise and can potentially halve required enrollment.</p>
+        <p><strong>What we sell:</strong> A managed data service to CROs and pharma sponsors: validated hardware, standardised EEG protocols, Kokoro-based structured-experience capture, cloud analytics platform, regulatory-ready data packages. Not the device — the endpoint <em>pair</em>.</p>
+        <p><strong>Who pays:</strong> Pharma companies and CROs. Halving enrollment in a Phase II/III trial saves tens of millions per program.</p>
+        <p><strong>Why the Trigon wins:</strong></p>
+        <div>
+          <span class="moat-tag bcom">Mechanistic biomarker (WBM-MD) <span class="who">BCOM</span></span>
+          <span class="moat-tag sl">EmoWave endpoint pipeline <span class="who">SL</span></span>
+          <span class="moat-tag ne">Trial sponsorship · MDR/FDA <span class="who">NE</span></span>
+          <span class="moat-tag ne">Existing trial network <span class="who">NE</span></span>
+        </div>
+        <p style="margin-top:12px">Fastest path to meaningful revenue. NE's existing trial relationships (ADASTRA, SYNERGIA) give immediate warm introductions; BCOM's Whole-Brain Model for Mood Disorders provides the mechanistic story that turns EmoWave outputs into a defensible endpoint, not just a metric.</p>
+      </div>
+    </div>
+
+    <!-- 3. COSMETICS & FRAGRANCE -->
+    <div class="segment-card tier2">
+      <div class="segment-header">
+        <h3>3. Cosmetics &amp; Fragrance Testing</h3>
+        <span class="lane-pill lane-nonclinical">Non-clinical · Starlab-led</span>
+        <span class="segment-rank rank-strategic">Strategic Growth</span>
+      </div>
+      <div class="segment-metrics">
+        <div class="metric">
+          <span class="label">SAM 2030</span>
+          <span class="value">€1–2B</span>
+        </div>
+        <div class="metric">
+          <span class="label">Revenue Model</span>
+          <span class="value">€100–300K</span>
+          <span class="note">annual license / client</span>
+        </div>
+        <div class="metric">
+          <span class="label">Time to Revenue</span>
+          <span class="value">6–12 mo</span>
+        </div>
+        <div class="metric">
+          <span class="label">Regulatory</span>
+          <span class="value">Minimal</span>
+          <span class="note">non-medical device</span>
+        </div>
+      </div>
+      <div class="segment-body">
+        <p><strong>The opportunity:</strong> The gap between what consumers say and what they feel is widest in sensory products. Hedonic response to fragrance, texture, and packaging is pre-verbal — EEG captures the first 500ms that self-report destroys.</p>
+        <p><strong>Key applications:</strong></p>
+        <ul>
+          <li><strong>Fragrance development:</strong> Real-time valence/arousal trajectories across dry-down phases (top, heart, base notes). Objective data for perfumers replacing trained verbal panels.</li>
+          <li><strong>Texture and haptics:</strong> Emotional response to cream feel, compact snap, bottle weight. Luxury brands obsess over this and currently cannot measure it.</li>
+          <li><strong>Claim substantiation:</strong> "Clinically proven to improve wellbeing" operationalized as a measurable affective EEG shift vs. control. Defensible marketing claims for premium products.</li>
+          <li><strong>Packaging:</strong> 200–400ms emotional first-impression response before conscious evaluation — where impulse purchase decisions are actually made.</li>
+        </ul>
+        <p><strong>Who pays:</strong> L'Oréal, Estée Lauder, Givaudan, Firmenich, IFF — companies with R&D budgets in the hundreds of millions and high margins to absorb premium tooling. Target: 50–100 global brands and top 20 agencies.</p>
+        <div>
+          <span class="moat-tag sl">EmoWave (the product) <span class="who">SL</span></span>
+          <span class="moat-tag sl">Normative EEG corpus <span class="who">SL</span></span>
+          <span class="moat-tag ne">Enobio hardware + QMS <span class="who">NE</span></span>
+          <span class="moat-tag bcom">Calibration / dossier <span class="who">BCOM</span></span>
+        </div>
+        <p style="margin-top:12px"><strong>Strategic role:</strong> Fastest time-to-revenue, lowest regulatory burden. EmoWave is essentially the product here; NE supplies the clinical-grade substrate that justifies premium pricing vs. consumer-grade competitors; BCOM provides the validation dossier. Cash-generating beachhead that funds the clinical plays — and the first place Starlab's affective-computing services can be packaged into a repeatable offering.</p>
+      </div>
+    </div>
+
+    <!-- 4. NEUROMARKETING BROAD -->
+    <div class="segment-card tier3">
+      <div class="segment-header">
+        <h3>4. Neuromarketing Platform (Broad)</h3>
+        <span class="lane-pill lane-nonclinical">Non-clinical · Starlab-led</span>
+        <span class="segment-rank rank-growth">Growth Market</span>
+      </div>
+      <div class="segment-metrics">
+        <div class="metric">
+          <span class="label">SAM 2030</span>
+          <span class="value">€0.8–1.2B</span>
+        </div>
+        <div class="metric">
+          <span class="label">Revenue Model</span>
+          <span class="value">Hardware + SaaS</span>
+          <span class="note">per-study analytics</span>
+        </div>
+        <div class="metric">
+          <span class="label">Time to Revenue</span>
+          <span class="value">6–12 mo</span>
+        </div>
+        <div class="metric">
+          <span class="label">Regulatory</span>
+          <span class="value">None</span>
+        </div>
+      </div>
+      <div class="segment-body">
+        <p><strong>The opportunity:</strong> Ad testing, UX research, shelf layout optimization, content testing for studios and streaming platforms. Existing market (~€1B) currently served by firms using consumer-grade hardware with poorly validated metrics.</p>
+        <p><strong>Trigon differentiation:</strong> Don't sell the study — sell the platform. EmoWave delivers the affective metric, the BCOM-curated normative database makes it interpretable, and NE supplies the clinical-grade hardware and validation paperwork. Enterprise consumer-insights teams (Unilever, P&G, Netflix) can run studies themselves on a platform that survives scientific scrutiny.</p>
+        <p><strong>Revenue model:</strong> Hardware lease (NE) + per-study EmoWave SaaS analytics licence (SL) + normative database access (SL+BCOM). Recurring, not project-based.</p>
+        <div>
+          <span class="moat-tag sl">EmoWave + protocol <span class="who">SL</span></span>
+          <span class="moat-tag ne">Clinical-grade hardware <span class="who">NE</span></span>
+          <span class="moat-tag bcom">Validation dossier <span class="who">BCOM</span></span>
+        </div>
+        <p style="margin-top:12px"><strong>Risk:</strong> More competitive than other segments. Consumer-grade headbands (Emotiv, Muse) are "good enough" for many buyers. The Trigon must compete on validation and credibility, not just signal quality — which is precisely the layer BCOM's dossier and NE's clinical pedigree bring.</p>
+      </div>
+    </div>
+
+    <!-- 5. PSYCHOTHERAPY -->
+    <div class="segment-card tier4">
+      <div class="segment-header">
+        <h3>5. Psychotherapy Augmentation</h3>
+        <span class="lane-pill lane-clinical">Clinical · NE-led</span>
+        <span class="segment-rank rank-emerging">Emerging</span>
+      </div>
+      <div class="segment-metrics">
+        <div class="metric">
+          <span class="label">SAM 2030</span>
+          <span class="value">€0.5–1B</span>
+        </div>
+        <div class="metric">
+          <span class="label">Revenue Model</span>
+          <span class="value">€200–400</span>
+          <span class="note">per clinician / month</span>
+        </div>
+        <div class="metric">
+          <span class="label">Time to Revenue</span>
+          <span class="value">24–36 mo</span>
+        </div>
+        <div class="metric">
+          <span class="label">Regulatory</span>
+          <span class="value">Class I–IIa</span>
+        </div>
+      </div>
+      <div class="segment-body">
+        <p><strong>Three plays — all built around the EEG + Kokoro pairing:</strong></p>
+        <ul>
+          <li><strong>In-session therapist dashboard:</strong> Real-time patient affective state during CBT, exposure therapy, EMDR, or psychedelic-assisted therapy. Detects when verbal report diverges from physiological state ("I'm fine" + high arousal/negative valence). Kokoro adds a structured, prompt-driven phenomenology layer the therapist can review in seconds.</li>
+          <li><strong>Between-session outcome tracking:</strong> Brief daily EEG assessment at home + a Kokoro check-in. Together they produce a longitudinal "brain × experience" record that replaces weekly self-report questionnaires (PHQ-9, GAD-7) with something far richer.</li>
+          <li><strong>Psychedelic-assisted therapy outcomes:</strong> Where phenomenology is half the clinical signal, Kokoro becomes the principled measurement layer — turning subjective trip-report content into structured, comparable, longitudinal data the field currently lacks.</li>
+        </ul>
+        <p><strong>Who pays:</strong> Behavioural health clinics, employee assistance programmes, teletherapy platforms, psychedelic-therapy clinics.</p>
+        <div>
+          <span class="moat-tag ne">Enobio Home + dashboard <span class="who">NE</span></span>
+          <span class="moat-tag sl">EmoWave session feed <span class="who">SL</span></span>
+          <span class="moat-tag bcom">Kokoro phenomenology <span class="who">BCOM</span></span>
+        </div>
+        <p style="margin-top:12px"><strong>Strategic note:</strong> Better positioned as a feature of the home monitoring platform (Segment 1) than a standalone product. Therapist adoption is slow and workflow-sensitive. Where the Trigon adds singular value is the combination of EmoWave's objective affect read-out with BCOM's Kokoro phenomenology layer — capturing what the patient reports alongside what the EEG says, then flagging divergence.</p>
+      </div>
+    </div>
+
+    <!-- 6. PAIN -->
+    <div class="segment-card tier4">
+      <div class="segment-header">
+        <h3>6. Objective Pain Assessment</h3>
+        <span class="lane-pill lane-clinical">Clinical · NE-led</span>
+        <span class="segment-rank rank-emerging">Emerging — High Ceiling</span>
+      </div>
+      <div class="segment-metrics">
+        <div class="metric">
+          <span class="label">SAM 2030</span>
+          <span class="value">€0.2–0.3B</span>
+          <span class="note">TAM far larger if validated</span>
+        </div>
+        <div class="metric">
+          <span class="label">Revenue Model</span>
+          <span class="value">TBD</span>
+          <span class="note">device + service</span>
+        </div>
+        <div class="metric">
+          <span class="label">Time to Revenue</span>
+          <span class="value">36–60 mo</span>
+        </div>
+        <div class="metric">
+          <span class="label">Regulatory</span>
+          <span class="value">Class II–III</span>
+        </div>
+      </div>
+      <div class="segment-body">
+        <p><strong>The opportunity:</strong> Pain is universally self-reported. Objective EEG-based pain measurement would transform anesthesiology, chronic pain management, neonatal care, and analgesic drug development. The opioid crisis has made this politically urgent.</p>
+        <p><strong>The challenge:</strong> Scientific validation is still early-stage. Decomposing affective EEG into pain-specific vs. general negative-affect components is an open research problem. Near-term SAM is small, but if validated, the TAM is enormous (€10B+ across pain management, insurance, pharma).</p>
+        <div>
+          <span class="moat-tag bcom">Pain decomposition (theory) <span class="who">BCOM</span></span>
+          <span class="moat-tag sl">EmoWave + pain pipeline <span class="who">SL</span></span>
+          <span class="moat-tag ne">Read + Write + regulatory <span class="who">NE</span></span>
+        </div>
+        <p style="margin-top:12px"><strong>Recommendation:</strong> Fund as a Trigon research initiative — BCOM leads the predictive-coding decomposition of pain vs. general negative-affect, Starlab adapts EmoWave's pipeline to the pain context, NE stands by for the clinical-validation phase. Monitor academic progress; be ready to accelerate if validation milestones are hit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RANKING TABLE -->
+  <section>
+    <h2>Opportunity Ranking</h2>
+    <p>Weighted by risk-adjusted commercial value: market size × NE defensibility × time-to-revenue × strategic optionality.</p>
+    <table class="rank-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Segment</th>
+          <th>SAM 2030</th>
+          <th>Trigon Moat</th>
+          <th>Speed</th>
+          <th>Strategic Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank-num">1</td>
+          <td><strong>Clinical Home Monitoring</strong></td>
+          <td>€2.5–5B</td>
+          <td><span class="score-bar" style="width:90px"></span></td>
+          <td><span class="score-bar warm" style="width:50px"></span></td>
+          <td><span class="score-bar green" style="width:95px"></span></td>
+        </tr>
+        <tr>
+          <td class="rank-num">2</td>
+          <td><strong>Pharma Endpoint Services</strong></td>
+          <td>€1.5–3B</td>
+          <td><span class="score-bar" style="width:80px"></span></td>
+          <td><span class="score-bar warm" style="width:65px"></span></td>
+          <td><span class="score-bar green" style="width:80px"></span></td>
+        </tr>
+        <tr>
+          <td class="rank-num">3</td>
+          <td><strong>Cosmetics &amp; Fragrance</strong></td>
+          <td>€1–2B</td>
+          <td><span class="score-bar" style="width:60px"></span></td>
+          <td><span class="score-bar warm" style="width:90px"></span></td>
+          <td><span class="score-bar green" style="width:55px"></span></td>
+        </tr>
+        <tr>
+          <td class="rank-num">4</td>
+          <td><strong>Neuromarketing (Broad)</strong></td>
+          <td>€0.8–1.2B</td>
+          <td><span class="score-bar" style="width:45px"></span></td>
+          <td><span class="score-bar warm" style="width:85px"></span></td>
+          <td><span class="score-bar green" style="width:40px"></span></td>
+        </tr>
+        <tr>
+          <td class="rank-num">5</td>
+          <td><strong>Psychotherapy Tools</strong></td>
+          <td>€0.5–1B</td>
+          <td><span class="score-bar" style="width:65px"></span></td>
+          <td><span class="score-bar warm" style="width:40px"></span></td>
+          <td><span class="score-bar green" style="width:50px"></span></td>
+        </tr>
+        <tr>
+          <td class="rank-num">6</td>
+          <td><strong>Pain Assessment</strong></td>
+          <td>€0.2–0.3B*</td>
+          <td><span class="score-bar" style="width:70px"></span></td>
+          <td><span class="score-bar warm" style="width:25px"></span></td>
+          <td><span class="score-bar green" style="width:70px"></span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px; color: var(--muted);">* Pain assessment SAM reflects current validation status; TAM potential is €10B+ if biomarker is validated. Bar lengths are relative within each column. Moat = Trigon defensibility via the full BCOM-model + Starlab-EmoWave + NE-device/regulatory stack. Speed = time-to-first-revenue. Strategic Value = long-term optionality and platform potential.</p>
+  </section>
+
+  <!-- STRATEGIC SEQUENCING -->
+  <section>
+    <h2>Recommended Sequencing</h2>
+    <p>The two lanes run in parallel. Starlab's non-clinical lane (EmoWave in cosmetics/neuromarketing) generates revenue fast and funds the Trigon. NE's clinical lane (pharma endpoints → home monitoring → DTx), anchored by BCOM's Whole-Brain Model and progressively absorbing Kokoro and the foundation model, builds the evidence base and the route to reimbursement. The ENAKD/Tx-style closed-loop digital therapeutic — Enobio + Starstim + EmoWave + ALGA + Kokoro under one CE mark — is the clinical endgame.</p>
+
+    <div class="strategy-grid">
+      <div class="strategy-card phase-now">
+        <h4>Now → 12 months</h4>
+        <p><strong>Non-clinical (Starlab-led):</strong> Cosmetics/fragrance testing on EmoWave running on NE hardware — fastest to revenue, lowest regulatory burden. Cash-generating beachhead. <strong>Clinical (NE-led):</strong> begin a pharma endpoint pilot inside an existing Trigon trial (ADASTRA / SYNERGIA), with BCOM defining the biomarker rationale.</p>
+      </div>
+      <div class="strategy-card phase-mid">
+        <h4>12 → 30 months</h4>
+        <p><strong>Non-clinical (Starlab-led):</strong> EmoWave expanded into neuromarketing platform deals; first Kokoro integration in premium fragrance/content engagements. <strong>Clinical (NE-led):</strong> pharma endpoint-as-a-service at scale — 2–3 CRO partnerships validating <em>paired</em> EmoWave + Kokoro endpoints alongside BCOM's WBM-MD biomarker in MDD trials. Clinical home-monitoring pilot — Enobio Home with the Kokoro at-home companion app delivered to 2–3 psychiatric clinics.</p>
+      </div>
+      <div class="strategy-card phase-long">
+        <h4>30 → 60 months</h4>
+        <p><strong>Joint:</strong> first-generation foundational EEG model (SL × BCOM) shipping into both lanes — EmoWave on the non-clinical side, clinical SaaS on the NE side. <strong>Clinical (NE-led):</strong> home monitoring at scale, Class IIa clearance, payer reimbursement codes; longitudinal dataset interpreted by BCOM's WBM becomes the moat. Layer in psychotherapy-augmentation features (EmoWave + Kokoro) as part of the monitoring platform.</p>
+      </div>
+      <div class="strategy-card phase-fund">
+        <h4>60+ months</h4>
+        <p><strong>Clinical endgame (NE-led):</strong> closed-loop digital therapeutic — Enobio + Starstim + EmoWave + ALGA Engine + personalised WBM under FDA De Novo or EU MDR Class IIb. A prescription, reimbursable, personalised affective intervention device — the ENAKD/Tx pattern, productised. Only achievable because the earlier phases built the data (SL), the science (BCOM), and the regulatory wrapper (NE) across all three entities.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPETITIVE LANDSCAPE -->
+  <section>
+    <h2>Competitive Positioning</h2>
+    <p>No competitor holds the complete <em>theory + signal-software + phenomenology + personalised brain model + clinical-grade device + regulatory</em> stack. EmoWave gives the Trigon an affective software layer that the device companies don't have; Enobio/Starstim/Neurotwin give it a clinical-grade hardware + stimulation layer that the consumer EEG companies don't have; BCOM's Whole-Brain Model and Kokoro give it two interpretation layers — mechanistic and phenomenological — that nobody else has at all; and the foundational EEG model trained on Starlab's corpus turns those advantages into a compounding asset.</p>
+    <table class="rank-table">
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Read (EEG)</th>
+          <th>Affective SW</th>
+          <th>Phenomenology</th>
+          <th>Write (tES)</th>
+          <th>Brain Model</th>
+          <th>EEG Foundation Model</th>
+          <th>Clinical / Reg.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Trigon (NE · BCOM · SL)</strong></td>
+          <td>✓ Enobio <span style="color:var(--muted)">(NE)</span></td>
+          <td>✓ EmoWave <span style="color:var(--muted)">(SL)</span></td>
+          <td>✓ Kokoro <span style="color:var(--muted)">(BCOM)</span></td>
+          <td>✓ Starstim <span style="color:var(--muted)">(NE)</span></td>
+          <td>✓ WBM-MD + ALGA <span style="color:var(--muted)">(BCOM)</span></td>
+          <td>✓ corpus + priors <span style="color:var(--muted)">(SL × BCOM)</span></td>
+          <td>✓ <span style="color:var(--muted)">(NE)</span></td>
+        </tr>
+        <tr>
+          <td>Emotiv</td>
+          <td>✓ Consumer</td>
+          <td>Basic</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Muse (Interaxon)</td>
+          <td>✓ Consumer</td>
+          <td>Basic</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Neurons Inc</td>
+          <td>✓ Service</td>
+          <td>✓ Service</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>Partial</td>
+        </tr>
+        <tr>
+          <td>iMotions</td>
+          <td>✓ Platform</td>
+          <td>✓ Platform</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Soterix</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>✓ tES</td>
+          <td>Partial</td>
+          <td>—</td>
+          <td>Partial ✓</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <span>Trigon — Affective BCI Market Analysis · Neuroelectrics · BCOM · Starlab</span>
+    <span>Confidential — Internal Distribution Only</span>
+  </div>
+
+</div>
+</body>
+</html>
