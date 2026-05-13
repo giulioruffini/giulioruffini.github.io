@@ -56,7 +56,8 @@
   header .sub { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
   header .actions { display: flex; gap: 8px; }
 
-  button.help-toggle {
+  .help-toggle {
+    display: inline-block;
     background: linear-gradient(135deg, rgba(76,243,255,0.18), rgba(255,79,176,0.16));
     color: var(--text);
     border: 1px solid rgba(76,243,255,0.45);
@@ -68,8 +69,10 @@
     font-weight: 500;
     box-shadow: 0 4px 14px rgba(76,243,255,0.2);
     transition: all 0.15s ease;
+    text-decoration: none;
   }
-  button.help-toggle:hover { box-shadow: 0 4px 18px rgba(76,243,255,0.45); transform: translateY(-1px); }
+  .help-toggle:hover { box-shadow: 0 4px 18px rgba(76,243,255,0.45); transform: translateY(-1px); }
+  a.help-toggle { color: var(--text); }
 
   .grid {
     max-width: 1500px;
@@ -441,6 +444,7 @@
     <div class="sub">Pull on the offspring distribution. Watch a family tree decide whether it lives forever.</div>
   </div>
   <div class="actions">
+    <a class="help-toggle" href="galton_watson_note.pdf" target="_blank" rel="noopener" title="A short pedagogical note by Giulio &amp; Klaus">📄 Math note (PDF)</a>
     <button class="help-toggle" id="helpToggle">📖 How does this work?</button>
   </div>
 </header>
@@ -1206,6 +1210,9 @@ const tourSteps = [
       <p>Drag the guess slider to where you think q sits, then hit <span class="kbd">Reveal</span>:</p>
       <div class="key-formula">score = 100 · (1 − |truth − guess|)</div>
       <p>After a dozen rounds you'll be a generating-function whisperer. Good luck — and don't trust your gut on heavy-tailed distributions.</p>
+      <p style="margin-top: 14px; padding-top: 12px; border-top: 1px dashed rgba(120,150,255,0.2);">
+        Want the mathematics in writing? Open <a href="galton_watson_note.pdf" target="_blank" rel="noopener" style="color: var(--cyan); text-decoration: underline;">the companion PDF note</a> — a short pedagogical write-up by <em>Giulio &amp; Klaus</em> proving why q is the smallest fixed point of f in [0,1].
+      </p>
     `
   }
 ];
