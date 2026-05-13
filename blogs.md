@@ -45,6 +45,13 @@ A collection of blog posts on computation, neuroscience, AI, and related topics.
 
 ---
 
+### Math Corner
+
+- [The Galton–Watson Branching Process](/assets/collab/mathematics/galton_watson.html) — Interactive visualization of branching processes and extinction probabilities
+- [Browse Math Corner](/assets/collab/mathematics/) — Index of interactive math notes
+
+---
+
 ### Substack
 
 More writing at [Platonia Pirate](https://platoniapirate.substack.com).
