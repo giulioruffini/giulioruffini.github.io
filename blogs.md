@@ -47,7 +47,8 @@ A collection of blog posts on computation, neuroscience, AI, and related topics.
 
 ### Math Corner
 
-- [The Galton–Watson Branching Process](/assets/collab/mathematics/galton_watson.html) — Interactive visualization of branching processes and extinction probabilities
+- [From Groups to Modules](/assets/collab/mathematics/algebraic_structures.html) — A pedagogical tour of five algebraic structures ([PDF](/assets/collab/mathematics/algebraic_structures.pdf))
+- [The Galton–Watson Branching Process](/assets/collab/mathematics/galton_watson.html) — Interactive visualization of branching processes and extinction probabilities ([PDF](/assets/collab/mathematics/galton_watson_note.pdf))
 - [Browse Math Corner](/assets/collab/mathematics/) — Index of interactive math notes
 
 ---
