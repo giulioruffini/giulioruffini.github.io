@@ -5,94 +5,303 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
   <meta name="referrer" content="no-referrer">
-  <title>liquid-i</title>
+  <title>Liquid-I — the science of hyper-agency</title>
   <style>
-    :root { color-scheme: light dark; }
+    :root {
+      color-scheme: light dark;
+      --bcom: #002878;
+      --bcom-mid: #0E3A8A;
+      --bcom-bright: #1F5FBF;
+      --coral: #ff6657;
+      --sole: #D88512;
+      --levin: #2A8E3D;
+      --ink: #1a1a1a;
+      --muted: #5b5b5b;
+      --bg: #fbfaf6;
+      --paper: #ffffff;
+      --rule: #e5e3da;
+      --bcom-soft: #eef2fb;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bcom: #8ab4f8;
+        --bcom-mid: #9cc0fb;
+        --ink: #e6e6e6;
+        --muted: #9a9a9a;
+        --bg: #0f1115;
+        --paper: #161922;
+        --rule: #2a2e38;
+        --bcom-soft: #1a2030;
+      }
+    }
+    * { box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      max-width: 44rem;
-      margin: 4rem auto;
-      padding: 0 1.25rem;
-      line-height: 1.55;
-      color: #222;
+      max-width: 46rem;
+      margin: 0 auto;
+      padding: 0 1.25rem 4rem;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--bg);
     }
-    @media (prefers-color-scheme: dark) {
-      body { background: #111; color: #ddd; }
-      a { color: #8ab4f8; }
-    }
-    h1 { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.25rem; }
-    h2 { font-size: 0.95rem; font-weight: 600; margin: 2rem 0 0.5rem; color: #555; }
-    @media (prefers-color-scheme: dark) {
-      h2 { color: #aaa; }
-    }
-    .sub { color: #777; font-size: 0.85rem; margin-bottom: 1.5rem; }
-    ul { list-style: none; padding: 0; }
-    li { padding: 0.4rem 0; border-bottom: 1px dotted #ccc; }
-    @media (prefers-color-scheme: dark) {
-      li { border-bottom-color: #333; }
-    }
-    .meta { color: #888; font-size: 0.8rem; margin-left: 0.5rem; }
-    a { text-decoration: none; }
+    a { color: var(--bcom-mid); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    nav.up { font-size: 0.8rem; margin-bottom: 1.5rem; }
-    .drive {
-      display: inline-block;
-      margin: 0.5rem 0 1rem;
-      padding: 0.55rem 0.9rem;
-      border: 1px solid currentColor;
-      border-radius: 0.3rem;
-      font-size: 0.9rem;
+
+    nav.up { font-size: 0.8rem; padding: 1.5rem 0 0.5rem; }
+    nav.up a { color: var(--muted); }
+
+    header.brand {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      padding: 1.5rem 0 1.75rem;
+      border-bottom: 2px solid var(--bcom);
     }
-    footer { margin-top: 3rem; font-size: 0.75rem; color: #888; }
+    header.brand svg { flex: 0 0 auto; width: 96px; height: 96px; }
+    .brand-text h1 {
+      margin: 0;
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--bcom-mid);
+    }
+    .brand-text h1 .i { color: var(--coral); }
+    .brand-text .tag {
+      margin: 0.15rem 0 0;
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    nav.toc {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.4rem;
+      padding: 0.75rem 0;
+      margin-bottom: 0.5rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    nav.toc a { color: var(--muted); }
+    nav.toc a:hover { color: var(--bcom-mid); text-decoration: none; }
+
+    section { scroll-margin-top: 3.5rem; }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 2.5rem 0 0.75rem;
+      color: var(--bcom-mid);
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+    h2::before {
+      content: "";
+      display: inline-block;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: var(--coral);
+      flex: 0 0 auto;
+    }
+    .sub { color: var(--muted); font-size: 0.85rem; margin: 0.25rem 0 1rem; }
+
+    .mission {
+      background: var(--bcom-soft);
+      border-left: 3px solid var(--coral);
+      border-radius: 0 0.4rem 0.4rem 0;
+      padding: 1rem 1.25rem;
+      font-size: 0.97rem;
+    }
+    .mission p { margin: 0.5rem 0; }
+    .mission p:first-child { margin-top: 0; }
+    .mission p:last-child { margin-bottom: 0; }
+    .mission strong { color: var(--bcom-mid); }
+
+    .angles { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem; }
+    .angle {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.25rem 0.7rem;
+      border-radius: 1rem;
+      color: #fff;
+    }
+    .angle.r { background: var(--bcom); }
+    .angle.s { background: var(--sole); }
+    .angle.l { background: var(--levin); }
+    @media (prefers-color-scheme: dark) {
+      .angle.r { background: #1F5FBF; }
+    }
+
+    ul { list-style: none; padding: 0; margin: 0; }
+    li {
+      padding: 0.55rem 0;
+      border-bottom: 1px dotted var(--rule);
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    li a { font-weight: 500; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+    .btn {
+      display: inline-block;
+      margin: 0.4rem 0.4rem 0.4rem 0;
+      padding: 0.55rem 1rem;
+      border: 1px solid var(--bcom-mid);
+      border-radius: 0.4rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--bcom-mid);
+    }
+    .btn:hover { background: var(--bcom-mid); color: var(--bg); text-decoration: none; }
+    code {
+      background: var(--bcom-soft);
+      padding: 0.1rem 0.35rem;
+      border-radius: 0.25rem;
+      font-size: 0.85em;
+    }
+    footer {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
   <nav class="up"><a href="../">← collab</a></nav>
-  <h1>liquid-i</h1>
-  <p class="sub">LiquidAI working materials.</p>
 
-  <h2>Documents</h2>
-  <p>Full set of working documents (proposal, memos, figures) is in the private Google Drive folder. Access by permission.</p>
-  <p><a class="drive" href="https://drive.google.com/drive/u/1/folders/1ZaaziOwKPlsFYYg62TPx1Ybx_JT11AFC" rel="noopener noreferrer" target="_blank">Open Google Drive folder →</a></p>
+  <header class="brand">
+    <svg viewBox="0 0 200 200" aria-label="Liquid-I logo">
+      <defs>
+        <linearGradient id="drop" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#1F5FBF"/>
+          <stop offset="0.55" stop-color="#0E3A8A"/>
+          <stop offset="1" stop-color="#002878"/>
+        </linearGradient>
+        <linearGradient id="iglow" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ff8a72"/>
+          <stop offset="1" stop-color="#ff6657"/>
+        </linearGradient>
+        <radialGradient id="halo" cx="0.5" cy="0.42" r="0.62">
+          <stop offset="0" stop-color="#ffffff" stop-opacity="0.16"/>
+          <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <g transform="translate(100 100)">
+        <path d="M0 -78 C 30 -42, 62 -8, 62 26 A 62 62 0 1 1 -62 26 C -62 -8, -30 -42, 0 -78 Z" fill="url(#drop)"/>
+        <path d="M0 -78 C 30 -42, 62 -8, 62 26 A 62 62 0 1 1 -62 26 C -62 -8, -30 -42, 0 -78 Z" fill="url(#halo)"/>
+        <circle cx="-30" cy="40" r="6"   fill="#7fa8e6" opacity="0.9"/>
+        <circle cx="-8"  cy="50" r="5"   fill="#D88512" opacity="0.92"/>
+        <circle cx="20"  cy="44" r="6"   fill="#3FB155" opacity="0.9"/>
+        <circle cx="34"  cy="22" r="4.5" fill="#7fa8e6" opacity="0.85"/>
+        <circle cx="-34" cy="16" r="4.5" fill="#3FB155" opacity="0.85"/>
+        <circle cx="-16" cy="24" r="3.5" fill="#D88512" opacity="0.8"/>
+        <circle cx="12"  cy="18" r="3.5" fill="#7fa8e6" opacity="0.8"/>
+        <g fill="url(#iglow)">
+          <rect x="-9" y="-46" width="18" height="18" rx="3"/>
+          <rect x="-6.5" y="-24" width="13" height="44" rx="3.5"/>
+          <rect x="-15" y="22" width="30" height="9" rx="4.5"/>
+        </g>
+      </g>
+    </svg>
+    <div class="brand-text">
+      <h1>Liquid<span class="i">-I</span></h1>
+      <p class="tag">the science of hyper-agency</p>
+    </div>
+  </header>
 
-  <h2>Run Agent Souper</h2>
-  <p>The live simulator runs locally on your machine (Beta). Start it
-  with <code>make api</code> + <code>make web</code> in the
-  <code>bcom-agent-souper</code> repo, then open:</p>
-  <p><a class="drive" href="http://localhost:8811/">Open Agent Souper (localhost:8811) →</a></p>
-  <p class="sub">Local link — works only on the machine running the
-  simulator. Architecture &amp; algorithms doc:
-  <a href="http://localhost:8811/architecture/">localhost:8811/architecture/</a>.</p>
+  <nav class="toc">
+    <a href="#mission">Mission</a>
+    <a href="#meetings">Meetings</a>
+    <a href="#blogs">Blogs</a>
+    <a href="#docs">Docs</a>
+    <a href="#references">References</a>
+  </nav>
 
-  <h2>Meetings</h2>
-  <p class="sub">One page per meeting, linking to the blogs and docs discussed.</p>
-  <ul>
-    <li><a href="meetings/2026-05-18.html">2026-05-18</a> <span class="meta">notes + materials</span></li>
-    <li><a href="meetings/2026-05-11.html">2026-05-11</a> <span class="meta">materials</span></li>
-  </ul>
+  <section id="mission">
+    <h2>Mission</h2>
+    <p class="sub">Developing the science of multi-agent systems &mdash; hyper-agents.</p>
+    <div class="mission">
+      <p><strong>Hyper-agency</strong> &mdash; the agency that emerges when agents
+      themselves become the substrate for a higher-order agent &mdash; is the natural
+      scientific object of LiquidAI, and it is not yet a science.</p>
+      <p>Classical cognitive science treats individual agents; ecology treats
+      populations; complex-systems work treats coupling. None of these gives us a
+      unified vocabulary or methodology for the higher-order agency that emerges
+      across all the substrates the project studies: cell collectives,
+      multicellulars, brains, eusocial colonies, markets, LLM soups, hybrid
+      AI&ndash;human ecosystems, Gaia.</p>
+      <p>The Synergy proposal is that three converging angles &mdash;
+      <strong>Sol&eacute;'s</strong>, <strong>Levin's</strong>,
+      <strong>Ruffini's</strong> &mdash; each insufficient alone, together
+      constitute the missing science.</p>
+      <div class="angles">
+        <span class="angle r">Ruffini &mdash; algorithmic agents</span>
+        <span class="angle s">Sol&eacute; &mdash; complex systems</span>
+        <span class="angle l">Levin &mdash; basal cognition</span>
+      </div>
+    </div>
+  </section>
 
-  <h2>Blogs</h2>
-  <ul>
-    <li><a href="blogs/telehomeostasis-nicotine.html">Telehomeostasis: how a plant hacked the human brain</a></li>
-    <li><a href="blogs/how-much-training-data-genome.html">How much training data has a genome seen?</a></li>
-    <li><a href="blogs/agent-souper-liquid-agents.html">Agent Souper: a liquid world for studying telehomeostasis and the emergence of meta-agents</a></li>
-  </ul>
+  <section id="meetings">
+    <h2>Meetings</h2>
+    <p class="sub">One page per meeting, linking to the blogs and docs discussed.</p>
+    <ul>
+      <li><a href="meetings/2026-05-18.html">2026-05-18</a> <span class="meta">notes + materials</span></li>
+      <li><a href="meetings/2026-05-11.html">2026-05-11</a> <span class="meta">materials</span></li>
+    </ul>
+  </section>
 
-  <h2>Docs</h2>
-  <ul>
-    <li><a href="docs/WP0125.pdf">WP0125 — Agent Souper: a liquid agent-system substrate for telehomeostasis and meta-agents</a> <span class="meta">PDF · paper</span></li>
-    <li><a href="docs/WP0125_slides.pdf">WP0125 — slide deck</a> <span class="meta">PDF · slides</span></li>
-    <li><a href="docs/WP0124.pdf">WP0124</a> <span class="meta">PDF · paper</span></li>
-    <li><a href="docs/WP0073.pdf">WP0073</a> <span class="meta">PDF · paper</span></li>
-    <li><a href="docs/LiquidAI_synergy_summary.html">Synergy summary (Ruffini &amp; Castaldo memo)</a> <span class="meta">HTML · memo</span></li>
-    <li><a href="docs/Liquid-I_conceptual_map.svg">Liquid-I conceptual map</a> <span class="meta">SVG</span></li>
-  </ul>
+  <section id="blogs">
+    <h2>Blogs</h2>
+    <ul>
+      <li><a href="blogs/telehomeostasis-nicotine.html">Telehomeostasis: how a plant hacked the human brain</a></li>
+      <li><a href="blogs/how-much-training-data-genome.html">How much training data has a genome seen?</a></li>
+      <li><a href="blogs/agent-souper-liquid-agents.html">Agent Souper: a liquid world for studying telehomeostasis and the emergence of meta-agents</a></li>
+    </ul>
+  </section>
 
-  <h2>Papers — Liquid-I team &amp; related</h2>
-  <p class="sub">Published work by the Liquid-I team (Ricard Solé, Giulio Ruffini, Francesca Castaldo, Michael Levin, Clément&hellip;) and papers of general interest. More to be added.</p>
-  <ul>
-    <li><a href="https://www.mdpi.com/1099-4300/26/11/953" rel="noopener noreferrer" target="_blank">Ruffini et al. — The Algorithmic Agent Perspective and Computational Neuropsychiatry: From Etiology to Advanced Therapy in Major Depressive Disorder</a> <span class="meta">Entropy 2024, 26(11), 953</span></li>
-  </ul>
+  <section id="docs">
+    <h2>Docs</h2>
+    <ul>
+      <li><a href="docs/WP0125.pdf">WP0125 &mdash; Agent Souper: a liquid agent-system substrate for telehomeostasis and meta-agents</a> <span class="meta">PDF &middot; paper</span></li>
+      <li><a href="docs/WP0125_slides.pdf">WP0125 &mdash; slide deck</a> <span class="meta">PDF &middot; slides</span></li>
+      <li><a href="docs/WP0124.pdf">WP0124</a> <span class="meta">PDF &middot; paper</span></li>
+      <li><a href="docs/WP0073.pdf">WP0073</a> <span class="meta">PDF &middot; paper</span></li>
+      <li><a href="docs/LiquidAI_synergy_summary.html">Synergy summary (Ruffini &amp; Castaldo memo)</a> <span class="meta">HTML &middot; memo</span></li>
+      <li><a href="docs/Liquid-I_conceptual_map.svg">Liquid-I conceptual map</a> <span class="meta">SVG</span></li>
+    </ul>
+    <p class="sub" style="margin-top:1.25rem">Working documents &amp; live simulator</p>
+    <p><a class="btn" href="https://drive.google.com/drive/u/1/folders/1ZaaziOwKPlsFYYg62TPx1Ybx_JT11AFC" rel="noopener noreferrer" target="_blank">Open Google Drive folder &rarr;</a>
+    <a class="btn" href="http://localhost:8811/">Open Agent Souper (localhost:8811) &rarr;</a></p>
+    <p class="sub">Full set of working documents (proposal, memos, figures) is in the
+    private Google Drive folder &mdash; access by permission. The Agent Souper
+    simulator runs locally (Beta): start it with <code>make api</code> +
+    <code>make web</code> in the <code>bcom-agent-souper</code> repo. Architecture
+    &amp; algorithms doc: <a href="http://localhost:8811/architecture/">localhost:8811/architecture/</a>.</p>
+  </section>
+
+  <section id="references">
+    <h2>References</h2>
+    <p class="sub">Published work by the Liquid-I team (Ricard Sol&eacute;, Giulio
+    Ruffini, Francesca Castaldo, Michael Levin, Cl&eacute;ment&hellip;) and papers
+    of general interest. More to be added.</p>
+    <ul>
+      <li><a href="https://www.mdpi.com/1099-4300/26/11/953" rel="noopener noreferrer" target="_blank">Ruffini et al. &mdash; The Algorithmic Agent Perspective and Computational Neuropsychiatry: From Etiology to Advanced Therapy in Major Depressive Disorder</a> <span class="meta">Entropy 2024, 26(11), 953</span></li>
+    </ul>
+  </section>
 
   <footer>Not indexed. Do not share without permission.</footer>
 </body>
