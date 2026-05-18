@@ -357,10 +357,29 @@ objective-function path). Telehomeostatic competence, if it appears, must
 <em>emerge</em> from local reasoning toward the shared goal.</div>
 </div>
 
+<h2>Something is always frozen &mdash; the trick is the level</h2>
+
+<p>Here is the key idea. A KT objective is <em>given</em>; it cannot
+optimise itself (that's an infinite regress). So in any agent
+<strong>something is always frozen</strong> &mdash; the only real choice
+is <em>at what level</em> the freeze sits. With the LLM off, the frozen
+thing is the hand-authored <em>sub-objective stack</em>: the agent can
+only ever chase a human's static guess at how to serve a goal that is
+represented nowhere. With the LLM on, the freeze moves <em>up</em> to
+the <em>terminal</em> goal &mdash; "the tribe persists," "the team
+scores" &mdash; and the LLM re-derives the sub-objectives, from what it
+sees, to serve it. Both are frozen. The LLM one is frozen
+<em>higher</em> &mdash; and that is the advantage, because the right
+sub-objectives are context-dependent and a frozen guess can't track
+them. The prediction the platform exists to test: an agent that freezes
+the terminal goal and lets an intelligent slow process compile the rest
+should beat the hand-frozen one <em>at the terminal goal itself</em>.</p>
+
 <h2>What the soup tells us so far</h2>
 
-<p>Two experiments, both run honestly &mdash; including the one that
-failed.</p>
+<p>Two experiments, both run honestly &mdash; and both run
+<em>rules-only</em>, so they compare <em>frozen sub-objective stacks</em>,
+not the meta design itself.</p>
 
 <p><strong>Soccer.</strong> A telehomeostatic team (press as a unit, hold
 shape, pass to a teammate ahead) versus an identical selfish team (chase
@@ -374,20 +393,25 @@ either side, did the honest ~11&times; appear and hold. The methodological
 lesson is the result: <em>don't believe a collective-objective effect
 until the substrate can no longer flatter it.</em></p>
 
-<p><strong>Predator&ndash;prey.</strong> Here telehomeostasis
-<em>failed</em>. Give prey a sacrificial "draw the predator onto myself
-so my kin escape" objective instead of selfish flight, and the species
-persists <em>worse</em> &mdash; 0.57&times; the selfish baseline, losing
-all 8 seeds. Self-sacrifice is not intrinsically valuable. It is valuable
-only when it is the right compression for the environment's binding
-constraint. Where predation isn't what's killing you, sacrifice is all
-cost.</p>
+<p><strong>Predator&ndash;prey.</strong> A <em>hand-frozen</em>
+sacrificial stack &mdash; "draw the predator onto myself" hard-wired in
+place of fleeing &mdash; persists <em>worse</em>: 0.57&times; the selfish
+baseline, losing all 8 seeds. But read this carefully: <strong>that does
+not refute telehomeostasis.</strong> It refutes <em>freezing one
+instrumental tactic by hand</em>. The terminal goal is the tribe
+surviving; <em>whether</em> to sacrifice is a tactical question whose
+answer depends on the environment &mdash; here predation isn't the
+binding constraint, so a hard-wired sacrifice is all cost. Freezing that
+tactic is exactly the wrong level to freeze. So EXP-002 is really
+<em>positive</em> evidence for the thesis: don't hand-freeze the
+sub-objectives &mdash; freeze the goal, and let the LLM decide, in
+context, whether sacrifice serves the tribe.</p>
 
 <table class="comparison-table">
-    <thead><tr><th>Experiment</th><th>Result</th><th>Verdict</th></tr></thead>
+    <thead><tr><th>Experiment (rules-only)</th><th>Result</th><th>What it tests</th></tr></thead>
     <tbody>
-        <tr><td>Soccer (honest substrate)</td><td>teamwork beats selfish 7/8, 23&ndash;2 (~11&times;)</td><td>confirmed &mdash; but only substrate-gated</td></tr>
-        <tr><td>Predator&ndash;prey</td><td>sacrificial prey persist 0.57&times;, 0/8</td><td>hypothesis <em>refuted</em></td></tr>
+        <tr><td>Soccer (honest substrate)</td><td>tele <em>stack</em> beats selfish <em>stack</em> 7/8, 23&ndash;2</td><td>a better frozen proxy &mdash; not the meta claim</td></tr>
+        <tr><td>Predator&ndash;prey</td><td>hand-frozen sacrificial stack 0.57&times;, 0/8</td><td>wrong thing to freeze &mdash; motivates going meta</td></tr>
     </tbody>
 </table>
 
