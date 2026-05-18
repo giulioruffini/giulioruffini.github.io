@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Liquid-I meeting — 2026-05-18</title>
+<style>
+  :root {
+    --fg: #1a1a1a;
+    --muted: #5a5a5a;
+    --accent: #2a4d8f;
+    --rule: #d8d8d8;
+    --bg: #fafaf7;
+    --tag: #eef2f8;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--fg);
+    background: var(--bg);
+    max-width: 760px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem 4rem;
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  h1 {
+    font-size: 1.6rem;
+    margin: 0 0 0.2rem;
+    letter-spacing: -0.01em;
+  }
+  h2 {
+    font-size: 1.1rem;
+    margin: 2rem 0 0.4rem;
+    color: var(--accent);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.2rem;
+  }
+  h3 {
+    font-size: 0.98rem;
+    margin: 1.2rem 0 0.3rem;
+  }
+  .meta {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  .speakers span {
+    display: inline-block;
+    background: var(--tag);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 6px;
+    font-size: 0.85rem;
+  }
+  p, li { margin: 0.4rem 0; }
+  ul { padding-left: 1.3rem; }
+  ol { padding-left: 1.4rem; }
+  ol li { margin: 0.5rem 0; }
+  strong { color: var(--fg); }
+  .note {
+    background: #fff7e6;
+    border-left: 3px solid #d4a017;
+    padding: 0.5rem 0.8rem;
+    margin: 0.8rem 0;
+    font-size: 0.9rem;
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+    padding-top: 0.8rem;
+  }
+</style>
+</head>
+<body>
+
+<h1>Liquid-I meeting — 18 May 2026</h1>
+<div class="meta">
+  ERC project &amp; beyond · transcribed via Klara (noisy)
+  <div class="speakers" style="margin-top:0.4rem;">
+    <span>K (Giulio) — Speaker 2</span>
+    <span>Ricard — Speaker 5</span>
+    <span>Francesca — Speaker 1</span>
+  </div>
+</div>
+
+<h2>Project narrative</h2>
+<p>Ricard pushed to sharpen the pitch. Convergence:</p>
+<ul>
+  <li>The project is a <strong>science of agents and hyper-agency</strong> — how systems of agents become agents themselves — framed around <strong>persistence of patterns</strong> rather than classical natural selection.</li>
+  <li>Persistence is the algorithmic primitive (mutual algorithmic information of a pattern with itself across time). Agents are one kind of persistent pattern; <strong>Gaia</strong> is another (persistent, made of agents, doesn't reproduce).</li>
+  <li>Co-evolution is reframed: agents that <strong>modify their environment</strong>, with the environment itself becoming an agent — a <em>computational ecology</em>. Lamarckian-style: agents learn within lifetime, not just mutate.</li>
+  <li><strong>Tele-homeostasis</strong> as the unifying drive: agents persist by serving a higher-level pattern (kin / species); <strong>pathology = misalignment</strong> between the agent's implementation and that drive — basis for the computational neuropsychiatry leg.</li>
+</ul>
+
+<h2>Funding strategy</h2>
+<ul>
+  <li>ERC stays a target, but pivot toward <strong>philanthropic</strong> sources: Templeton, Foresight, the mirror-life foundation Ricard has engaged.</li>
+  <li>Ricard noted funded proposals there can be loose — the bar is approachable.</li>
+  <li>Francesca will present the full philanthropic landscape at the workshop.</li>
+  <li>BCOM submitted ≈ €2M in grants over the last six months; Foresight Vision Weekends lightning talk lined up.</li>
+</ul>
+
+<h2>Concrete deliverables agreed</h2>
+<ol>
+  <li><strong>Perspective paper — "hybrid Gaia"</strong> with Michael Levin. AI agents acting on their environment, creating feedback at planetary scale; positions the missing dimension (environmental intervention × cognitive complexity) between ants and humans. <em>Ricard to draft.</em></li>
+  <li><strong>Two experimental spaces with Levin:</strong> small-scale (xenobot-like organoids with added communication / computational power, per Ricard's HFSP pre-proposal) and <strong>synthetic Gaia</strong> in petri dishes (engineered strains regulating pH as albedo analogue — already underway in Ricard's lab).</li>
+  <li><strong>Agent Soup simulator</strong> (K demoed): liquid multi-agent platform with explicit <em>model / objective function / planner</em> per agent, optional LLM slow-loop for re-weighting; predator–prey and soccer-team examples to test selfish vs. tele-homeostatic configurations. Will be opened up for collaborators (Martí mentioned).</li>
+  <li><strong>Computational neuropsychiatry / BCOM atlas:</strong> map the agent framework onto brain parcels (prefrontal ↔ planner, limbic ↔ objective function), with structural experience tied to the mathematical state. Goal: a model that predicts pathological mood states from misalignment. Ricard sees a strong fit with his "complex diseases" overview.</li>
+</ol>
+
+<h2>Papers &amp; resources to exchange</h2>
+<h3>Ricard → K</h3>
+<ul>
+  <li>PNAS piece on mirror life.</li>
+  <li>"Solaris as Gaia" paper.</li>
+  <li>The ecology / persistence paper (non-replicating systems).</li>
+  <li>The morpho-space evolution paper Ricard was excluded from + misconduct outcome.</li>
+  <li>BlueSky physicalism panel link (Friston, Seth, et al.).</li>
+</ul>
+<h3>K → Ricard</h3>
+<ul>
+  <li>Blog/working note: LLM training compute vs. computations-since-life-on-Earth (Seth Lloyd, <em>Computational Power of the Universe</em>).</li>
+  <li>Agent Soup documentation.</li>
+  <li>"Plants control humans" blog.</li>
+</ul>
+
+<h2>Workshop @ Norrsken</h2>
+<div class="note">
+  Klara's transcript heard "North Carolina" — this refers to <strong>Norrsken</strong>, our coworking space.
+</div>
+<ul>
+  <li>Round table ~45 min: Friston (online), Yuri, K, Karl, Ismael, Francisco Santos. <strong>Gustavo has cancelled.</strong></li>
+  <li>Francesca will broaden the questions beyond mind to complex systems generally.</li>
+  <li>BCOM is also launching an <strong>Art &amp; Studio pillar</strong> (digital artist, <em>Liberate the Machines</em>).</li>
+</ul>
+
+<h2>Open theoretical threads</h2>
+<ul>
+  <li>How to distinguish persistence-with-evolution (Red-Queen-like) from trivial stability.</li>
+  <li>Where does subjective experience emerge in the agent hierarchy? K argues graded down to primitive agents (incl. plants); Ricard argues for qualitative architectural transitions — preconditions ≠ consciousness. Worth a written exchange.</li>
+  <li>Liquid vs. solid brains: K wants brains counted as liquid (dynamic effective connectivity); Ricard reserves "liquid" for systems where <em>neighbour identity itself</em> changes (ant colonies).</li>
+</ul>
+
+<footer>
+  Source: Klara meeting transcript, 2026-05-18 13:23. Noisy audio; speakers attributed from content.
+</footer>
+
+</body>
+</html>
