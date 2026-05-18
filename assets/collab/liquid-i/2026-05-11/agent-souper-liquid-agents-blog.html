@@ -218,18 +218,31 @@ you can do science with and a black box you can only poke.</p>
     the world, and it reaches the fast loop through exactly one channel.</p>
 </div>
 
-<p>What does the slow LLM actually <em>do</em>? Not what people usually
-assume. It never picks an action. It cannot. It has three jobs, all of
-them slow and all of them advisory: it <strong>re-weights</strong> the
-agent's existing values ("a predator is close &mdash; care about fleeing
-3&times; more for a while"); it <strong>tunes its own planner knobs</strong>
-(how hard to chase a waypoint, how fast to move); and it
-<strong>reads the agent's feelings</strong> &mdash; a synthesized valence
-and arousal that we, the researchers, watch, but which never feeds back
-into what the agent does. It sets the frame. The rules still play the
-game. Turn the LLM off and the agent is byte-for-byte the rule-based
-baseline, and the persona becomes inert text. That is the control that
+<p>What does the slow LLM actually <em>do</em>? Here is the precise
+answer, because it is easy to get wrong. The objective function scores
+each candidate action against each value, then aggregates those scores
+into one number with priority weights. The LLM writes per-value
+multipliers <em>r<sub>v</sub></em> (0&ndash;5) into those aggregation
+weights &mdash; so <strong>it <em>does</em> change the objective
+function's evaluation</strong>: the number the planner maximises shifts.
+What it does <em>not</em> do is change what any value <em>measures</em>
+(the per-value score functions are fixed code), it cannot add or remove
+values, and it cannot pick an action. It also self-tunes its own planner
+knobs (waypoint pull, step size), and it reports a synthesized
+valence/arousal that is <strong>display and logging only</strong> &mdash;
+the planner never reads it. So the LLM reshapes the scoring landscape;
+the rules still climb it. Turn the LLM off and the agent is byte-for-byte
+the rule-based baseline, the persona inert text &mdash; the control that
 makes LLM-on results mean something.</p>
+
+<p><strong>And this is just one implementation option.</strong>
+Kolmogorov Theory only insists the objective function be external and
+scalar; it says nothing about whether or how a slow process should
+modulate it. Re-weighting the combine is the choice Agent Souper
+makes <em>today</em> &mdash; one could equally leave the objective
+function fixed, have the slow loop propose entirely new values through
+the closed loop, or have it tune the world model or planner instead.
+Which coupling you pick is a research variable, not a law.</p>
 
 <div class="figure">
 <svg viewBox="0 0 760 300" role="img" aria-label="The dual-rate cognition loop">
@@ -270,9 +283,12 @@ makes LLM-on results mean something.</p>
 </svg>
 <div class="figcaption"><strong>Figure 2.</strong> The dual-rate contract.
 The deterministic fast loop runs every tick and <em>is</em> the agent. The
-optional slow LLM only reaches it through one channel (<strong>plan_cache</strong>)
-and only to <em>modulate</em> &mdash; it never picks an action and never blocks
-the world. LLM off &rArr; exact rules baseline.</div>
+optional slow LLM reaches it through one channel (<strong>plan_cache</strong>):
+it re-weights the objective-function aggregation (changing the maximised
+scalar) and tunes its own planner knobs &mdash; it never alters what a value
+measures, never picks an action, never blocks the world. LLM off &rArr; exact
+rules baseline. The coupling shown is one implementation option, not a KT
+requirement.</div>
 </div>
 
 <h2>Telehomeostasis, without a conductor</h2>
