@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Much Training Data Has a Genome Seen? | BCOM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <script>
+      MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+    <style>
+        :root {
+            --blue: #002878;
+            --blue-light: #1a3f8f;
+            --orange: #ff6657;
+            --orange-hover: #e85546;
+            --text: #191919;
+            --text-secondary: #555;
+            --bg: #ffffff;
+            --bg-alt: #fbfbfb;
+            --bg-box: #f4f6fa;
+            --bg-pink: #f5d5d5;
+            --bg-lightblue: #d6e4f0;
+            --border: #e0e4ec;
+            --border-light: #eef0f4;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        /* ── Header bar ── */
+        .header-bar {
+            background: var(--blue);
+            padding: 16px 0;
+            font-size: 13px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .header-bar .wrap {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-bar .logo {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+        }
+        .header-bar .logo span { color: var(--orange); }
+        .header-bar nav a {
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            margin-left: 28px;
+            font-size: 12px;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+        .header-bar nav a:hover { color: #fff; }
+
+        /* ── Hero ── */
+        .hero {
+            background: var(--blue);
+            color: #fff;
+            padding: 72px 0 64px;
+        }
+        .hero .wrap {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .hero .kicker {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,102,87,0.4);
+            padding: 4px 12px;
+            border-radius: 3px;
+        }
+        .hero h1 {
+            font-size: 2.6em;
+            font-weight: 900;
+            line-height: 1.12;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+        .hero .subtitle {
+            font-size: 1.15em;
+            font-weight: 300;
+            line-height: 1.65;
+            color: rgba(255,255,255,0.82);
+            margin-bottom: 28px;
+            max-width: 620px;
+        }
+        .hero .byline {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            font-weight: 400;
+        }
+        .hero .byline strong {
+            color: rgba(255,255,255,0.9);
+            font-weight: 700;
+        }
+
+        /* ── Article container ── */
+        .container { max-width: 760px; margin: 0 auto; padding: 0 32px; }
+
+        article { padding-top: 48px; padding-bottom: 32px; }
+        article p { margin-bottom: 1.45em; }
+
+        article h2 {
+            font-size: 1.45em;
+            font-weight: 900;
+            margin: 2.4em 0 0.65em;
+            color: var(--blue);
+            letter-spacing: -0.01em;
+        }
+        article h3 {
+            font-size: 1.15em;
+            font-weight: 700;
+            margin: 1.8em 0 0.5em;
+            color: var(--blue);
+        }
+        article a {
+            color: var(--orange);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,102,87,0.3);
+            transition: border-color 0.2s;
+        }
+        article a:hover { border-bottom-color: var(--orange); }
+        article em { font-style: italic; }
+
+        /* ── Pullquote ── */
+        .pullquote {
+            border-left: 4px solid var(--orange);
+            margin: 2.2em 0;
+            padding: 1.2em 1.8em;
+            background: var(--bg-box);
+            border-radius: 0 6px 6px 0;
+            font-size: 1.05em;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+        .pullquote p { margin-bottom: 0; }
+
+        /* ── Definition box ── */
+        .definition-box {
+            background: var(--bg-box);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--blue);
+            border-radius: 0 8px 8px 0;
+            padding: 1.6em 2em;
+            margin: 2em 0;
+        }
+        .definition-box .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--blue);
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+        .definition-box p { margin-bottom: 0.6em; font-size: 1em; }
+        .definition-box p:last-child { margin-bottom: 0; }
+
+        /* ── Remark box (coral accent) ── */
+        .remark-box {
+            background: #fff8f7;
+            border: 1px solid rgba(255,102,87,0.25);
+            border-left: 4px solid var(--orange);
+            border-radius: 0 8px 8px 0;
+            padding: 1.6em 2em;
+            margin: 2em 0;
+        }
+        .remark-box .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--orange);
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+        .remark-box p { margin-bottom: 0.6em; font-size: 1em; }
+        .remark-box p:last-child { margin-bottom: 0; }
+
+        /* ── Comparison table ── */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2em 0;
+            font-size: 0.92em;
+            line-height: 1.55;
+        }
+        .comparison-table thead th {
+            background: var(--blue);
+            color: #fff;
+            padding: 12px 14px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.88em;
+            letter-spacing: 0.02em;
+        }
+        .comparison-table thead th:first-child { border-radius: 6px 0 0 0; }
+        .comparison-table thead th:last-child { border-radius: 0 6px 0 0; }
+        .comparison-table tbody td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border-light);
+            vertical-align: top;
+        }
+        .comparison-table tbody tr:nth-child(even) { background: var(--bg-box); }
+        .comparison-table tbody td:first-child {
+            font-weight: 700;
+            color: var(--blue);
+            white-space: nowrap;
+        }
+
+        /* ── Stat cards (the headline numbers) ── */
+        .stat-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 2em 0;
+        }
+        .stat-card {
+            background: var(--bg-lightblue);
+            border-radius: 8px;
+            padding: 1.2em 1.2em;
+            text-align: center;
+        }
+        .stat-card .num {
+            display: block;
+            font-size: 1.6em;
+            font-weight: 900;
+            color: var(--blue);
+            line-height: 1.1;
+            margin-bottom: 6px;
+        }
+        .stat-card .lbl {
+            font-size: 0.78em;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-secondary);
+            font-weight: 700;
+        }
+        .stat-card.coral { background: var(--bg-pink); }
+        .stat-card.coral .num { color: var(--orange); }
+
+        /* ── Equation display ── */
+        .equation-block { text-align: center; margin: 1.6em 0; padding: 1em 0; font-size: 1.1em; }
+
+        /* ── References ── */
+        .references {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            border-top: 2px solid var(--border);
+            margin-top: 3em;
+            padding-top: 1.5em;
+        }
+        .references h3 {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--blue);
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+        .references p { margin-bottom: 0.5em; line-height: 1.6; }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--blue);
+            color: rgba(255,255,255,0.5);
+            margin-top: 0;
+            padding: 28px 0;
+            font-size: 13px;
+            text-align: center;
+            font-weight: 400;
+        }
+        footer a { color: var(--orange); text-decoration: none; }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.85em; }
+            .hero { padding: 48px 0 40px; }
+            body { font-size: 16px; }
+            .definition-box, .remark-box { padding: 1.2em 1.4em; }
+            .header-bar nav a { margin-left: 16px; }
+            .comparison-table { font-size: 0.82em; }
+            .comparison-table thead th,
+            .comparison-table tbody td { padding: 8px 8px; }
+            .stat-cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<div class="header-bar">
+    <div class="wrap">
+        <a class="logo" href="https://bcom.one">BCOM<span>.ONE</span></a>
+        <nav>
+            <a href="https://bcom.one">Research</a>
+            <a href="https://neuroelectrics.com">Neuroelectrics</a>
+        </nav>
+    </div>
+</div>
+
+<!-- ── Hero ── -->
+<div class="hero">
+    <div class="wrap">
+        <div class="kicker">Kolmogorov Theory &middot; WP0124</div>
+        <h1>How Much Training Data Has a Genome Seen?</h1>
+        <p class="subtitle">Why can a child learn many concepts from a few examples while neural networks need enormous corpora? Because the child is not learning from scratch. The human brain is massively pre-trained&mdash;not by gradient descent on text, but by billions of years of genome&ndash;cell&ndash;environment interaction.</p>
+        <div class="byline">
+            <strong>Giulio Ruffini, Klaude &amp; Kaiti</strong> &middot; Barcelona Computational Foundation &middot; May 2026
+        </div>
+    </div>
+</div>
+
+<!-- ── Article ── -->
+<div class="container">
+    <article>
+
+        <p>
+            Frontier large language models are pretrained on $10^{12}$&ndash;$10^{13}$ tokens. A human child, by contrast, can learn many concepts from a handful of examples. The simplest reading of the gap is that the child is not learning from scratch: by the time individual learning begins, the human nervous system is the deployment of a hereditary program shaped by a much longer training process.
+        </p>
+
+        <p>
+            How much longer, and on what unit? The naive answer&mdash;``billions of years''&mdash;is correct in spirit and useless for comparison. In our new working paper (<a href="https://bcom.one" target="_blank">WP0124</a>) we make two moves: fix a coarse-graining at which the question becomes well-posed, and define an operational notion of training in three levels. Then we put a number on the answer.
+        </p>
+
+        <div class="stat-cards">
+            <div class="stat-card">
+                <span class="num">$10^{10}$ bits</span>
+                <span class="lbl">Human genome (stored)</span>
+            </div>
+            <div class="stat-card">
+                <span class="num">$10^{15}$ bits</span>
+                <span class="lbl">Llama 3.1 corpus</span>
+            </div>
+            <div class="stat-card coral">
+                <span class="num">$\geq 10^{40}$ bits</span>
+                <span class="lbl">Cell-level exposure stream</span>
+            </div>
+        </div>
+
+        <h2>Two foundational moves</h2>
+
+        <p>
+            Before counting anything, we have to fix what we are counting. Two clarifications carry the whole argument.
+        </p>
+
+        <h3>Move 1 &mdash; Coarse-graining is constitutive</h3>
+
+        <p>
+            A single cell runs $10^{13}$&ndash;$10^{17}$ molecular operations over its lifetime. A human lifetime is $\sim10^{26}$&ndash;$10^{30}$ cellular operations and $\sim10^{20}$ neural spike events. We are <em>not</em> trying to count these. They are the substrate on which the patterns we care about run, and they are abstracted away.
+        </p>
+
+        <p>
+            Following the Wolpert&ndash;Korbel-style account we formalized in <a href="https://bcom.one" target="_blank">WP0049</a> (``what does it mean for one system to compute another?''), we fix a coarse-graining $C_s : X(t) \mapsto P_s(t)$ that extracts a pattern&mdash;cell, organism, lineage&mdash;at scale $s$, and study only the dynamics visible at that scale. We do not need to simulate quarks to study mammalian learning, just as we do not need transistor-level dynamics to describe LLM pretraining. The relevant question is: <em>at what scale does the pattern maintain identity, interact with the world, receive feedback, and update?</em>
+        </p>
+
+        <h3>Move 2 &mdash; Three levels of training, not one</h3>
+
+        <p>
+            One thing that looks like a single ``training event'' is really three different things stacked on top of each other. Disentangling them is what makes the comparison to LLMs honest.
+        </p>
+
+        <div class="definition-box">
+            <div class="label">Definition &mdash; Three-Level Training Taxonomy</div>
+            <p><strong>Exposure event</strong> &mdash; the pattern samples its environment. (Bio: cellular sensing, metabolism, sensory episode. ML: a token exposure.)</p>
+            <p><strong>Evaluation episode</strong> &mdash; an exposure receives a persistence- or reproduction-relevant score. (Bio: cell division, survival, mating. ML: loss computed on a batch.)</p>
+            <p><strong>Write-back event</strong> &mdash; the future generator of the pattern changes. (Bio: allele or genome-frequency shift, epigenetic inheritance, cultural transmission. ML: parameter update.)</p>
+        </div>
+
+        <p>
+            The thesis becomes much harder to attack: <em>evolutionary training consists of exposure episodes filtered by persistence/reproduction and written back into the future distribution of hereditary generators.</em> Most exposure events are not write-back events. The cellular evaluation budget bounds the filtration depth, not the bits stored.
+        </p>
+
+        <div class="remark-box">
+            <div class="label">Data seen by the organism &ne; data written into the genome</div>
+            <p>
+                A cell sensing a glucose gradient is an exposure. If the cell survives or divides differentially, that exposure participates in an evaluation. Only if the survival differential changes the future distribution of programs that produce cells like it does it become a write-back event for the inherited program. The vast majority of biological exposures terminate at the evaluation stage; only a thin filtered residue is written back. <strong>This is the precise sense in which the LLM analogy holds: shared role of ``exposure at a chosen coarse-graining,'' radically different write-back channels.</strong>
+            </p>
+        </div>
+
+        <p>
+            This makes the LLM analogy precise. Each token event is a pattern&ndash;corpus interaction that updates parameters $\theta$ in a fixed graph. Each cell&ndash;environment interaction is the biological counterpart, but the update is sparse, scalar, and end-of-lifetime, propagated through the reproductive channel (WP0058's <em>write-back vector</em> $\boldsymbol\lambda$).
+        </p>
+
+        <div class="remark-box">
+            <div class="label">Lifetime is computation, not a test set</div>
+            <p>
+                It is tempting to say ``lifetime experience is the test set, evolution is the training loop.'' This is too thin. A lifetime is itself the <em>evaluation of the model against the world</em>, and running that model is the computation that generates the error signals the system uses&mdash;across cells, organisms, and lineages&mdash;to decide what gets culled and what gets passed along. Reproductive success is the integrated output of this computation, not a label attached to a passive datum.
+            </p>
+            <p>
+                And the computation is collective. Agents with similar pattern&mdash;formally, sharing high mutual algorithmic information (MAI) at the chosen coarse-graining&mdash;interact and compute <em>together</em> during their lifetimes. Cells in a tissue, organisms in a population, conspecifics in a niche, members of a culture jointly run a computation whose outputs feed both within-lifetime adaptation and the slow reproductive channel that updates the heritable program $H_g$. Persistent patterns persist in part <em>because</em> similar patterns can interact to extract information no single instance could extract alone.
+            </p>
+        </div>
+
+        <h2>Three kinds of learning</h2>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Pattern updated</th>
+                    <th>Heritable?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Runtime</td>
+                    <td>Cell state, immune memory, neural weights, physiology</td>
+                    <td>Usually no</td>
+                </tr>
+                <tr>
+                    <td>Hereditary</td>
+                    <td>Population distribution over hereditary programs $H_g$</td>
+                    <td>Yes (Darwinian)</td>
+                </tr>
+                <tr>
+                    <td>Cultural / niche</td>
+                    <td>Externalized symbolic and material structure</td>
+                    <td>Partly; not DNA-only</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>
+            Only the middle row writes to the genome. Reproduction (or its failure) is the only training signal at that scale. Sparse, delayed, scalar&mdash;but it is the channel by which lifetime experience eventually couples back into the inherited program. The other two rows are real, important, and ephemeral: they live and die with the individual unless they get captured by the slow channel (Baldwin effects, niche construction, cultural transmission). See <a href="https://bcom.one" target="_blank">WP0058</a> for the full Darwinian&ndash;Lamarckian continuum and the seven-stage substrate arc in <a href="https://bcom.one" target="_blank">WP0110</a>.
+        </p>
+
+        <h2>The numbers</h2>
+
+        <h3>Cellular lineage: $\sim 10^{38}$&ndash;$10^{40}$ evaluations</h3>
+
+        <p>
+            Whitman, Coleman and Wiebe (1998) put present-day global prokaryotic production at $P_0 \approx 1.7\times 10^{30}$ cells per year, with a standing population of $4$&ndash;$6\times 10^{30}$ cells. Moody et al.\ (2024) place the last universal common ancestor at $\sim 4.2$ Ga. Over the resulting $T \in [3.7,4.2]$ Gyr window,
+        </p>
+
+        <div class="equation-block">
+            $$ E_{\text{cell}}^{\text{upper}} \;=\; P_0\,T \;\approx\; 6\text{--}7 \times 10^{39}. $$
+        </div>
+
+        <p>
+            Discounting for lower early-Earth productivity, a defensible headline range is $10^{38}$&ndash;$10^{40}$ cell-level genome&ndash;cell&ndash;environment evaluation events. This is the depth of the algorithmic search behind every extant genome. It exceeds a Llama 3.1 token budget by 25&ndash;28 orders of magnitude.
+        </p>
+
+        <h3>Mammalian sub-lineage alone: already at LLM scale</h3>
+
+        <p>
+            For the mammals only: $T_m \in [200,225]$ Myr, generation length $g \in [1,5]$ yr, long-term effective population size $N_e \approx 6.1\times 10^4$:
+        </p>
+
+        <div class="equation-block">
+            $$ N_eG_m \;\approx\; 2.4\times 10^{12}\text{ to }1.4\times 10^{13}. $$
+        </div>
+
+        <p>
+            <strong>Mammalian selection alone is in the same order-of-magnitude regime as frontier LLM token counts</strong>&mdash;before crediting the older cellular substrate it rides on top of.
+        </p>
+
+        <h3>One human lifetime, in Lloyd's spirit</h3>
+
+        <p>
+            A single human lifetime contains $\sim 10^{20}$&ndash;$10^{23}$ nervous-system events and $\sim 10^{26}$&ndash;$10^{30}$ cellular molecular events&mdash;7 to 17 orders of magnitude more elementary operations than a frontier LLM's entire pretraining run. And there are $\sim 10^{40}$ such lifetimes (counted at the cellular level) in biospheric history. Multiplying through:
+        </p>
+
+        <div class="equation-block">
+            $$ \text{biosphere total} \;\sim\; 10^{53}\text{ molecular operations}\quad (10^{51}\text{--}10^{57}). $$
+        </div>
+
+        <p>
+            That is roughly 65 orders of magnitude below Lloyd's cosmic computation bound of $10^{120}$, and $\sim 40$ orders above current frontier-model training compute. Life is a small computational subset of the universe, but it is an extraordinarily deep one.
+        </p>
+
+        <h2>Comparison at a glance</h2>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Quantity</th>
+                    <th>Value</th>
+                    <th>vs.\ LLM tokens</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Chinchilla pretraining</td><td>$1.4 \times 10^{12}$ tokens</td><td>baseline</td></tr>
+                <tr><td>Llama 3.1 pretraining</td><td>$1.5 \times 10^{13}$ tokens</td><td>baseline</td></tr>
+                <tr><td>Mammal lineage $N_eG$</td><td>$2.4\times 10^{12}$&ndash;$1.4\times 10^{13}$</td><td>comparable</td></tr>
+                <tr><td>One human lifetime, neural events</td><td>$10^{20}$&ndash;$10^{23}$</td><td>$+7$ to $+10$ OOM</td></tr>
+                <tr><td>One human lifetime, molecular ops</td><td>$10^{26}$&ndash;$10^{30}$</td><td>$+13$ to $+17$ OOM</td></tr>
+                <tr><td><strong>Cellular lineage evaluations</strong></td><td>$\mathbf{10^{38}}$&ndash;$\mathbf{10^{40}}$</td><td>$+25$ to $+28$ OOM</td></tr>
+                <tr><td>Biosphere history, molecular ops</td><td>$10^{51}$&ndash;$10^{57}$</td><td>$+38$ to $+44$ OOM</td></tr>
+                <tr><td>Lloyd cosmic bound</td><td>$\lesssim 10^{120}$</td><td>$+107$ OOM</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Bit budgets, not byte conversions</h2>
+
+        <p>
+            Comparing genome bases to evaluation events as a ``compression ratio'' is rhetorically attractive but formally wrong: the denominator is <em>events</em>, not bits. The clean accounting works in bits, with separate budgets for what is <em>stored</em> and what was <em>filtered</em>.
+        </p>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Quantity</th>
+                    <th>Bits (order of magnitude)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Raw haploid human genome</td><td>$\sim 6 \times 10^9$ bits</td></tr>
+                <tr><td>Diploid genome</td><td>$\sim 1.2\times 10^{10}$ bits</td></tr>
+                <tr><td>Functionally constrained ($\sim 8.2\%$, Rands 2014)</td><td>$\sim 10^9$ bits</td></tr>
+                <tr><td>Chinchilla pretraining corpus</td><td>$\sim 10^{13}$&ndash;$10^{14}$ bits</td></tr>
+                <tr><td>Llama 3.1 pretraining corpus</td><td>$\sim 10^{14}$&ndash;$10^{15}$ bits</td></tr>
+                <tr><td>One human lifetime, sensory exposure</td><td>$\sim 10^{16}$ bits</td></tr>
+                <tr><td><strong>Evolutionary cell-level exposure stream</strong></td><td><strong>$\gtrsim 10^{38}$&ndash;$10^{40}$ bits</strong> (lower bound)</td></tr>
+            </tbody>
+        </table>
+
+        <p>
+            Two readings of the table sharpen the comparison.
+        </p>
+
+        <p>
+            <strong>Storage.</strong> As a stored object, a human genome ($\sim 10^{10}$ bits) is roughly four orders of magnitude <em>smaller</em> than an LLM training corpus, and six orders smaller than one lifetime's raw sensory input. The genome is plainly not a database of ancestral experiences.
+        </p>
+
+        <p>
+            <strong>Filtration.</strong> As the compressed result of a search, the genome is the survivor of an evaluation exposure $\gtrsim 10^{38}$&ndash;$10^{40}$ bits (lower-bounding each cell-level event by one coarse-grained bit of persistence feedback), exceeding LLM pretraining data by $\sim 10^{23}$&ndash;$10^{26}$ in bits. The compression operates by <em>filtration</em>, not by storage.
+        </p>
+
+        <div class="remark-box">
+            <div class="label">A caveat on the per-generation bound</div>
+            <p>
+                Under restrictive assumptions the rate at which heritable adaptive information can be fixed is bounded to roughly order-one bits per generation or less (Worden 1995). The exact bound depends on population structure, recombination, selection pressure, and what counts as fixed information. Frank's 2012 reading&mdash;``selection causes populations to accumulate information about the environment''&mdash;is the safer central framing. The retained information in the genome is <em>not</em> $10^{40}$ bits. Selection is a very lossy write-back channel.
+            </p>
+        </div>
+
+        <div class="pullquote">
+            <p>DNA is not the data. DNA is the compressed survivor program trained on the data of evolutionary history.</p>
+        </div>
+
+        <p>
+            In Kolmogorov terms: a mammal is a pattern with high algorithmic probability in its native environment, because (i) its generative program $\pi$ is short relative to the variety of patterns selection has visited and rejected, and (ii) deep evolutionary search has located $\pi$ in program space. The pattern persists because it is algorithmically simple <em>in the right environment</em>. This is the KT view: persistent agents are short programs that have proven dynamically stable.
+        </p>
+
+        <h2>Where the LLM analogy breaks (and where it holds)</h2>
+
+        <p>
+            The comparison is intentionally an order-of-magnitude statement about <em>optimization exposure</em>, not an architectural identity claim. The processes differ qualitatively:
+        </p>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Evolution</th>
+                    <th>LLM pretraining</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Search space</td><td>Program structure + content</td><td>Parameters in a fixed graph</td></tr>
+                <tr><td>Population</td><td>Many genomes per generation</td><td>One parameter vector</td></tr>
+                <tr><td>Update</td><td>Sparse, scalar, end-of-life</td><td>Dense per-token gradient</td></tr>
+                <tr><td>Architecture</td><td>Itself under selection</td><td>Fixed by designers</td></tr>
+                <tr><td>Substrate</td><td>Embodied; each evaluation is an organism</td><td>Disembodied forward pass</td></tr>
+                <tr><td>Survivor</td><td>Genome $\pi$ ($\sim 10^9$ bp)</td><td>Weights $\theta$ ($\sim 10^{11}$ params)</td></tr>
+            </tbody>
+        </table>
+
+        <p>
+            What is shared is not mechanism but the shape of the question. Both processes accumulate compressed structure that captures regularities of an environment, scored by a loss-like signal. The natural unit is the number of evaluation events absorbed by the optimizer at the chosen coarse-graining. By that unit, life's optimization budget exceeds frontier ML's by 25&ndash;28 OOM at the cellular scale; mammalian selection alone matches the largest training runs.
+        </p>
+
+        <div class="remark-box">
+            <div class="label">Vanchurin et al., made AIT-explicit</div>
+            <p>
+                The picture is fully compatible with the multilevel-learning view of <a href="https://doi.org/10.1073/pnas.2120037119" target="_blank">Vanchurin, Wolf, Katsnelson and Koonin (2022)</a>. Theirs is the renormalization-group face; ours is the algorithmic-information face. Each coarse-graining level $s$ has its own training events $e_k$, its own loss-like signal (failure to persist), and its own compressed survivor program. The framework recovers Frank's information-theoretic reading of natural selection: populations accumulate Fisher information about their environment&mdash;but only at the rate selection variance allows.
+            </p>
+        </div>
+
+        <h2>The KT version</h2>
+
+        <p>
+            Inside the algorithmic-agent framework, the result has a clean reading. An agent is a system that maintains a model, scores it against an objective function, and selects actions to maintain its persistence (homeostasis, telehomeostasis). Evolution supplies the deep priors for all three modules of the agent (Modeling Engine, Objective Function, Planning Engine): bodies, nervous systems, immune systems, telehomeostatic goals, behavior repertoires. A newborn human is not an untrained blank model. It is an agent instantiated by a genome and cellular architecture that already encode deep priors about gravity, metabolism, temperature, tissue construction, social attachment, sensory&ndash;motor control, and immune defense.
+        </p>
+
+        <div class="pullquote">
+            <p>A human agent is a recent runtime instance of a much older evolutionary program: a mammalian refinement of a cellular agent architecture whose priors were distilled through billions of years of coarse-grained pattern&ndash;world interaction.</p>
+        </div>
+
+        <h2>Bottom line</h2>
+
+        <div class="pullquote">
+            <p>Evolution has vastly more exposure events than LLMs, but a much weaker and sparser write-back channel. LLMs have fewer exposures but dense gradient write-back. Genomes are therefore not databases but compressed survivor programs produced by a huge, sparse, embodied, population-level filtration process.</p>
+        </div>
+
+        <p>
+            As a stored object the human genome is $\sim 10^{10}$ bits&mdash;four orders of magnitude smaller than an LLM training corpus. As the filtered result of a search, it is the survivor of an evaluation exposure stream lower-bounded at $10^{38}$&ndash;$10^{40}$ bits&mdash;25 to 28 orders of magnitude larger than any LLM corpus. The two processes search different spaces with different update rules, but they accumulate compressed structure from world interaction.
+        </p>
+
+        <p>
+            Frontier ML has discovered scaling. Evolution had a four-billion-year head start.
+        </p>
+
+        <div class="remark-box">
+            <div class="label">Few-shot corollary</div>
+            <p>
+                The empirical efficiency of human (and broadly mammalian) learning is not magic. The learner enters the world with a structured prior of vast filtration depth; individual experience is fine-tuning on top of that prior, not training from scratch. Any AI system aspiring to similar sample efficiency must either (i) inherit a comparably deep prior from elsewhere, or (ii) replace that depth with engineering&mdash;architecture, curriculum, scaffolding, and dense supervision.
+            </p>
+        </div>
+
+        <div class="references">
+            <h3>Read More</h3>
+            <p><strong>WP0124</strong> &middot; <em>How Much Training Data Has a Genome Seen? An Algorithmic-Information View of Evolutionary Optimization Depth at the Cellular Coarse-Graining Scale.</em> Ruffini, Klaude &amp; Kaiti (2026).</p>
+            <p><strong>WP0049</strong> &middot; <em>Coarse-Grained Computation Between Dynamical Systems.</em></p>
+            <p><strong>WP0058</strong> &middot; <em>Darwinian and Lamarckian Evolution as a Continuum.</em></p>
+            <p><strong>WP0077</strong> &middot; <em>What is a Persistent Pattern?</em></p>
+            <p><strong>WP0110</strong> &middot; <em>From Genome to Exocortex: Human Evolution as Progressive Environmental Computation.</em></p>
+            <p>Lloyd, S. (2002). <em>Computational capacity of the universe.</em> <a href="https://doi.org/10.1103/PhysRevLett.88.237901" target="_blank">Phys.\ Rev.\ Lett.\ 88, 237901</a>.</p>
+            <p>Frank, S.A. (2012). <em>Natural selection. V.\ How to read the fundamental equations of evolutionary change in terms of information theory.</em> <a href="https://doi.org/10.1111/jeb.12010" target="_blank">J.\ Evol.\ Biol.\ 25, 2377&ndash;2396</a>.</p>
+            <p>Vanchurin, V., Wolf, Y.I., Katsnelson, M.I., Koonin, E.V. (2022). <em>Toward a theory of evolution as multilevel learning.</em> <a href="https://doi.org/10.1073/pnas.2120037119" target="_blank">PNAS 119, e2120037119</a>.</p>
+            <p>Whitman, W.B., Coleman, D.C., Wiebe, W.J. (1998). <em>Prokaryotes: the unseen majority.</em> <a href="https://doi.org/10.1073/pnas.95.12.6578" target="_blank">PNAS 95, 6578&ndash;6583</a>.</p>
+            <p>Moody, E.R.R., et al. (2024). <em>The nature of the last universal common ancestor and its impact on the early Earth system.</em> <a href="https://doi.org/10.1038/s41559-024-02461-1" target="_blank">Nat.\ Ecol.\ Evol.</a></p>
+        </div>
+
+    </article>
+</div>
+
+<footer>
+    &copy; 2026 Barcelona Computational Foundation &middot; <a href="https://bcom.one">bcom.one</a>
+</footer>
+
+</body>
+</html>
