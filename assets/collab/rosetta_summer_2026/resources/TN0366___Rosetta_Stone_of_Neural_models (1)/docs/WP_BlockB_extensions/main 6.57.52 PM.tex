@@ -1,0 +1,500 @@
+\documentclass[11pt,a4paper]{article}
+
+% ── Encoding & fonts ──────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ── Layout ────────────────────────────────────────────────────────────
+\usepackage[margin=2.5cm, top=3cm, bottom=3cm]{geometry}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+
+% ── Math ──────────────────────────────────────────────────────────────
+\usepackage{amsmath,amssymb,amsthm}
+
+% ── Lists & tables ────────────────────────────────────────────────────
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+
+% ── Graphics ──────────────────────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+
+% ── Colors & boxes ────────────────────────────────────────────────────
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most,xparse]{tcolorbox}
+\tcbuselibrary{breakable}
+
+% ── Bibliography ──────────────────────────────────────────────────────
+\usepackage[super,comma,sort&compress]{natbib}
+\bibliographystyle{unsrtnat}
+
+% ── BCOM brand palette ───────────────────────────────────────────────
+\definecolor{bcomblue}{HTML}{002878}
+\definecolor{bcomcoral}{HTML}{FF6657}
+\definecolor{bcomlight}{HTML}{D6E4F0}
+\definecolor{bcompink}{HTML}{F5D5D5}
+\definecolor{bcompale}{HTML}{F8F9FC}
+\definecolor{defbg}{HTML}{F8F9FC}
+
+% ── Hyperlinks ────────────────────────────────────────────────────────
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=bcomblue,
+    citecolor=bcomblue,
+    urlcolor=bcomblue
+}
+
+% ── Section formatting ────────────────────────────────────────────────
+\titleformat{\section}
+  {\color{bcomblue}\large\bfseries\sffamily}{\thesection}{1em}{}[\vspace{2pt}\color{bcomblue}\titlerule]
+\titleformat{\subsection}
+  {\color{bcomblue}\normalsize\bfseries\sffamily}{\thesubsection}{1em}{}
+\titlespacing{\section}{0pt}{1.5em}{0.8em}
+\titlespacing{\subsection}{0pt}{1.2em}{0.5em}
+
+% ── Header / footer ──────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\newcommand{\wpnumber}{WP0111}
+\newcommand{\wpdate}{May 4th 2026}
+\newcommand{\wppillar}{Brain Modeling}
+\fancyhead[L]{\small\sffamily\color{bcomblue}BCOM Working Paper \wpnumber}
+\fancyhead[R]{\small\sffamily\color{bcomblue}\wpdate}
+\fancyfoot[C]{\small\sffamily\thepage}
+\fancyfoot[L]{\small\sffamily\color{gray}\wppillar}
+\fancyfoot[R]{\small\sffamily\color{gray}Barcelona Computational Foundation}
+
+% ── Boxes ────────────────────────────────────────────────────────────
+\tcbset{bcombox/.style={
+  enhanced, breakable,
+  colback=bcompale, colframe=bcomblue,
+  boxrule=0.6pt, arc=2pt,
+  left=8pt, right=8pt, top=0pt, bottom=6pt,
+  fonttitle=\bfseries\sffamily\small\color{white},
+  coltitle=white, colbacktitle=bcomblue,
+  attach boxed title to top left={yshift=-2pt, xshift=0pt},
+  boxed title style={sharp corners, colback=bcomblue, boxrule=0pt},
+  before upper={\setlength{\parskip}{4pt}}
+}}
+
+\newtcolorbox{defbox}[1][]{bcombox, title=#1}
+\newtcolorbox{rembox}[1][]{bcombox, title=#1}
+
+% ── Math shortcuts ───────────────────────────────────────────────────
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\sgn}{sgn}
+
+% ══════════════════════════════════════════════════════════════════════
+\begin{document}
+
+% ══════════════════════════════════════════════════════════════════════
+%   TITLE PAGE
+% ══════════════════════════════════════════════════════════════════════
+\thispagestyle{empty}
+\begin{center}
+
+\vspace*{0.3cm}
+
+\includegraphics[height=2.2cm]{LOGO_RGB_COLORE_orizzontale.png}
+
+\vspace{0.4cm}
+
+{\color{bcomblue}\rule{\textwidth}{1.5pt}}
+
+\vspace{0.4cm}
+
+{\sffamily\color{gray}\large BARCELONA COMPUTATIONAL FOUNDATION}
+
+\vspace{0.15cm}
+
+{\sffamily\color{bcomblue}\Large\bfseries Working Paper \wpnumber}
+
+\vspace{0.2cm}
+
+{\sffamily\color{bcomblue!70}\normalsize Pillar: \wppillar}
+
+\vspace{0.8cm}
+
+{\LARGE\bfseries\sffamily\color{bcomblue} Liley, Robinson, Wong--Wang, and David--Friston}
+
+\vspace{0.4cm}
+
+{\Large\sffamily Four ``other'' neural mass models, viewed as one-step extensions of the rate/PSP lineage}
+
+\vspace{0.4cm}
+
+{\large\sffamily A companion note to the \emph{Rosetta Stone of Neural Mass Models}}
+
+\vspace{1.0cm}
+
+{\color{bcomblue}\rule{0.4\textwidth}{0.6pt}}
+
+\vspace{0.6cm}
+
+{\large Giulio Ruffini, Raul de Palma, and Francesca Castaldo}
+
+\vspace{0.2cm}
+
+{\sffamily\small Barcelona Computational Foundation \quad$\cdot$\quad Neuroelectrics, Barcelona}
+
+\vspace{0.1cm}
+
+{\small\texttt{giulio.ruffini@bcom.one}}
+
+\vspace{1.0cm}
+
+{\sffamily\large \wpdate}
+
+\vspace{1.0cm}
+
+{\color{bcomblue}\rule{\textwidth}{1.5pt}}
+
+\vspace{\fill}
+
+{\small\sffamily\color{gray}\url{https://bcom.one}}
+
+\end{center}
+
+\newpage
+
+% ══════════════════════════════════════════════════════════════════════
+%   ABSTRACT
+% ══════════════════════════════════════════════════════════════════════
+
+\begin{abstract}
+\noindent
+The companion review \emph{The Rosetta Stone of Neural Mass Models} develops a step-by-step cross-walk through the rate / post-synaptic-potential (PSP) lineage of neural mass models: phase oscillator $\leftrightarrow$ damped harmonic oscillator $\leftrightarrow$ Stuart--Landau (SL) $\leftrightarrow$ Wilson--Cowan (WILCO) $\leftrightarrow$ NMM1 (Jansen--Rit / Wendling / LaNMM) $\leftrightarrow$ NMM2 (Montbri\'o--Paz\'o--Roxin and theta-neuron Ott--Antonsen reductions). The roadmap table in that review acknowledges four widely used whole-brain node models that lie outside this lineage --- the conductance-based Liley-type mass, the corticothalamic Robinson-type model, the Reduced Wong--Wang / Dynamic Mean-Field (DMF) node, and the David--Friston canonical microcircuit used in dynamic causal modelling (DCM) --- but does not derive them in detail. This note is the companion that explains why: each of the four sits at a single, identifiable extension of the rate/PSP lineage, with the extension specific to (a)~the synaptic primitive (Liley), (b)~the spatial dimension (Robinson), (c)~the reduction principle linking spikes to masses (DMF), or (d)~the inferential overlay applied to the dynamics (DCM). The unified picture is summarised in a single table.
+
+\end{abstract}
+
+\vspace{0.5em}
+\noindent\textbf{Keywords:} neural mass models, whole-brain models, conductance-based synapses, dynamic causal modelling, Wong--Wang model, corticothalamic models, Wilson--Cowan, Jansen--Rit
+
+\clearpage
+\tableofcontents
+\newpage
+
+% ══════════════════════════════════════════════════════════════════════
+\section{Scope and motivation}
+\label{sec:intro}
+% ══════════════════════════════════════════════════════════════════════
+
+The review \emph{The Rosetta Stone of Neural Mass Models}\cite{rosetta_stone} works through a chain of dynamical equivalences --- phase oscillator $\leftrightarrow$ damped oscillator $\leftrightarrow$ SL $\leftrightarrow$ WILCO $\leftrightarrow$ NMM1 $\leftrightarrow$ NMM2 --- that connects oscillator normal forms to the rate-and-PSP tradition that has dominated whole-brain modelling for the last two decades. Inside that lineage, the cross-walks are tight: each rung is reached from its neighbour by an explicit local reduction, and the unified notation lets the reader move between formalisms with confidence about which assumptions hold where.
+
+A natural reviewer reflex on encountering such a focused review is to ask why other widely used whole-brain node models are not derived in similar detail. Four are particularly common in the literature:
+
+\begin{itemize}
+\item the \textbf{Liley-type conductance-based mass}\cite{LileyCaduschWright1999,LileyCaduschDafilis2002}, with shunting captured through a normalised, voltage-dependent weighting of post-synaptic potential amplitudes;
+\item the \textbf{Robinson-type corticothalamic model}\cite{Robinson2001,Rennie2002}, formulated as a continuum neural field with explicit axonal propagation speed;
+\item the \textbf{Reduced Wong--Wang / Dynamic Mean-Field (DMF) node}\cite{WongWang2006,Deco2013}, a heuristic mean-field reduction of leaky-integrate-and-fire (LIF) networks driven by NMDA-recurrent dynamics;
+\item the \textbf{David--Friston canonical microcircuit}\cite{DavidFriston2003}, used as the forward model in dynamic causal modelling (DCM) for M/EEG.
+\end{itemize}
+
+The thesis of this companion note is straightforward: \emph{none of these four families requires its own derivation chain, because each is a single-step extension of an existing rung of the rate/PSP lineage}. The differences are real and matter for the questions each model is designed to answer, but they are localised: a synaptic primitive, a spatial dimension, a reduction principle, an inferential overlay. Naming the locus of the difference is enough to integrate each model into the cross-walk.
+
+We therefore proceed in four short sections, one per model. Each section gives the gist of the model, the equations that distinguish it, the rung of the rate/PSP lineage to which it reduces, and a one-line statement of when one would reach for it instead of a lineage member. A consolidated comparison table closes the note.
+
+% ══════════════════════════════════════════════════════════════════════
+\section{The rate/PSP lineage in 60 seconds}
+\label{sec:lineage}
+% ══════════════════════════════════════════════════════════════════════
+
+For self-containment, we recall the lineage. A single neural mass in this tradition tracks a small set of population-averaged state variables, typically a pair of post-synaptic potentials $(x,y)$ or firing rates, governed by linear synaptic operators $\hat L$ and a (possibly dynamical) transfer function from input current to output firing rate. The rungs are:
+
+\begin{description}[leftmargin=2cm,style=nextline,labelwidth=1.8cm]
+\item[Phase / damped oscillator] Linear template: $\dot z = (\alpha + i\omega) z + G\sum_j C_{ij}(z_j - z_i)$. Closed-form spectra and covariances; universal local description near any stable focus.
+\item[Stuart--Landau (SL)] Hopf normal form: adds cubic saturation $-(\gamma+i\beta)|z|^2 z$. Self-sustained limit cycles via Hopf bifurcation; minimal phase--amplitude model.
+\item[Wilson--Cowan (WILCO)] Two-population E--I rate model with sigmoidal transfer, often with first-order kinetics. Explicit excitation--inhibition push--pull; near Hopf, reduces to SL on the centre manifold.
+\item[NMM1 (Jansen--Rit, Wendling, LaNMM)] Adds second-order synaptic filters defined by the differential operator $\hat L_\alpha = \frac{1}{\gamma_\alpha}\bigl(\tau_\alpha^2 \partial_t^2 + 2\tau_\alpha\,\partial_t + 1\bigr)$ (or its generalisation with distinct rise and decay times), acting as $\hat L_\alpha[s] = r$, with $r$ the input firing rate and $s$ the output PSP; static sigmoidal transfer voltage $\to$ rate; biophysical synaptic time constants.
+\item[NMM2 (MPR / theta-neuron Ott--Antonsen)] Exact mean-field reduction of QIF (or, equivalently, theta-neuron) spiking populations, yielding two coupled ODEs for population firing rate $r$ and mean voltage $v$. The transfer function becomes a dynamical $(r,v)$ relation rather than a static sigmoid.
+\end{description}
+
+The unifying motif across the lineage is a \emph{push--pull pair} of effective degrees of freedom (excitatory and inhibitory populations, or in-phase and quadrature components of a local oscillation), coupled through linear filters and a transfer function, embedded in a network through structured coupling and (optionally) conduction delays. Each block-(B) model below adds exactly one element to this scaffold.
+
+% ══════════════════════════════════════════════════════════════════════
+\section{Liley-type conductance-based mass}
+\label{sec:liley}
+% ══════════════════════════════════════════════════════════════════════
+
+\subsection{What it models}
+
+The published Liley model\cite{LileyCaduschWright1999,LileyCaduschDafilis2002} is, in its native form, a \emph{2D neural field} with explicit axonal propagation, similar in spirit to Robinson (\S\ref{sec:robinson}). The block-(B) entry in the Rosetta Stone roadmap table corresponds to its space-clamped (0D mass) reduction; subsequent dynamical-systems studies have analysed the chaotic regimes that emerge in this reduction\cite{Dafilis2013}.
+
+In the Liley formulation, each population $a\in\{e,i\}$ is parametrised by a mean cell-body potential $h_a$ and a set of mean post-synaptic potential (PSP) amplitudes $I_{ab}$, one per source population $b$. The membrane equation is a \emph{first-order} relaxation toward a resting potential, with the synaptic contributions weighted by a normalised \emph{shunting factor} $\psi_{ab}$:
+\begin{equation}
+\label{eq:liley_membrane}
+\tau_a\,\dot h_a = -\bigl(h_a - h_a^{\rm rest}\bigr) + \sum_b \psi_{ab}(h_a)\,I_{ab},
+\qquad
+\psi_{ab}(h_a) = \frac{h_a^{\rm eq,b} - h_a}{\bigl|h_a^{\rm eq,b} - h_a^{\rm rest}\bigr|}.
+\end{equation}
+The dimensionless factor $\psi_{ab}$ equals $1$ at the resting potential and $0$ at the reversal potential $h_a^{\rm eq,b}$ for synapse type $b$, so the synaptic input loses driving force as the membrane approaches $h_a^{\rm eq,b}$. This is the Liley-specific way of encoding the conductance-like physics that the Hodgkin--Huxley current expression $g(t)(E_{\rm rev}-V)$ encodes more directly: there is no explicit conductance variable in the published Liley equations; the multiplicative weighting $\psi_{ab}\cdot I_{ab}$ plays the role of a state-dependent effective conductance times a PSP amplitude.
+
+The PSP amplitudes $I_{ab}$ obey \emph{second-order} kinetics driven by the firing rate $\tilde\rho_{ab}$ arriving from population $b$,
+\begin{equation}
+\label{eq:liley_synapse}
+\hat L_{ab}\,I_{ab} = G_{ab}\bigl(\tilde\rho_{ab} + p_{ab}\bigr),
+\qquad
+\hat L_{ab} = \bigl(\partial_t + \gamma_{ab}\bigr)^2,
+\end{equation}
+with $G_{ab}$ the synaptic gain, $\gamma_{ab}$ the inverse synaptic time constant, and $p_{ab}$ an external (e.g.\ subcortical) drive. The loop closes through a sigmoidal voltage-to-rate map, $\rho_a = S(h_a)$.
+
+It is worth flagging that some roadmap presentations of conductance-based masses --- including the block-(B) row of the Rosetta Stone roadmap table --- display a Hodgkin--Huxley-style passive-membrane balance with explicit $g(t)(E_{\rm rev}-V)$ terms and first-order conductance kinetics. That HH-style form is a \emph{stylised} conductance-based mass, useful as a compact summary, but it is not what the published Liley equations use. The $(\psi, I)$ formulation in Eqs.~\eqref{eq:liley_membrane}--\eqref{eq:liley_synapse} is the canonical Liley form.
+
+\subsection{Distinguishing feature: shunting (not the synaptic order)}
+
+The synaptic order in Liley's model is \textbf{second-order} (Eq.~\eqref{eq:liley_synapse}), structurally the same operator family as NMM1's $\hat L_\alpha$. So the synaptic order is \emph{not} what distinguishes Liley from NMM1. What does distinguish the two is the voltage-dependence of the synaptic contribution to the membrane equation, encoded by $\psi_{ab}(h_a)$. As $h_a \to h_a^{\rm eq,b}$, $\psi_{ab}\to 0$ and the synaptic input loses driving force despite a non-zero PSP amplitude --- the shunting effect. Inhibitory synapses with $h_a^{\rm eq,b}$ near the resting potential can therefore behave as ``divisive'' rather than ``subtractive'' modulators, and an excitatory drive can lose effective gain when the postsynaptic cell is already strongly depolarised. None of this is captured by current-based filters that enter additively as in WILCO or NMM1.
+
+\subsection{How it relates to the lineage}
+
+At the resting potential, $\psi_{ab}(h_a^{\rm rest}) = 1$ and Eq.~\eqref{eq:liley_membrane} reduces to a first-order leaky integrator with simple additive PSP inputs,
+\begin{equation}
+\tau_a\,\dot h_a \approx -\bigl(h_a - h_a^{\rm rest}\bigr) + \sum_b I_{ab},
+\end{equation}
+which, combined with the second-order PSP dynamics in Eq.~\eqref{eq:liley_synapse} and the sigmoidal voltage-to-rate map, is essentially a Jansen--Rit-class NMM1 with a leak term. Linearising around any stable operating point $h_a^*$ generalises this: the slope $\partial \psi_{ab}/\partial h_a$ at $h_a^*$ enters as a small correction, but the leading-order dynamics remain NMM1-like with renormalised gains. The genuinely \emph{non-NMM1} regime is where $h_a$ swings appreciably toward a reversal potential $h_a^{\rm eq,b}$, $\psi_{ab}$ varies substantially, and the shunting nonlinearity becomes a leading-order effect rather than a correction. This is the regime in which Liley's formulation contributes something the rate/PSP lineage cannot recover by parameter rescaling.
+
+\subsection{When to use it}
+
+Reach for the Liley-type mass when the question hinges on shunting inhibition, voltage-dependent NMDA dynamics, or anaesthetic mechanisms (where many anaesthetics act precisely on $E_{\rm rev}$ for chloride and thereby modulate shunting). For oscillation-onset and large-scale spectra near a stable focus, NMM1 with appropriate effective gains will give the same answer at lower analytic cost.
+
+% ══════════════════════════════════════════════════════════════════════
+\section{Robinson-type corticothalamic model}
+\label{sec:robinson}
+% ══════════════════════════════════════════════════════════════════════
+
+\subsection{What it models}
+
+The Robinson model\cite{Robinson2001,Rennie2002} is, in its native form, a \emph{neural field}. Three coupled equations describe a continuum cortex. Letting $V(\mathbf{x},t)$ denote the mean cell-body potential, $Q(\mathbf{x},t)$ the firing rate, and $\phi(\mathbf{x},t)$ the axonal pulse field carrying activity along long-range fibres,
+\begin{align}
+\hat D_\alpha\,V(\mathbf{x},t) &= \sum_{e}\nu_e\,\phi_e(\mathbf{x},t-\tau_e),
+  &&\text{(synaptic filter $\to$ soma)} \label{eq:robinson_soma}\\
+Q(\mathbf{x},t) &= S\bigl(V(\mathbf{x},t)\bigr),
+  &&\text{(sigmoid voltage $\to$ rate)} \label{eq:robinson_sigmoid}\\
+\Bigl[\frac{1}{\gamma^2}\partial_t^2 + \frac{2}{\gamma}\partial_t + 1 - r^2 \nabla^2\Bigr]\phi &= Q(\mathbf{x},t),
+  &&\text{(axonal propagation field)} \label{eq:robinson_field}
+\end{align}
+where $\hat D_\alpha$ is a second-order synaptic filter (alpha-kernel form), $\gamma$ relates to axonal range and propagation speed, and $r$ is the characteristic spatial scale of the cortical fibre system. The model includes corticothalamic and intracortical loops, with explicit \emph{axonal propagation speed} $v$ embedded in $\gamma\sim v/r$.
+
+\subsection{Distinguishing feature: explicit axonal-propagation field}
+
+The defining new ingredient compared to NMM1 is Eq.~\eqref{eq:robinson_field}: a wave equation describing how firing-rate activity at one cortical location propagates as an axonal pulse field $\phi$ to another location with finite speed. The two operators have the \emph{same mathematical form} as NMM1's synaptic filter $\hat L_\alpha$ (a damped harmonic operator with second-order temporal kinetics), but they play \emph{different roles}: $\hat D_\alpha$ in Eq.~\eqref{eq:robinson_soma} is a synaptic filter (rate $\to$ PSP), exactly as in NMM1; the wave operator in Eq.~\eqref{eq:robinson_field} is an \emph{axonal propagation operator} (rate $\to$ axonal pulse field, with explicit spatial coupling). It is this second operator and its $\nabla^2$ term that put Robinson outside the rate/PSP lineage rather than inside it.
+
+\subsection{How it relates to the lineage}
+
+The synaptic side of the Robinson model (Eqs.~\eqref{eq:robinson_soma}--\eqref{eq:robinson_sigmoid}) \emph{is} NMM1: same second-order synaptic filter, same sigmoidal voltage-to-rate map. The added piece is the propagation field $\phi$ (Eq.~\eqref{eq:robinson_field}). Two limits clarify the relationship:
+\begin{itemize}
+\item \textbf{Space-clamped, fast-axon limit.} Dropping the $\nabla^2$ term and taking $\gamma\to\infty$ collapses Eq.~\eqref{eq:robinson_field} to $\phi=Q$, so axonal propagation becomes instantaneous and the model collapses onto an NMM1 single mass.
+\item \textbf{Discretised connectome limit.} Replacing the continuum Laplacian by structural couplings $C_{ij}$ on a parcellation, and replacing the continuum delays by $\tau_{ij}=d_{ij}/v$, reproduces an NMM1-type network with the exact conduction-delay structure used throughout the lineage. The two-operator Robinson form thus reduces to one operator (synaptic) plus delays --- which is just NMM1.
+\end{itemize}
+The \emph{full} Robinson formalism, with the spatial Laplacian retained on a continuum, belongs to the \emph{neural field} side of the mass/field distinction discussed in the Rosetta Stone review. It is in this regime that Robinson contributes something genuinely new --- travelling waves, propagation-speed-dependent spatial coherence patterns --- that no parcellated NMM1 network captures naturally.
+
+\subsection{When to use it}
+
+Reach for Robinson when the spatial structure of activity matters at a finer resolution than a parcellated connectome can capture: travelling alpha waves, cortical patterning, surface-electrode spectral profiles whose generators span centimetres of cortex. For region-by-region modelling of FC, FCD, or laminar-specific phenomena, the discretised Robinson model is essentially an NMM1 network and brings no new node-level dynamics.
+
+% ══════════════════════════════════════════════════════════════════════
+\section{Reduced Wong--Wang / Dynamic Mean-Field (DMF) node}
+\label{sec:dmf}
+% ══════════════════════════════════════════════════════════════════════
+
+\subsection{What it models}
+
+The Wong--Wang model\cite{WongWang2006} was originally derived as a reduced mean-field of LIF neurons with NMDA recurrent connections, in the context of cortical decision-making (a two-pool attractor model for binary choice). The Dynamic Mean-Field (DMF) version\cite{Deco2013} repurposes the reduction for whole-brain modelling: each region is described by a single state variable $S_i(t)$ representing the average NMDA gating fraction,
+\begin{equation}
+\label{eq:dmf}
+\tau_s \dot S_i = -S_i + (1-S_i)\,\gamma\,r_i, \qquad r_i = \phi(I_i),
+\qquad I_i = I_0 + wJ S_i + G\sum_{j\neq i} C_{ij} S_j(t-\tau_{ij}) + \eta_i(t).
+\end{equation}
+The transfer function $\phi$ is a piecewise-saturating function fitted to LIF mean-field analysis under Gaussian-noise assumptions.
+
+\subsection{Distinguishing feature: heuristic spike-to-mass reduction}
+
+The DMF node is, in spirit, a \emph{first-principles} reduction: $\phi$ is not postulated phenomenologically (as in WILCO's logistic) but derived from spiking biophysics. The reduction is heuristic, however, in the sense that there is no exact closure of the LIF + NMDA mean-field hierarchy at the level of a single dynamical variable per population --- the closure relies on a sequence of approximations (slow NMDA dynamics, mean-field self-consistency, Gaussian input statistics) that work well in practice but are not rigorous in the way the Ott--Antonsen reduction is for QIF/theta-neuron networks.
+
+\subsection{How it relates to the lineage}
+
+DMF combines two attributes that the lineage models distribute differently:
+\begin{itemize}
+\item \textbf{NMM2-like first-principles ambition}: the transfer function $\phi$ reflects spiking biophysics derived from LIF mean-field analysis, not a phenomenological logistic. This is the spirit of NMM2/MPR.
+\item \textbf{WILCO-like compactness}: a single dynamical variable per population (the gating fraction $S$), with the firing rate $r$ slaved instantaneously to the input current $I$ through $\phi$. There is no separate voltage equation, so DMF has \emph{fewer} state variables per population than either WILCO ($E$ and $I$ rates) or NMM2 ($r$ and $v$).
+\item \textbf{Heuristic rather than exact closure}: there is no analogue of the Lorentzian-distribution / Ott--Antonsen identity that makes MPR exact for QIF networks. The DMF closure relies on slow-NMDA, mean-field self-consistency, and Gaussian-input assumptions.
+\end{itemize}
+DMF is therefore best read as a \emph{controlled-approximation reduction in the spirit of NMM2 but for the LIF/NMDA microscale}, presented in a one-variable-per-region form for tractability in whole-brain fits. It is neither a strict subset of WILCO (which has no spike-derived transfer) nor a strict subset of NMM2 (which has an exact closure on a different microscale); the heuristic LIF/NMDA closure is the locus of difference.
+
+\subsection{When to use it}
+
+Reach for DMF when the question concerns whole-brain attractor dynamics fit to fMRI BOLD --- the body of empirical evidence on DMF + connectome fits is substantial and well-validated\cite{Deco2013}. For analytical questions where the exactness of the closure matters --- in particular, response to weak fields and inertia from microscale spiking --- NMM2/MPR offers the same first-principles spirit with a watertight reduction.
+
+% ══════════════════════════════════════════════════════════════════════
+\section{David--Friston canonical microcircuit / DCM}
+\label{sec:dcm}
+% ══════════════════════════════════════════════════════════════════════
+
+\subsection{What it models}
+
+The David--Friston neural mass\cite{DavidFriston2003} is a multi-population model with second-order $\alpha$-synaptic kernels and a sigmoidal voltage-to-rate transfer. In the canonical microcircuit family\cite{Bastos2012Canonical}, the populations are typically pyramidal cells, excitatory interneurons, and inhibitory interneurons, with prescribed intra-circuit connectivity. The dynamical operator on each population is a second-order ODE,
+\begin{equation}
+\label{eq:dcm}
+\Bigl[\frac{1}{a_p^2}\partial_t^2 + \frac{2}{a_p}\partial_t + 1\Bigr] x_{i,p} = \sum_q g_{pq}\,\sigma(x_{i,q}) + \sum_{j\neq i} C_{ij}\,\sigma(x_{j,q}(t-\tau_{ij})),
+\end{equation}
+which is a Jansen--Rit-style NMM1 written in a form convenient for inference.
+
+\subsection{Distinguishing feature: Bayesian inversion overlay}
+
+The David--Friston model itself is not new dynamics; it is NMM1. What is new is the use of it as the \emph{forward model} in Dynamic Causal Modelling (DCM) for M/EEG. DCM treats the model parameters --- effective connectivity entries $C_{ij}$, synaptic gains $g_{pq}$, time constants $a_p$ --- as latent variables to be inferred from data via variational Bayesian message passing. The inferential machinery (priors, free-energy bound, model comparison) is what carries the scientific content of the DCM enterprise; the dynamics are NMM1 throughout.
+
+\subsection{How it relates to the lineage}
+
+DCM = NMM1 + variational-Bayesian inferential overlay. Every result that holds for Jansen--Rit holds for the David--Friston canonical microcircuit at the level of forward dynamics: phase reductions to Kuramoto-type networks under weak coupling\cite{ForresterEtAl2020}, Hopf-bifurcation analysis, susceptibility to electric-field perturbations, all transfer over directly. The DCM contribution lies in turning these forward models into instruments for Bayesian inference about effective connectivity from M/EEG data.
+
+\subsection{When to use it}
+
+Reach for the David--Friston / DCM framework when the goal is \emph{inference}: estimating effective connectivity, comparing models with different connectivity structures, or attributing pharmacological effects to specific synaptic gains, all from M/EEG recordings. For \emph{generative} questions where the forward model itself is what one cares about, NMM1/Jansen--Rit and its laminar (LaNMM) extensions cover the same dynamical territory without the inferential overhead.
+
+% ══════════════════════════════════════════════════════════════════════
+\section{Cross-walk summary}
+\label{sec:summary}
+% ══════════════════════════════════════════════════════════════════════
+
+The argument can be read off a single table.
+
+\begin{table}[H]
+  \centering
+  \caption{The four block-(B) families and their relation to the rate/PSP lineage. Each model is a one-step extension of an existing lineage rung; the distinguishing element is named in the third column.}
+  \label{tab:blockB}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{@{}lXlX@{}}
+    \toprule
+    \textbf{Model} & \textbf{Lineage rung it extends} & \textbf{Distinguishing element} & \textbf{When to reach for it} \\
+    \midrule
+    Liley-type \cite{LileyCaduschWright1999,LileyCaduschDafilis2002,Dafilis2013}
+      & NMM1 (same second-order $\hat L_{ab}$ kinetics, 0D space-clamped reduction of a 2D field model)
+      & Voltage-dependent shunting weight $\psi_{ab}(h_a)$ multiplying PSP amplitudes in the membrane equation
+      & Shunting inhibition; voltage-dependent NMDA; anaesthetic mechanisms acting on reversal potentials \\[4pt]
+    Robinson-type \cite{Robinson2001,Rennie2002}
+      & Synaptic side identical to NMM1 (same $\hat D_\alpha$ filter, same sigmoid); adds an axonal-propagation field $\phi$
+      & Continuum neural-field PDE for axonal propagation with explicit speed $v$ and spatial scale $r$
+      & Travelling cortical waves; surface-EEG spectra of large-scale generators \\[4pt]
+    Reduced Wong--Wang / DMF \cite{WongWang2006,Deco2013}
+      & Single-variable per population (gating $S$); fewer state vars than WILCO or NMM2
+      & NMM2-like first-principles spirit but \emph{heuristic} LIF/NMDA closure rather than exact reduction
+      & Whole-brain fMRI attractor dynamics; FC/FCD fits with validated empirical track record \\[4pt]
+    David--Friston / DCM \cite{DavidFriston2003}
+      & NMM1 (Jansen--Rit-class canonical microcircuit)
+      & Inferential overlay: variational-Bayesian inversion of model parameters from M/EEG
+      & Effective-connectivity inference from data; pharmacological gain estimation \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+% ══════════════════════════════════════════════════════════════════════
+\section{Discussion}
+\label{sec:discussion}
+% ══════════════════════════════════════════════════════════════════════
+
+The structural claim made by Table~\ref{tab:blockB} is that the rate/PSP cross-walk \emph{already reaches} these four families: not in the sense of recovering all their predictions automatically, but in the sense that placing each one inside the lineage requires identifying a single locus of extension --- not a separate derivation chain.
+
+That observation matters for two reasons. First, it justifies the scope of the Rosetta Stone review: the cross-walk concentrates on the rate/PSP lineage because that is the sub-family within which the local bridges are tightest, and the four block-(B) families inherit those bridges by virtue of being one-step extensions. Second, it gives the reader a practical orientation map. The questions ``when should I reach for Liley?'' or ``DMF or NMM2?'' are not abstract methodology choices; they correspond to \emph{which one of four named extensions} of the lineage the question requires --- shunting, spatial structure, heuristic vs.\ exact reduction, or Bayesian inference.
+
+Two caveats are worth stating explicitly. \emph{First}, the equivalences are local. ``David--Friston is NMM1'' is true at the level of the dynamical equations; it does not mean that the analytic results valid for one carry over verbatim to the inferential setting of the other. \emph{Second}, the cataloguing in this note is not exhaustive. Conductance-based field models (e.g.\ Bojak--Liley extensions to anaesthesia), thalamocortical models with explicit thalamic relays beyond the Robinson family, and exact mean-field reductions beyond MPR (e.g.\ Nicola--Campbell\cite{NicolaCampbell2013} for two-dimensional integrate-and-fire neurons) all enrich the picture and lie one or two further steps from the lineage rungs sketched here. The companion review credits these extensions in passing and points readers to the relevant literature.
+
+% ══════════════════════════════════════════════════════════════════════
+\section{Conclusion}
+\label{sec:conclusion}
+% ══════════════════════════════════════════════════════════════════════
+
+The four ``other'' canonical whole-brain node models --- Liley, Robinson, DMF, and David--Friston --- are not isolated formalisms competing with the rate/PSP lineage on which the Rosetta Stone review is built. They are extensions of that lineage, each at a single, identifiable locus: synaptic primitive (Liley), spatial dimension (Robinson), reduction principle (DMF), inferential overlay (DCM). The Rosetta Stone cross-walk therefore reaches each of them in one step, and the choice of which to use becomes a question of which extension the scientific question requires --- not a choice between unrelated traditions.
+
+\bigskip
+
+\noindent\textit{Acknowledgements.} This note grew out of discussion with reviewers and co-authors of the Rosetta Stone of Neural Mass Models. The framing of ``one-step extensions'' is the result of those exchanges; any errors of attribution remain mine.
+
+% ══════════════════════════════════════════════════════════════════════
+%   BIBLIOGRAPHY
+% ══════════════════════════════════════════════════════════════════════
+
+% Inline bibliography below replaced by an external references.bib for
+% standard BibTeX workflow. To use the inline form again, comment out the
+% \bibliography{references} line above and uncomment from \begin{thebibliography} here.
+\bibliography{references}
+\iffalse
+\begin{thebibliography}{99}
+
+\bibitem{rosetta_stone}
+F.~Castaldo, R.~de Palma Aristides, P.~Clusella, J.~Garcia-Ojalvo, G.~Ruffini.
+\emph{The Rosetta Stone of Neural Mass Models}.
+Submitted to Physics Reports, 2026.
+
+\bibitem{LileyCaduschWright1999}
+D.~T.~J.~Liley, P.~J.~Cadusch, J.~J.~Wright.
+A continuum theory of electro-cortical activity.
+\emph{Neurocomputing} \textbf{26--27}, 795--800 (1999).
+
+\bibitem{LileyCaduschDafilis2002}
+D.~T.~J.~Liley, P.~J.~Cadusch, M.~P.~Dafilis.
+A spatially continuous mean field theory of electrocortical activity.
+\emph{Network: Comput.\ Neural Syst.} \textbf{13}, 67--113 (2002).
+
+\bibitem{Dafilis2013}
+M.~P.~Dafilis, F.~Frascoli, P.~J.~Cadusch, D.~T.~J.~Liley.
+Four dimensional chaos and intermittency in a mesoscopic model of the electroencephalogram.
+\emph{Chaos} \textbf{23}, 023111 (2013).
+
+\bibitem{Robinson2001}
+P.~A.~Robinson, C.~J.~Rennie, J.~J.~Wright, H.~Bahramali, E.~Gordon, D.~L.~Rowe.
+Prediction of electroencephalographic spectra from neurophysiology.
+\emph{Phys.\ Rev.\ E} \textbf{63}, 021903 (2001).
+
+\bibitem{Rennie2002}
+C.~J.~Rennie, P.~A.~Robinson, J.~J.~Wright.
+Unified neurophysical model of EEG spectra and evoked potentials.
+\emph{Biol.\ Cybern.} \textbf{86}, 457--471 (2002).
+
+\bibitem{WongWang2006}
+K.~F.~Wong, X.~J.~Wang.
+A recurrent network mechanism of time integration in perceptual decisions.
+\emph{J.\ Neurosci.} \textbf{26}, 1314--1328 (2006).
+
+\bibitem{Deco2013}
+G.~Deco, A.~Ponce-Alvarez, D.~Mantini, G.~L.~Romani, P.~Hagmann, M.~Corbetta.
+Resting-state functional connectivity emerges from structurally and dynamically shaped slow linear fluctuations.
+\emph{J.\ Neurosci.} \textbf{33}, 11239--11252 (2013).
+
+\bibitem{DavidFriston2003}
+O.~David, K.~J.~Friston.
+A neural mass model for MEG/EEG: coupling and neuronal dynamics.
+\emph{NeuroImage} \textbf{20}, 1743--1755 (2003).
+
+\bibitem{Bastos2012Canonical}
+A.~M.~Bastos, W.~M.~Usrey, R.~A.~Adams, G.~R.~Mangun, P.~Fries, K.~J.~Friston.
+Canonical microcircuits for predictive coding.
+\emph{Neuron} \textbf{76}, 695--711 (2012).
+
+\bibitem{ForresterEtAl2020}
+M.~Forrester, J.~J.~Crofts, S.~N.~Sotiropoulos, S.~Coombes, R.~D.~O'Dea.
+The role of node dynamics in shaping emergent functional connectivity patterns in the brain.
+\emph{Network Neuroscience} \textbf{4}, 467--483 (2020).
+
+\bibitem{NicolaCampbell2013}
+W.~Nicola, S.~A.~Campbell.
+Mean-field models for heterogeneous networks of two-dimensional integrate and fire neurons.
+\emph{Front.\ Comput.\ Neurosci.} \textbf{7}, 184 (2013).
+
+\end{thebibliography}
+\fi
+
+\end{document}
