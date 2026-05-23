@@ -228,7 +228,7 @@
 <div class="meta-strip">
   <div class="wrap">
     <span><b>Start:</b> June 2026 (Week 1 shared)</span>
-    <span><b>Duration:</b> Lucia 4&nbsp;wks &middot; Claudia 8&nbsp;wks</span>
+    <span><b>Duration:</b> Lucia 4&nbsp;wks &middot; Claudia 8&nbsp;wks (starts 1&nbsp;wk earlier)</span>
     <span><b>Hosted by:</b> Neuroelectrics × BCOM, Barcelona</span>
     <span><b>Shared folder:</b> <a href="https://drive.google.com/open?id=1xHM9b4LfXRflceheB_g2ADZewa_EOt9n&usp=drive_fs" style="color:var(--orange)">Google Drive</a></span>
   </div>
@@ -242,7 +242,7 @@
   <p class="attribution">— R. P. Feynman, opening of the <em>Rosetta Stone</em> paper</p>
 </div>
 
-<p>This internship has two parts. <strong>Week 1</strong> is a shared crash course in AI, neural networks, large language models, and the practical use of Claude as a research tool — calibrated to a strong pure-mathematics / mathematical-physics background. From <strong>Week 2</strong> onward you each work on the <em>Rosetta Stone of Neural Mass Models</em> paper: reading it carefully, then implementing the model ladder it describes. Lucia pushes down the ladder to NMM1 and NMM2; Claudia builds a clean foundational <code>nmmlab</code> package for the lower rungs (HO, DHO, SL). The <strong>public website</strong> is a <strong>joint deliverable</strong>: one shared repo, both interns push, NE × BCOM co-branded.</p>
+<p>This internship has two parts. <strong>Week 1</strong> is a shared crash course in AI, neural networks, large language models, and the practical use of Claude as a research tool — calibrated to a strong pure-mathematics / mathematical-physics background. From <strong>Week 2</strong> onward you both work on the <em>Rosetta Stone of Neural Mass Models</em> paper: reading it carefully, then implementing the model ladder it describes. The <strong>code</strong> (<code>nmmlab</code>) and the <strong>public website</strong> are both <strong>joint deliverables</strong> — one shared repo, both push, NE × BCOM co-branded.</p>
 
 <div class="toc">
   <div class="label">Contents</div>
@@ -250,13 +250,9 @@
     <li><a href="#goals">Goals &amp; learning outcomes</a></li>
     <li><a href="#logistics">Logistics &amp; working rhythm</a></li>
     <li><a href="#phase1">Phase 1 · Week 1 — AI / NN / LLM crash course <span class="badge shared">shared</span></a></li>
-    <li><a href="#phase2">Phase 2 · Rosetta Stone implementation</a>
-      <ol>
-        <li><a href="#lucia">Lucia track <span class="badge lucia">4 wks</span></a></li>
-        <li><a href="#claudia">Claudia track <span class="badge claudia">8 wks</span></a></li>
-      </ol>
-    </li>
+    <li><a href="#phase2">Phase 2 · Rosetta Stone — read, implement, play, demo</a></li>
     <li><a href="#deliverables">Deliverables &amp; assessment</a></li>
+    <li><a href="#web">Web implementation (GitHub Pages + HTML5)</a></li>
     <li><a href="#bib">Reading list &amp; resources</a></li>
   </ol>
 </div>
@@ -269,42 +265,26 @@
   <li>Use Claude (and one other frontier coding assistant of your choice) as a working collaborator — reading code, designing experiments, drafting documentation — without losing your own grasp of the problem.</li>
   <li>Read the <em>Rosetta Stone</em> paper closely enough to reconstruct its derivation ladder: harmonic oscillator → Stuart–Landau → Wilson–Cowan → NMM1 (Jansen–Rit / laminar) → NMM2 (Montbrió–Pazó–Roxin).</li>
   <li>Implement at least three models from that ladder in clean, tested Python, with reproducible figures, and embed them in a small open-source repository.</li>
-  <li>Produce a public-facing artefact — a joint Lucia + Claudia website in BCOM / Neuroelectrics co-branded style, with Lucia's NMM1/NMM2 pages and Claudia's <code>nmmlab</code> + notebook gallery for the lower-rung models living in the same repo and deployed together.</li>
+  <li>Produce two joint public artefacts: a co-developed Python package (<code>nmmlab</code>) covering the model ladder, and a co-developed NE × BCOM-styled website that presents the implementations and runnable demos. One shared repo, both interns push.</li>
 </ol>
 
 <h2 id="logistics">2 · Logistics &amp; working rhythm</h2>
 
-<h3>Cadence</h3>
+<h3>Cadence &amp; place</h3>
 <ul>
-  <li><strong>Daily standup</strong> (15 min, asynchronous Slack thread or a short call): yesterday / today / blockers.</li>
-  <li><strong>Weekly sync</strong> (60 min, with Francesca and Giulio): walk through code, demo figures, plan the next week.</li>
-  <li><strong>One paper presentation per intern</strong> at the end of the programme (Claudia gets a mid-internship demo as well).</li>
+  <li><strong>Google Chat</strong> is always on during working hours — that's the default channel for everything. <strong>WhatsApp</strong> for genuine emergencies only.</li>
+  <li><strong>Weekly meeting</strong> with Francesca and Giulio at <strong>Norrsken</strong>, Tuesdays or Thursdays (slot TBD): walk through code, demo figures, plan the next week.</li>
+  <li><strong>Workplace.</strong> Most days at Neuroelectrics; one day a week at Norrsken (the day of the weekly meeting). You are a team of two — work side by side, help each other, share dead-ends and good ideas.</li>
+  <li><strong>One final presentation each</strong> at the end of the programme.</li>
 </ul>
 
 <h3>Tools</h3>
 <ul>
-  <li><strong>Python 3.11+</strong> with <code>numpy</code>, <code>scipy</code>, <code>matplotlib</code>, <code>jupyter</code>. That's the whole stack — no framework hunting.</li>
-  <li><strong>Git</strong> + GitHub; one repo per intern.</li>
-  <li><strong>Claude</strong> (desktop or web) as the primary AI collaborator.</li>
-  <li><strong>Plain HTML / CSS / JavaScript</strong> for the website — no build step, no framework. BCOM palette: Lively Blue <code>#002878</code> and Coral <code>#FF6657</code> (copy from <a href="https://bcom.one">bcom.one</a>).</li>
+  <li><strong>Python 3.11+</strong> with <code>numpy</code>, <code>scipy</code>, <code>matplotlib</code>, <code>jupyter</code>. Run locally or in <a href="https://colab.research.google.com">Google Colab</a> via your <code>@neuroelectrics.com</code> account — Colab comes with Python and the scientific stack pre-installed, and is fine for the whole Phase 2 ladder.</li>
+  <li><strong>Git</strong> + GitHub.</li>
+  <li><strong>Claude</strong> (desktop and web) as the primary AI collaborator. <strong>Gemini</strong> is also available via your NE Google account if you want a second opinion.</li>
+  <li><strong>Plain HTML / CSS / JavaScript</strong> for the joint website. No build step, no framework. NE × BCOM palette: Lively Blue <code>#002878</code> and Coral <code>#FF6657</code>.</li>
 </ul>
-
-<h3>Hosting the website</h3>
-<p><strong><a href="https://pages.github.com/">GitHub Pages</a></strong> is the default: free, lives next to your code, auto-rebuilds on every push. Enable it in repo Settings → Pages, point it at <code>main</code> branch <code>/docs</code> folder, and your site is live at <code>https://&lt;your-name&gt;.github.io/&lt;repo&gt;/</code> within minutes. Claude can run the whole setup for you — just ask. Alternatives if you ever outgrow Pages: <a href="https://www.netlify.com/">Netlify</a> or <a href="https://pages.cloudflare.com/">Cloudflare Pages</a>. Pick one and move on.</p>
-
-<p><strong>GitHub Pages serves static files only</strong> — HTML, CSS, JS, images. There is no Python interpreter on the server. So write your simulations in Python locally, generate the figures, and embed them. For <em>interactive</em> demos where a slider changes the dynamics live, port the Python ODE solver to JavaScript — see the green box below.</p>
-
-<div class="claudia-box">
-  <div class="label">Yes — HTML5 can solve your ODE and plot it. Here's the workflow.</div>
-  <p>Every model in the Rosetta ladder — HO, DHO, SL, WC, JR, NMM2 — is small enough to integrate in real time in plain JavaScript on any modern browser. The pattern:</p>
-  <ol>
-    <li><strong>Build and verify in Python first.</strong> Write the ODE, integrate with <code>scipy.solve_ivp</code>, plot with matplotlib. Confirm you see the expected behaviour. This is your ground truth.</li>
-    <li><strong>Ask Claude to port it.</strong> One sentence: <em>"port this Python ODE to a single self-contained HTML file with vanilla JS + Plotly, three parameter sliders, an RK4 integrator, matching the default-parameter Python output."</em> Claude produces one <code>.html</code> file, ~200 lines, no build step.</li>
-    <li><strong>Verify side-by-side.</strong> Python and HTML at default parameters — traces should look identical.</li>
-    <li><strong>Deploy.</strong> Drop the file in <code>/docs/</code>, push, refresh the live URL.</li>
-  </ol>
-  <p>The JS stack is tiny: a hand-rolled RK4 (~30 lines), <code>Plotly.js</code> from a CDN, <code>&lt;input type="range"&gt;</code> sliders. Single-node models run at hundreds of thousands of steps per second in the browser. One <code>&lt;script&gt;</code> tag, no dependencies.</p>
-</div>
 
 <div class="remark-box">
   <div class="label">House rule on AI use</div>
@@ -315,63 +295,44 @@
 
 <p>The aim of Week 1 is <em>not</em> to make you ML engineers — it is to give you the conceptual handles you need so that, when an LLM proposes code or an architecture, you can judge it. We assume strong calculus, linear algebra, probability, and (for Lucia) measure theory. We will <em>not</em> assume any prior Python ML.</p>
 
+<div class="claudia-box">
+  <div class="label">Pacing — note for Claudia</div>
+  <p>Claudia starts one week before Lucia. Treat the Week-1 material as <strong>1.5 to 2 weeks</strong> at your pace, not a single sprint. The material is dense; the extra time is for you to absorb AI + Claude basics properly before Phase 2 begins. By the time Lucia arrives, you should be comfortable with the Anthropic Academy courses, basic Claude workflows, and the Git loop.</p>
+</div>
+
 <details class="week" open>
-<summary>Day 0 — Accounts &amp; scaffolding (do this on or before Day 1)</summary>
+<summary>Day 0 — Get set up (Claude does most of this for you)</summary>
 <div class="week-body">
-<p>Spend a couple of hours getting the writing and code stack in place. <strong>Claude can walk you through every step below</strong> — creating accounts, initialising a repo, writing your first commit, even drafting an Overleaf project skeleton. Just ask in plain English ("help me create a GitHub repo for my internship and make my first commit") and Claude will give you the exact commands and explain what each one does.</p>
+<p>Spend a couple of hours getting set up. <strong>From Day 0 you have Claude.</strong> Ask it in plain English to help with any of the steps below — installing Python, creating a GitHub repo, writing your first commit, setting up SSH keys. The goal is <em>just enough to get by</em>, not mastery; you'll learn the rest by doing.</p>
 
-<h4>Create accounts</h4>
+<h4>What's already done for you</h4>
 <ul>
-  <li><strong><a href="https://www.overleaf.com">Overleaf</a></strong> — your home for writing (memos, notes, the eventual Rosetta-Stone companion text). Free tier is fine; the BCOM/UPF group licence covers premium features if you need them.</li>
-  <li><strong><a href="https://github.com">GitHub</a></strong> — your home for code. Use your real name and a professional handle.</li>
-  <li><strong>Claude</strong> (web + desktop) — sign in to the workspace Francesca shares with you. Install the desktop app so you can use Cowork on local files.</li>
+  <li><strong>Neuroelectrics Google Workspace account</strong> — you get a <code>@neuroelectrics.com</code> address with the full suite: Google Chat (our default channel), Drive, Docs, Sheets, <strong>Gemini</strong>, and <strong>Colab</strong>. Jordi (IT/AI services) sets this up.</li>
+  <li><strong>Claude workspace</strong> — Jordi also invites you to the team Claude workspace. Install both the web app and the desktop app (the desktop app gives you Cowork on local files).</li>
+  <li><strong>Overleaf</strong> projects — Giulio will share two with you: a personal <strong>Research Diary</strong> (your daily lab notebook) and any project documents you need. You do not need your own Overleaf account.</li>
 </ul>
 
-<h4>Scaffold your Overleaf notebook</h4>
+<h4>What you set up yourself (with Claude's help)</h4>
 <ul>
-  <li>Create one personal Overleaf project, <code>&lt;your-name&gt;-notebook-2026</code>, structured as: <code>main.tex</code> + one <code>week-N.tex</code> input per week, plus a <code>refs.bib</code>. A simple <code>\input{}</code> per week keeps things tidy.</li>
-  <li>This is where the Week-1 memo, weekly notes, and any derivations you do by hand will live. Treat it as a working lab notebook, not a polished document.</li>
-  <li>For backup, download the project zip from Overleaf at the end of each week and drop it in the shared Drive. (Overleaf's git/GitHub sync is a paid feature — don't worry about it unless we enable the group licence.)</li>
+  <li><strong><a href="https://github.com">GitHub</a></strong> account — use your real name and a professional handle. Create one personal repository <code>&lt;your-name&gt;-internship-2026</code> with a simple layout: <code>README.md</code>, <code>CLAUDE.md</code> (style and do-not-do rules — start with three lines, grow it), <code>code/</code>, <code>notebooks/</code>, <code>figures/</code>.</li>
+  <li><strong>Python</strong> — either install locally (Claude will walk you through it) or just use <a href="https://colab.research.google.com">Colab</a> through your NE Google account. Local install is nice if you want it; Colab is a fine permanent home.</li>
+  <li><strong>Basic Git loop</strong> — four commands: <code>git clone</code>, <code>git add</code>, <code>git commit -m "..."</code>, <code>git push</code>. Claude can run a clean walkthrough and explain what each one does. SSH key setup is a one-off; ask Claude.</li>
 </ul>
 
-<h4>Scaffold your GitHub repo</h4>
+<h4>House style</h4>
 <ul>
-  <li>Create one personal repository, <code>&lt;your-name&gt;-internship-2026</code>, with this layout:
-    <pre style="background:var(--bg-box);padding:10px 14px;border-radius:4px;font-size:0.85em;line-height:1.4;margin:0.6em 0;border:1px solid var(--border-light);overflow-x:auto"><code style="background:none;padding:0">README.md          ← goals, week-by-week log
-CLAUDE.md          ← style preferences, vocabulary, do-not-do rules
-notes/             ← markdown notes, exported memos
-code/              ← Python scripts and modules
-notebooks/         ← Jupyter notebooks (one per experiment)
-figures/           ← exported figures (svg, png, pdf)
-memo/              ← end-of-week memo source</code></pre>
-  </li>
-  <li>The <code>CLAUDE.md</code> starts tiny — three or four rules — and grows as you discover what you want Claude to do or not do. Treat it as a living style guide.</li>
+  <li>Commit messages: short, imperative ("add DHO simulation", "fix typo in §2"). One commit per logical change. Push at least once a day.</li>
+  <li>Never paste credentials or patient data into a repo. If you do by accident, tell us immediately — we rotate, no drama.</li>
 </ul>
 
-<h4>Learn the basic Git loop</h4>
-<ul>
-  <li>Four commands, that's it for now: <code>git clone</code>, <code>git add</code>, <code>git commit -m "..."</code>, <code>git push</code>. Claude will explain each one if you ask, and show you a short, clean session.</li>
-  <li>One step up: feature branches and pull requests. <code>git checkout -b feature/dho-sim</code>, push, open a PR against <code>main</code>. We will use PRs for the Phase-2 work so Francesca and Giulio can leave inline comments.</li>
-  <li>Set up an SSH key for GitHub (one-off, Claude will guide you) so you stop typing passwords.</li>
-</ul>
-
-<h4>House style (memorise these — they apply for the rest of the internship)</h4>
-<ul>
-  <li>Commit messages: short, imperative ("add DHO simulation", "fix typo in §2"). One commit per logical change.</li>
-  <li>Every notebook starts with a one-paragraph cell explaining what it does and which figure or claim it produces.</li>
-  <li>Never paste credentials, API keys, or patient data into a repo. If you do by accident, tell us immediately — we rotate the key, no drama.</li>
-  <li>Push at least once a day. <q>If it isn't on GitHub, it doesn't exist.</q></li>
-</ul>
-
-<h4>Throughout the week, in parallel: Anthropic Academy courses</h4>
-<p>Start these on Day 1 and chip away across the week — roughly 1–1½ hours per course. They are the fastest way to become comfortable with Claude, Claude Code, and Cowork before you start using all three on Phase 2.</p>
+<h4>Anthropic Academy courses — start Day 1, chip away across the week</h4>
+<p>About 1–1½ hours each. The fastest way to become comfortable with Claude before Phase 2 leans on it heavily.</p>
 <ol>
-  <li><strong><a href="https://anthropic.skilljar.com/claude-101">Claude 101</a></strong> — everyday use, core features, where to go deeper. <span class="pillkey">required · do first</span></li>
-  <li><strong><a href="https://anthropic.skilljar.com/claude-code-101">Claude Code 101</a></strong> — Claude Code from install through daily workflow. <span class="pillkey">required</span></li>
-  <li><strong><a href="https://anthropic.skilljar.com/introduction-to-claude-cowork">Introduction to Claude Cowork</a></strong> — the Cowork task loop, plugins and skills, file and research workflows, steering multi-step work. <span class="pillkey">required</span></li>
-  <li><em>Optional:</em> <a href="https://anthropic.skilljar.com/claude-code-in-action">Claude Code in Action</a> — integrating Claude Code into a real development workflow. <span class="pillkey">weekend/Phase 2</span></li>
+  <li><strong><a href="https://anthropic.skilljar.com/claude-101">Claude 101</a></strong> — everyday Claude. <span class="pillkey">required · do first</span></li>
+  <li><strong><a href="https://anthropic.skilljar.com/claude-code-101">Claude Code 101</a></strong> — Claude Code from install to daily workflow. <span class="pillkey">required</span></li>
+  <li><strong><a href="https://anthropic.skilljar.com/introduction-to-claude-cowork">Introduction to Claude Cowork</a></strong> — Cowork task loop, plugins and skills, file workflows. <span class="pillkey">required</span></li>
+  <li><em>Optional:</em> <a href="https://anthropic.skilljar.com/claude-code-in-action">Claude Code in Action</a>. <span class="pillkey">weekend/Phase 2</span></li>
 </ol>
-<p>Course index: <a href="https://anthropic.skilljar.com/">anthropic.skilljar.com</a>.</p>
 </div>
 </details>
 
@@ -522,174 +483,58 @@ memo/              ← end-of-week memo source</code></pre>
   </tbody>
 </table>
 
-<!-- LUCIA -->
-<h3 id="lucia">4.1 · Lucia <span class="badge lucia">4 wks · 3 on Rosetta</span></h3>
+<p>The shape of Phase 2 is four words: <strong>read, implement, play, demo</strong>. We do not prescribe the week-by-week — you set the pace at the Tuesday/Thursday Norrsken meeting with Francesca and Giulio. The plan below is the <em>shape</em>, not a schedule.</p>
 
-<div class="lucia-box">
-  <div class="label">Mission · Lucia</div>
-  <p>Read the paper carefully and push <em>down the ladder</em> as far as you can: NMM1 (Jansen–Rit, and the laminar variant if time allows) and then NMM2 (Montbrió–Pazó–Roxin). The <strong>shared website</strong> is a joint deliverable with Claudia (one repo, both push) — you scaffold it in Week 2 and own the NMM1/NMM2 pages. Keep it spartan; the implementations are the headline. Two clean simulation pages with one runnable demo each is enough.</p>
-</div>
+<h3>Read</h3>
+<p>Both of you read the <strong>entire Rosetta paper</strong> — every section, every model. Two close readers catch what one misses. Start with Giulio's two friendly entry-point blogs in the Phase-2 reading list, then the paper itself. Pen and paper for the equations you don't follow on first pass.</p>
 
-<details class="week" open>
-<summary>Week 2 — Read the paper end-to-end + set up the scaffold</summary>
-<div class="week-body">
-<h4>Read</h4>
+<h3>Implement</h3>
+<p>The code lives in one shared package — <code>nmmlab</code> — which <strong>both of you co-develop</strong>. You split the ladder rungs between you for focus, but the package, its tests, and its API are owned by the team. Push to the same repo, review each other's PRs.</p>
 <ul>
-  <li>Rosetta Stone paper §1–§5 lightly (you already covered §2 conceptually in Phase 1), then §6 (NMM1) carefully — slowly, with pen and paper. Reproduce the second-order PSP equation and the Jansen–Rit closed loop on paper.</li>
-  <li>Giulio Ruffini, <a href="https://giulioruffini.github.io/assets/blogs/linear-operators-green-laplace-ei-oscillations.html"><em>Synapses as Springs: Linear Operators, Green–Laplace Tools, and the Origin of E–I Oscillations</em></a> — read this before tackling §6. The second-order PSP filter in JR is exactly the "spring" the blog describes.</li>
+  <li><strong>Claudia</strong> focuses on the foundational rungs — <strong>HO</strong> (with DHO) and <strong>Wilson–Cowan</strong>. Clean Python, reproducible figures, notebooks that someone else can re-run. The extra time and the more junior level go into doing this well.</li>
+  <li><strong>Lucia</strong> focuses on the harder dynamics — <strong>Stuart–Landau</strong> and <strong>NMM1</strong> (Jansen–Rit). NMM2 is a stretch if the rest lands cleanly.</li>
+  <li><strong>Both</strong>: read every section of the paper, sit at the same table, hand work back and forth, ask each other before asking us.</li>
 </ul>
-<h4>Do</h4>
-<ul>
-  <li>Spin up the <strong>shared site repo</strong> <code>rosetta-stone-site</code> (Claudia gets push access from day 1). Set up the skeleton in joint NE × BCOM style — co-branded header, blue background, coral accents, one section page per ladder rung (HO/DHO from Claudia, JR and NMM2 from you). Deploy to GitHub Pages on every push. <em>Don't fuss over visuals yet.</em></li>
-  <li>Implement a sanity-check DHO with forcing in <code>code/</code>, just to confirm <code>scipy.integrate.solve_ivp</code> works on your machine. Reproduce the §2 resonance curve. One day max.</li>
-</ul>
-<h4>Milestone</h4>
-<ul><li>Friday demo: skeleton site online, integrator stack working, §6 read and summarised in 1 page.</li></ul>
-</div>
-</details>
 
-<details class="week">
-<summary>Week 3 — NMM1 (Jansen–Rit, with a laminar stretch)</summary>
-<div class="week-body">
-<h4>Read</h4>
-<ul>
-  <li>Re-read Rosetta Stone §6 in full, including the laminar extension. <em>Rosetta §6 is the whole reading on JR — don't go back to the original Jansen &amp; Rit 1995 paper.</em></li>
-  <li><em>Optional, only if you go for the laminar stretch:</em> Sanchez-Todo, Bastos, Lopez-Sola, Mercadal et&nbsp;al. (2023), <a href="https://doi.org/10.1016/j.neuroimage.2023.120096">A physical neural mass model framework for the analysis of oscillatory generators from laminar electrophysiological recordings</a> — the LaNMM paper.</li>
-</ul>
-<h4>Do</h4>
-<ul>
-  <li>Implement single-column Jansen–Rit: three populations (E, P, I), second-order PSP filters, static sigmoid. Reproduce the alpha-rhythm output for canonical parameters.</li>
-  <li>Add an interactive page to the site — three sliders (synaptic gains, time constants) and the live LFP trace.</li>
-  <li><em>Stretch:</em> implement the laminar variant from Sanchez-Todo et al. — even a stripped two-layer version is meaningful.</li>
-</ul>
-<h4>Milestone</h4>
-<ul><li>Friday demo: a JR simulation runs in the browser-embedded notebook, alpha peak visible.</li></ul>
-</div>
-</details>
+<h3>Play</h3>
+<p>Once a model runs in Python, port the interesting one to HTML5 so a visitor can move a slider and watch the dynamics change. Claude does this port for you in one ask — the workflow lives at the bottom of this page (<a href="#web">§6 Web implementation</a>). The joint website is where these demos live.</p>
 
-<details class="week">
-<summary>Week 4 — NMM2 if you can + write-up + presentation</summary>
-<div class="week-body">
-<h4>Read</h4>
-<ul>
-  <li>Rosetta Stone §7 (NMM2) — the hardest section. <em>This is enough; you do not need to go back to Montbrió–Pazó–Roxin (2015) directly.</em></li>
-  <li><em>Optional reference only if Rosetta §7 leaves something unclear:</em> Montbrió, Pazó &amp; Roxin (2015), <a href="https://doi.org/10.1103/PhysRevX.5.021028">Macroscopic description for networks of spiking neurons</a>.</li>
-</ul>
-<h4>Do</h4>
-<ul>
-  <li>Implement the Montbrió–Pazó–Roxin (r, v) mean-field equations for a QIF population. Reproduce one figure from §7 (e.g. the spiking-vs-mean-field comparison). <em>If time runs short, document where you got to — partial NMM2 with honest commentary beats a rushed full implementation.</em></li>
-  <li>Polish the site to a clean MVP: README, citation page crediting Castaldo, de Palma Aristides, Clusella, Garcia-Ojalvo &amp; Ruffini, MIT or CC-BY licence, and one short "what I learnt" page.</li>
-  <li>Prepare a 20-minute final presentation: what you read, what you built, the failure modes you hit, what you would do with another four weeks.</li>
-</ul>
-<h4>Final deliverables (Lucia)</h4>
-<ol>
-  <li>Working implementations of Jansen–Rit (required) and Montbrió–Pazó–Roxin (target). Laminar NMM1 is a stretch goal.</li>
-  <li>Your NMM1 and NMM2 pages live on the joint Lucia + Claudia site, on GitHub Pages, in NE × BCOM style.</li>
-  <li>Source code in the shared repo with README and licence; final presentation + 1-page reflection memo.</li>
-</ol>
-</div>
-</details>
-
-<!-- CLAUDIA -->
-<h3 id="claudia">4.2 · Claudia <span class="badge claudia">8 wks · 7 on Rosetta</span></h3>
-
-<div class="claudia-box">
-  <div class="label">Mission · Claudia</div>
-  <p>Build a clean, well-tested foundation: a Python package <code>nmmlab</code> that implements the <em>lower</em> rungs of the ladder — harmonic oscillator (HO), damped HO, Stuart–Landau (SL), and optionally Wilson–Cowan (WC). Quality over breadth: type hints, <code>pytest</code> coverage, CI green, a notebook gallery reproducing each paper figure, and clear documentation. You and Lucia <strong>co-own the shared website</strong> (one repo, both push) — Lucia scaffolds it in her Week 2; you contribute the HO / DHO / SL / WC pages and the notebook gallery from Week 4 on.</p>
-</div>
-
-<details class="week" open>
-<summary>Weeks 2–3 — Read the paper + scaffold the package + HO/DHO</summary>
-<div class="week-body">
-<h4>Read</h4>
-<ul>
-  <li>The full Rosetta Stone paper, end-to-end, lightly. Write a 2-page "map of the paper" showing which sections you understand fully, partially, or not at all.</li>
-  <li>Rosetta Stone §2 (linear response, phase-only limits) — carefully, pen-and-paper.</li>
-  <li>Strogatz, <em>Nonlinear Dynamics and Chaos</em>, Chs. 4–5 (phase plane and bifurcations) — reference as needed.</li>
-</ul>
-<h4>Do</h4>
-<ul>
-  <li>Set up <code>nmmlab</code>: <code>uv</code>- or <code>poetry</code>-managed Python package; <code>pytest</code> + <code>ruff</code> from day 1; type hints; GitHub Actions CI; one-line install.</li>
-  <li>Design a shared <code>Simulator</code> interface (<code>state</code>, <code>step</code>, <code>integrate</code>) that every later model will subclass — this is your reusable substrate.</li>
-  <li>Implement <code>nmmlab.ho</code> and <code>nmmlab.dho</code> (undamped + damped harmonic oscillators, with and without sinusoidal forcing). Reproduce §2 figures: phase portrait, resonance curve, transient + steady-state traces.</li>
-</ul>
-<h4>Milestone (end of W3)</h4>
-<ul><li>Two models, ≥90% test coverage, two reproduced figures, CI green, README rendered nicely on GitHub.</li></ul>
-</div>
-</details>
-
-<details class="week">
-<summary>Weeks 4–5 — Stuart–Landau + the synapse/transfer interlude</summary>
-<div class="week-body">
-<h4>Read</h4>
-<ul>
-  <li>Rosetta Stone §3 (Stuart–Landau) and §4 (synapses and transfer functionals) carefully.</li>
-  <li>Giulio Ruffini, <a href="https://giulioruffini.github.io/assets/blogs/linear-operators-green-laplace-ei-oscillations.html"><em>Synapses as Springs: Linear Operators, Green–Laplace Tools, and the Origin of E–I Oscillations</em></a> — read alongside §4; it makes the operator formalism click.</li>
-  <li>Pikovsky, Rosenblum &amp; Kurths, <em>Synchronization</em>, Chs. 1–3 (in the resources folder).</li>
-</ul>
-<h4>Do</h4>
-<ul>
-  <li>Implement <code>nmmlab.sl</code>: integrate the complex Stuart–Landau equation. Reproduce the Hopf bifurcation diagram sweeping μ; the limit-cycle radius vs. μ; the phase-amplitude decomposition.</li>
-  <li>Implement <code>nmmlab.synapse</code>: first- and second-order linear filters with the operator formalism from §4.1 — even though you don't reach NMM1 yourself, the synapse module is the bridge Lucia will use.</li>
-  <li>Extend SL to a coupled-oscillator network on a small toy connectome (e.g. 6 Kuramoto-style nodes) and reproduce the corresponding §3 coupling subsection figure.</li>
-</ul>
-<h4>Milestone (end of W5)</h4>
-<ul><li>Mid-internship presentation (45 min) to Francesca and Giulio: walk through <code>nmmlab</code>'s API design, the three models so far, what surprised you, where you would push next.</li></ul>
-</div>
-</details>
-
-<details class="week">
-<summary>Weeks 6–7 — Coupled networks, notebook gallery, optional Wilson–Cowan</summary>
-<div class="week-body">
-<h4>Read</h4>
-<ul>
-  <li>Rosetta Stone §5 (Wilson–Cowan) — read it carefully; whether you implement it depends on Week 5's progress. <em>Rosetta is enough on the model; don't go back to Wilson &amp; Cowan 1972 unless you're curious.</em></li>
-</ul>
-<h4>Do</h4>
-<ul>
-  <li>Build the notebook gallery: one Jupyter notebook per model (<code>ho</code>, <code>dho</code>, <code>sl</code>), each reproducing the §2/§3 figures and including a short narrative cell explaining the model in your own words. These notebooks are what Lucia's site will embed.</li>
-  <li>Add coupled-network experiments: extend HO/DHO/SL to small graphs, document phase synchronisation onset.</li>
-  <li><em>Optional, if pace allows:</em> implement <code>nmmlab.wilco</code> (single-node Wilson–Cowan with sigmoid transfer; reproduce the limit cycle in the (E, I) plane and the Hopf locus).</li>
-</ul>
-</div>
-</details>
-
-<details class="week">
-<summary>Week 8 — Polish, write-up, presentation</summary>
-<div class="week-body">
-<h4>Do</h4>
-<ul>
-  <li>Ship <code>nmmlab</code> v0.1: tagged release on GitHub, optional PyPI publication. Final README with install instructions, model overview, and a "how to extend up the ladder" section pointing at Lucia's NMM1/NMM2 work.</li>
-  <li>Push the gallery to the joint site — one notebook per model, exported to plain HTML with <code>jupyter nbconvert</code>, dropped into the shared <code>rosetta-stone-site</code> repo alongside Lucia's NMM1/NMM2 pages.</li>
-  <li>Final presentation (45 min) + reflection memo (2 pages): what would the next student need to do to climb to NMM1/NMM2 cleanly, given the substrate you built?</li>
-</ul>
-<h4>Final deliverables (Claudia)</h4>
-<ol>
-  <li><code>nmmlab</code> Python package, tagged v0.1, installable from GitHub, with HO + DHO + SL (and optionally WC). Type hints, tests, CI.</li>
-  <li>Notebook gallery reproducing the key §2 and §3 figures, embedded in Lucia's website.</li>
-  <li>Final presentation + reflection memo.</li>
-</ol>
-</div>
-</details>
+<h3>Demo</h3>
+<p>Each of you gives a <strong>final presentation</strong> at the end of your internship — what you read, what you built, what surprised you, what you would do next. That, and the live joint website, are the public artefacts.</p>
 
 <h2 id="deliverables">5 · Deliverables &amp; assessment</h2>
 
 <table class="deliv-table">
   <thead><tr><th></th><th>Lucia <span class="badge lucia">4 wk</span></th><th>Claudia <span class="badge claudia">8 wk</span></th></tr></thead>
   <tbody>
-    <tr><td>Week-1 memo</td><td>✓ (shared)</td><td>✓ (shared)</td></tr>
-    <tr><td>Public website</td><td colspan="2" style="text-align:center"><strong>Joint deliverable</strong> — shared repo, NE × BCOM co-branded; Lucia scaffolds in Wk 2, both push their pages</td></tr>
-    <tr><td>Implementations</td><td>JR (NMM1) required; laminar NMM1 stretch; NMM2 target</td><td>HO, DHO, SL required; WC optional</td></tr>
-    <tr><td>Python package</td><td>—</td><td><code>nmmlab</code> (tagged v0.1)</td></tr>
-    <tr><td>Mid-internship demo</td><td>—</td><td>End of week 5</td></tr>
-    <tr><td>Final presentation</td><td>End of week 4</td><td>End of week 8</td></tr>
-    <tr><td>Reflection memo</td><td>1 page</td><td>2 pages</td></tr>
+    <tr><td>Week-1 memo</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Focus rungs</td><td>SL, NMM1 (Jansen–Rit); NMM2 if time allows</td><td>HO, WC</td></tr>
+    <tr><td><code>nmmlab</code> + website</td><td colspan="2" style="text-align:center"><strong>Co-developed</strong> — single shared repo, both push, NE × BCOM co-branded, deployed on GitHub Pages</td></tr>
+    <tr><td>Final presentation</td><td>End of programme</td><td>End of programme</td></tr>
   </tbody>
 </table>
 
-<p>Assessment is formative — Francesca and Giulio will give written feedback at each weekly sync and a final summary at the end of the internship. We care about three things in roughly equal weight: <strong>understanding</strong> (can you defend what you built?), <strong>craft</strong> (is the code/site clean enough that someone else can build on it?), and <strong>taste</strong> (did you make good choices when no one told you what to do?).</p>
+<p>Assessment is formative — Francesca and Giulio give feedback at each Norrsken meeting and a final summary at the end. We care about three things, roughly equal weight: <strong>understanding</strong> (can you defend what you built?), <strong>craft</strong> (clean enough that someone else can build on it?), and <strong>taste</strong> (good choices when no one told you what to do?).</p>
 
-<h2 id="bib">6 · Reading list &amp; resources</h2>
+<h2 id="web">6 · Web implementation</h2>
+
+<p><strong>Hosting.</strong> The joint website lives on <strong><a href="https://pages.github.com/">GitHub Pages</a></strong>: free, sits next to your code, auto-deploys on every push. Settings → Pages → point at <code>main /docs</code>. Claude can run the entire setup for you — just ask. Alternatives if you ever need them: <a href="https://www.netlify.com/">Netlify</a>, <a href="https://pages.cloudflare.com/">Cloudflare Pages</a>.</p>
+
+<p>GitHub Pages serves <strong>static files only</strong> — HTML, CSS, JS, images. No Python on the server. So write your simulations in Python, generate the figures, embed them. For <em>interactive</em> demos where a slider changes the dynamics live, see below.</p>
+
+<div class="claudia-box">
+  <div class="label">Yes — HTML5 can solve your ODE and plot it live. Here's the workflow.</div>
+  <p>Every Rosetta-ladder model is small enough to integrate in real time in plain JavaScript. The pattern:</p>
+  <ol>
+    <li><strong>Build and verify in Python first.</strong> Integrate with <code>scipy.solve_ivp</code>, plot with matplotlib. This is your ground truth.</li>
+    <li><strong>Ask Claude to port it</strong> to a single HTML file: <em>"port this Python ODE to a self-contained HTML page with vanilla JS + Plotly, three parameter sliders, an RK4 integrator, matching the default-parameter Python output."</em> ~200 lines, no build step.</li>
+    <li><strong>Verify side-by-side.</strong> Python and HTML traces should be visually identical at default parameters.</li>
+    <li><strong>Deploy.</strong> Drop the file into <code>/docs/</code>, push, refresh the URL.</li>
+  </ol>
+  <p>The JS stack is tiny: a hand-rolled RK4 (~30 lines), <code>Plotly.js</code> from a CDN, <code>&lt;input type="range"&gt;</code> sliders. One <code>&lt;script&gt;</code> tag, no dependencies. Single-node models run at hundreds of thousands of steps per second in the browser.</p>
+</div>
+
+<h2 id="bib">7 · Reading list &amp; resources</h2>
 
 <h3>Required reading (Phase 1)</h3>
 <ul>
@@ -766,7 +611,7 @@ memo/              ← end-of-week memo source</code></pre>
 <footer>
   <div>Tutors: <a href="mailto:francesca.castaldo@neuroelectrics.com">Francesca Castaldo</a> &amp; <a href="mailto:giulio.ruffini@neuroelectrics.com">Giulio Ruffini</a> &middot; Neuroelectrics / BCOM</div>
   <div>Shared resources: <a href="https://drive.google.com/open?id=1xHM9b4LfXRflceheB_g2ADZewa_EOt9n&usp=drive_fs">Google Drive</a></div>
-  <div class="small">v0.10 · Neuroelectrics × BCOM · last updated 23 May 2026</div>
+  <div class="small">v0.12 · Neuroelectrics × BCOM · last updated 23 May 2026</div>
 </footer>
 
 </body>
