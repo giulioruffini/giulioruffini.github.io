@@ -257,7 +257,7 @@
   <li>Use Claude (and one other frontier coding assistant of your choice) as a working collaborator — reading code, designing experiments, drafting documentation — without losing your own grasp of the problem.</li>
   <li>Read the <em>Rosetta Stone</em> paper closely enough to reconstruct its derivation ladder: harmonic oscillator → Stuart–Landau → Wilson–Cowan → NMM1 (Jansen–Rit / laminar) → NMM2 (Montbrió–Pazó–Roxin).</li>
   <li>Implement at least three models from that ladder in clean, tested Python, with reproducible figures, and embed them in a small open-source repository.</li>
-  <li>Produce a public-facing artefact (Lucia: a BCOM-style website mirroring the paper; Claudia: an extended interactive companion).</li>
+  <li>Produce a public-facing artefact — Lucia owns a simple BCOM-styled site presenting her NMM1/NMM2 implementations; Claudia contributes the <code>nmmlab</code> package and a notebook gallery for the lower-rung models.</li>
 </ol>
 
 <h2 id="logistics">2 · Logistics &amp; working rhythm</h2>
@@ -271,11 +271,28 @@
 
 <h3>Tools</h3>
 <ul>
-  <li><strong>Python 3.11+</strong>, <code>numpy</code>, <code>scipy</code>, <code>matplotlib</code>, <code>jupyter</code>, <code>jitcdde</code> / <code>numba</code> for ODE/DDE work.</li>
-  <li><strong>Git</strong> + GitHub; one repo per intern, linked to a shared organisation.</li>
-  <li><strong>Claude</strong> (desktop or web) as the primary AI collaborator; a second assistant of your choice for comparison.</li>
-  <li><strong>Quarto</strong> or <strong>Astro</strong> for the website (Lucia's call), styled to match the <a href="https://bcom.one">bcom.one</a> palette: Lively Blue <code>#002878</code> and Coral <code>#FF6657</code>.</li>
+  <li><strong>Python 3.11+</strong> with <code>numpy</code>, <code>scipy</code>, <code>matplotlib</code>, <code>jupyter</code>. That's the whole stack — no framework hunting.</li>
+  <li><strong>Git</strong> + GitHub; one repo per intern.</li>
+  <li><strong>Claude</strong> (desktop or web) as the primary AI collaborator.</li>
+  <li><strong>Plain HTML / CSS / JavaScript</strong> for the website — no build step, no framework. BCOM palette: Lively Blue <code>#002878</code> and Coral <code>#FF6657</code> (copy from <a href="https://bcom.one">bcom.one</a>).</li>
 </ul>
+
+<h3>Hosting the website</h3>
+<p><strong><a href="https://pages.github.com/">GitHub Pages</a></strong> is the default: free, lives next to your code, auto-rebuilds on every push. Enable it in repo Settings → Pages, point it at <code>main</code> branch <code>/docs</code> folder, and your site is live at <code>https://&lt;your-name&gt;.github.io/&lt;repo&gt;/</code> within minutes. Claude can run the whole setup for you — just ask. Alternatives if you ever outgrow Pages: <a href="https://www.netlify.com/">Netlify</a> or <a href="https://pages.cloudflare.com/">Cloudflare Pages</a>. Pick one and move on.</p>
+
+<p><strong>GitHub Pages serves static files only</strong> — HTML, CSS, JS, images. There is no Python interpreter on the server. So write your simulations in Python locally, generate the figures, and embed them. For <em>interactive</em> demos where a slider changes the dynamics live, port the Python ODE solver to JavaScript — see the green box below.</p>
+
+<div class="claudia-box">
+  <div class="label">Yes — HTML5 can solve your ODE and plot it. Here's the workflow.</div>
+  <p>Every model in the Rosetta ladder — HO, DHO, SL, WC, JR, NMM2 — is small enough to integrate in real time in plain JavaScript on any modern browser. The pattern:</p>
+  <ol>
+    <li><strong>Build and verify in Python first.</strong> Write the ODE, integrate with <code>scipy.solve_ivp</code>, plot with matplotlib. Confirm you see the expected behaviour. This is your ground truth.</li>
+    <li><strong>Ask Claude to port it.</strong> One sentence: <em>"port this Python ODE to a single self-contained HTML file with vanilla JS + Plotly, three parameter sliders, an RK4 integrator, matching the default-parameter Python output."</em> Claude produces one <code>.html</code> file, ~200 lines, no build step.</li>
+    <li><strong>Verify side-by-side.</strong> Python and HTML at default parameters — traces should look identical.</li>
+    <li><strong>Deploy.</strong> Drop the file in <code>/docs/</code>, push, refresh the live URL.</li>
+  </ol>
+  <p>The JS stack is tiny: a hand-rolled RK4 (~30 lines), <code>Plotly.js</code> from a CDN, <code>&lt;input type="range"&gt;</code> sliders. Single-node models run at hundreds of thousands of steps per second in the browser. One <code>&lt;script&gt;</code> tag, no dependencies.</p>
+</div>
 
 <div class="remark-box">
   <div class="label">House rule on AI use</div>
@@ -287,76 +304,155 @@
 <p>The aim of Week 1 is <em>not</em> to make you ML engineers — it is to give you the conceptual handles you need so that, when an LLM proposes code or an architecture, you can judge it. We assume strong calculus, linear algebra, probability, and (for Lucia) measure theory. We will <em>not</em> assume any prior Python ML.</p>
 
 <details class="week" open>
+<summary>Day 0 — Accounts &amp; scaffolding (do this on or before Day 1)</summary>
+<div class="week-body">
+<p>Spend a couple of hours getting the writing and code stack in place. <strong>Claude can walk you through every step below</strong> — creating accounts, initialising a repo, writing your first commit, even drafting an Overleaf project skeleton. Just ask in plain English ("help me create a GitHub repo for my internship and make my first commit") and Claude will give you the exact commands and explain what each one does.</p>
+
+<h4>Create accounts</h4>
+<ul>
+  <li><strong><a href="https://www.overleaf.com">Overleaf</a></strong> — your home for writing (memos, notes, the eventual Rosetta-Stone companion text). Free tier is fine; the BCOM/UPF group licence covers premium features if you need them.</li>
+  <li><strong><a href="https://github.com">GitHub</a></strong> — your home for code. Use your real name and a professional handle.</li>
+  <li><strong>Claude</strong> (web + desktop) — sign in to the workspace Francesca shares with you. Install the desktop app so you can use Cowork on local files.</li>
+</ul>
+
+<h4>Scaffold your Overleaf notebook</h4>
+<ul>
+  <li>Create one personal Overleaf project, <code>&lt;your-name&gt;-notebook-2026</code>, structured as: <code>main.tex</code> + one <code>week-N.tex</code> input per week, plus a <code>refs.bib</code>. A simple <code>\input{}</code> per week keeps things tidy.</li>
+  <li>This is where the Week-1 memo, weekly notes, and any derivations you do by hand will live. Treat it as a working lab notebook, not a polished document.</li>
+  <li>For backup, download the project zip from Overleaf at the end of each week and drop it in the shared Drive. (Overleaf's git/GitHub sync is a paid feature — don't worry about it unless we enable the group licence.)</li>
+</ul>
+
+<h4>Scaffold your GitHub repo</h4>
+<ul>
+  <li>Create one personal repository, <code>&lt;your-name&gt;-internship-2026</code>, with this layout:
+    <pre style="background:var(--bg-box);padding:10px 14px;border-radius:4px;font-size:0.85em;line-height:1.4;margin:0.6em 0;border:1px solid var(--border-light);overflow-x:auto"><code style="background:none;padding:0">README.md          ← goals, week-by-week log
+CLAUDE.md          ← style preferences, vocabulary, do-not-do rules
+notes/             ← markdown notes, exported memos
+code/              ← Python scripts and modules
+notebooks/         ← Jupyter notebooks (one per experiment)
+figures/           ← exported figures (svg, png, pdf)
+memo/              ← end-of-week memo source</code></pre>
+  </li>
+  <li>The <code>CLAUDE.md</code> starts tiny — three or four rules — and grows as you discover what you want Claude to do or not do. Treat it as a living style guide.</li>
+</ul>
+
+<h4>Learn the basic Git loop</h4>
+<ul>
+  <li>Four commands, that's it for now: <code>git clone</code>, <code>git add</code>, <code>git commit -m "..."</code>, <code>git push</code>. Claude will explain each one if you ask, and show you a short, clean session.</li>
+  <li>One step up: feature branches and pull requests. <code>git checkout -b feature/dho-sim</code>, push, open a PR against <code>main</code>. We will use PRs for the Phase-2 work so Francesca and Giulio can leave inline comments.</li>
+  <li>Set up an SSH key for GitHub (one-off, Claude will guide you) so you stop typing passwords.</li>
+</ul>
+
+<h4>House style (memorise these — they apply for the rest of the internship)</h4>
+<ul>
+  <li>Commit messages: short, imperative ("add DHO simulation", "fix typo in §2"). One commit per logical change.</li>
+  <li>Every notebook starts with a one-paragraph cell explaining what it does and which figure or claim it produces.</li>
+  <li>Never paste credentials, API keys, or patient data into a repo. If you do by accident, tell us immediately — we rotate the key, no drama.</li>
+  <li>Push at least once a day. <q>If it isn't on GitHub, it doesn't exist.</q></li>
+</ul>
+
+<h4>Throughout the week, in parallel: Anthropic Academy courses</h4>
+<p>Start these on Day 1 and chip away across the week — roughly 1–1½ hours per course. They are the fastest way to become comfortable with Claude, Claude Code, and Cowork before you start using all three on Phase 2.</p>
+<ol>
+  <li><strong><a href="https://anthropic.skilljar.com/claude-101">Claude 101</a></strong> — everyday use, core features, where to go deeper. <span class="pillkey">required · do first</span></li>
+  <li><strong><a href="https://anthropic.skilljar.com/claude-code-101">Claude Code 101</a></strong> — Claude Code from install through daily workflow. <span class="pillkey">required</span></li>
+  <li><strong><a href="https://anthropic.skilljar.com/introduction-to-claude-cowork">Introduction to Claude Cowork</a></strong> — the Cowork task loop, plugins and skills, file and research workflows, steering multi-step work. <span class="pillkey">required</span></li>
+  <li><em>Optional:</em> <a href="https://anthropic.skilljar.com/claude-code-in-action">Claude Code in Action</a> — integrating Claude Code into a real development workflow. <span class="pillkey">weekend/Phase 2</span></li>
+</ol>
+<p>Course index: <a href="https://anthropic.skilljar.com/">anthropic.skilljar.com</a>.</p>
+</div>
+</details>
+
+<details class="week">
 <summary>Day 1 — What is a neural network?</summary>
 <div class="week-body">
 <h4>Read</h4>
 <ul>
-  <li>Nielsen, <a href="http://neuralnetworksanddeeplearning.com/chap1.html"><em>Neural Networks and Deep Learning</em></a>, Chapters 1–2. <span class="pillkey">~2 h</span></li>
-  <li>LeCun, Bengio &amp; Hinton (2015), <a href="https://www.nature.com/articles/nature14539">Deep learning</a>, <em>Nature</em> 521. <span class="pillkey">overview</span></li>
+  <li>Nielsen, <a href="http://neuralnetworksanddeeplearning.com/chap1.html"><em>Neural Networks and Deep Learning</em></a>, Chapter 1 only. <span class="pillkey">~1.5 h</span></li>
+  <li><em>Optional:</em> LeCun, Bengio &amp; Hinton (2015), <a href="https://www.nature.com/articles/nature14539">Deep learning</a>, <em>Nature</em> 521 — historical overview, skim.</li>
 </ul>
 <h4>Watch</h4>
 <ul>
-  <li>3Blue1Brown, <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi">Neural Networks</a> (4-video series). <span class="pillkey">~1 h</span></li>
+  <li>3Blue1Brown, <a href="https://www.youtube.com/watch?v=aircAruvnKk">But what is a neural network? (Chapter 1)</a>. <span class="pillkey">~20 min</span></li>
+  <li>3Blue1Brown, <a href="https://www.youtube.com/watch?v=IHZwWFHWa-w">Gradient descent (Chapter 2)</a>. <span class="pillkey">~20 min</span></li>
 </ul>
 <h4>Do</h4>
 <ul>
-  <li>Set up Python, NumPy, Jupyter. Implement a 2-layer perceptron from scratch on MNIST in pure NumPy — no PyTorch yet. Aim for &gt;95% test accuracy.</li>
+  <li>Set up Python, NumPy, Jupyter. Run a tiny demo: train a 2-layer MLP on the <code>sklearn</code> moons or digits dataset with <code>MLPClassifier</code> — just to watch the loss come down and the decision boundary form. You will build one from scratch tomorrow.</li>
 </ul>
 </div>
 </details>
 
 <details class="week">
-<summary>Day 2 — Backprop, optimisation, and why depth works</summary>
+<summary>Day 2 — Backprop, hands on</summary>
 <div class="week-body">
+<p>Today's centrepiece is one long Karpathy video — block out the morning and code along live. Reading is light on purpose.</p>
+<h4>Watch (work-along)</h4>
+<ul>
+  <li><strong>Karpathy, <a href="https://www.youtube.com/watch?v=VMj-3S1tku0">The spelled-out intro to neural networks and backpropagation: building micrograd</a></strong>. <span class="pillkey">2 h 25 m — pause, type, run</span></li>
+</ul>
+<h4>Read (after the video)</h4>
+<ul>
+  <li>Nielsen, <a href="http://neuralnetworksanddeeplearning.com/chap2.html">Chapter 2</a> — the backprop derivation, now that you've seen it work in code.</li>
+  <li><em>Optional:</em> Roberts, Yaida &amp; Hanin, <a href="https://arxiv.org/abs/2106.10165"><em>The Principles of Deep Learning Theory</em></a>, §1.</li>
+</ul>
+<h4>Do</h4>
+<ul>
+  <li>Produce your own <code>micrograd.py</code>. Use it to fit a 2-layer net on the moons dataset from Day 1. Commit it to your repo.</li>
+</ul>
+</div>
+</details>
+
+<details class="week">
+<summary>Day 3 — Embeddings: meaning as geometry</summary>
+<div class="week-body">
+<p>Before attention, before transformers — the most important idea in modern NLP is that words, sentences, and concepts can be mapped to points in a high-dimensional vector space where geometry encodes meaning. This is the conceptual lever you need to read the rest of the field.</p>
 <h4>Read</h4>
 <ul>
-  <li>Nielsen, Chapter 2 (backprop derivation) and Chapter 3 (cross-entropy, regularisation).</li>
-  <li>Optional, for the mathematically curious: Roberts, Yaida &amp; Hanin, <a href="https://arxiv.org/abs/2106.10165"><em>The Principles of Deep Learning Theory</em></a>, §1 only. <span class="pillkey">depth</span></li>
+  <li><strong>Vicki Boykis, <a href="https://vickiboykis.com/what_are_embeddings/"><em>What are embeddings?</em></a></strong> — free PDF, ≈100 pages but very readable. Read §1–3 today; the rest is great Phase-2 weekend reading. <span class="pillkey">mathematician-friendly</span></li>
+  <li><em>Optional:</em> Jay Alammar, <a href="https://jalammar.github.io/illustrated-word2vec/">The Illustrated Word2vec</a> — pictures-first companion piece.</li>
 </ul>
 <h4>Watch</h4>
 <ul>
-  <li>Karpathy, <a href="https://www.youtube.com/watch?v=VMj-3S1tku0">The spelled-out intro to neural networks and backpropagation: building micrograd</a>. <span class="pillkey">2 h 25 m — essential</span></li>
+  <li>3Blue1Brown, <a href="https://www.youtube.com/watch?v=wjZofJX0v4M">But what is a GPT? Visual intro to transformers</a> — the first half is the best intuition pump for embeddings on the internet. Pay close attention to the word-vector arithmetic (<code>king − man + woman ≈ queen</code>). <span class="pillkey">~27 min</span></li>
 </ul>
 <h4>Do</h4>
 <ul>
-  <li>Follow Karpathy along; produce your own <code>micrograd.py</code>. Then re-implement Day 1's MLP using it.</li>
+  <li><code>pip install sentence-transformers</code>, load <code>all-MiniLM-L6-v2</code>, embed a dozen sentences of your choice. Compute the pairwise cosine-similarity matrix and plot it as a heatmap. Do synonymous sentences cluster? What about sentences about neurons vs. sentences about oscillators?</li>
 </ul>
 </div>
 </details>
 
 <details class="week">
-<summary>Day 3 — From convnets to transformers</summary>
+<summary>Day 4 — Attention and transformers</summary>
 <div class="week-body">
+<h4>Watch</h4>
+<ul>
+  <li>3Blue1Brown, <a href="https://www.youtube.com/watch?v=eMlx5fFNoYc">Attention in transformers, visually explained</a>. <span class="pillkey">~27 min</span></li>
+  <li><em>Optional:</em> 3Blue1Brown, <a href="https://www.youtube.com/watch?v=9-Jl0dxWQs8">How might LLMs store facts? (MLPs in transformers)</a>.</li>
+</ul>
 <h4>Read</h4>
 <ul>
-  <li>Vaswani et al. (2017), <a href="https://arxiv.org/abs/1706.03762"><em>Attention is All You Need</em></a>. Skim the experiments, read §3 carefully. <span class="pillkey">classic</span></li>
-  <li>Phuong &amp; Hutter (2022), <a href="https://arxiv.org/abs/2207.09238"><em>Formal Algorithms for Transformers</em></a>. <span class="pillkey">a mathematician's entry point</span></li>
-</ul>
-<h4>Watch</h4>
-<ul>
-  <li>3Blue1Brown, <a href="https://www.youtube.com/watch?v=wjZofJX0v4M">But what is a GPT? Visual intro to transformers</a>.</li>
+  <li><strong>Phuong &amp; Hutter (2022), <a href="https://arxiv.org/abs/2207.09238"><em>Formal Algorithms for Transformers</em></a></strong> — §1–3, dimension-check carefully. This is the mathematician's entry point. <span class="pillkey">required</span></li>
+  <li><em>Optional / reference:</em> Vaswani et al. (2017), <a href="https://arxiv.org/abs/1706.03762"><em>Attention is All You Need</em></a> — read §3, skim the rest.</li>
 </ul>
 <h4>Do</h4>
 <ul>
-  <li>On paper: write out a single self-attention head as a linear-algebraic expression. Verify dimensions for a toy batch.</li>
+  <li>On paper: write out a single self-attention head as a linear-algebraic expression. Verify dimensions <code>(Q, K, V) → softmax(QKᵀ/√d) · V</code> for a toy batch.</li>
 </ul>
 </div>
 </details>
 
 <details class="week">
-<summary>Day 4 — What LLMs actually are</summary>
+<summary>Day 5 — LLMs in practice + Claude as collaborator</summary>
 <div class="week-body">
+<p>Pull the week together: what an LLM actually is, how Claude is built and used, and how to use it as a working tool without losing your own grasp of the problem.</p>
+
 <h4>Watch</h4>
 <ul>
-  <li><strong>Giulio Ruffini — <a href="https://www.youtube.com/watch?v=wGNq2zR0IWA">How Claude Works (LLMs talk)</a></strong>. Slides: <a href="https://docs.google.com/presentation/d/1AqUj15_PIDWMGYqtNHQ5PYiRatUO6298CGNnSiLkFH0">Google Slides</a>. <span class="pillkey">internal-perspective; required</span></li>
-  <li>Karpathy, <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g">[1hr Talk] Intro to Large Language Models</a>.</li>
-  <li>Karpathy, <a href="https://www.youtube.com/watch?v=kCc8FmEb1nY">Let's build GPT: from scratch, in code, spelled out</a>. <span class="pillkey">2 h — work along</span></li>
+  <li>Karpathy, <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g">[1hr Talk] Intro to Large Language Models</a>. <span class="pillkey">1 h — required</span></li>
+  <li><strong>Giulio Ruffini — <em>How Claude Works</em></strong>. Slides: <a href="https://docs.google.com/presentation/d/1AqUj15_PIDWMGYqtNHQ5PYiRatUO6298CGNnSiLkFH0">Google Slides</a> · also in <code>resources/How_Claude_Works final.pptx</code>. <span class="pillkey">video link TBD</span></li>
 </ul>
-
-<div class="video">
-  <iframe src="https://www.youtube.com/embed/wGNq2zR0IWA" title="Giulio Ruffini — How Claude Works"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</div>
 
 <h4>Read</h4>
 <ul>
@@ -364,48 +460,43 @@
 </ul>
 
 <div class="remark-box">
-  <div class="label">Anchor concepts from the slides</div>
+  <div class="label">Anchor concepts from the <em>How Claude Works</em> slides</div>
   <p><strong>Predict-next-token = compression = world model.</strong> A predictor that good must compress; a compressor that good must model. The frozen weights are an implicit world-model — that's what makes the prompt stack worth designing.</p>
   <p><strong>Two parts working together.</strong> A trained model is <em>frozen weights</em> (what it knows) plus <em>your markdown</em> — CLAUDE.md, SKILL.md, your message — read fresh every session (how it behaves today).</p>
   <p><strong>The model is stateless.</strong> Memory lives in the application, not the model. Every turn, the host reconstructs the full context and resends it.</p>
 </div>
 
-<h4>Do</h4>
-<ul>
-  <li>Build a tiny character-level transformer on Shakespeare following Karpathy's nanoGPT. ≤200 lines, ≤30 min training on CPU.</li>
-</ul>
-</div>
-</details>
+<h4>Wrap up the Anthropic Academy courses</h4>
+<p>By today you should have finished <a href="https://anthropic.skilljar.com/claude-101">Claude 101</a>, <a href="https://anthropic.skilljar.com/claude-code-101">Claude Code 101</a>, and <a href="https://anthropic.skilljar.com/introduction-to-claude-cowork">Introduction to Claude Cowork</a> (started Day 0). If anything is still open, finish it today before the memo. <a href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview">Prompt-engineering documentation</a> is your reference from here on.</p>
 
-<details class="week">
-<summary>Day 5 — Using Claude as a research collaborator</summary>
-<div class="week-body">
-<h4>Courses (Anthropic)</h4>
-<ul>
-  <li><a href="https://www.anthropic.com/learn/courses">Anthropic Courses index</a> — work through, in order:
-    <ol>
-      <li><a href="https://github.com/anthropics/courses/tree/master/anthropic_api_fundamentals">API fundamentals</a></li>
-      <li><a href="https://github.com/anthropics/courses/tree/master/prompt_engineering_interactive_tutorial">Prompt engineering interactive tutorial</a></li>
-      <li><a href="https://github.com/anthropics/courses/tree/master/tool_use">Tool use</a></li>
-    </ol>
-  </li>
-  <li><a href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview">Prompt-engineering documentation</a> — reference.</li>
-</ul>
 <h4>Do</h4>
 <ul>
-  <li>Pick one numerical experiment from <em>Phase 2 Day 1</em> reading (e.g. simulate a damped harmonic oscillator with forcing) and implement it twice: once writing the code yourself, once pair-programming with Claude. Compare the two sessions in a one-page note: what was faster, what was wrong, what you learnt about prompting.</li>
-  <li>Set up a project-level <code>CLAUDE.md</code> in your internship repo — start small (style preferences, vocabulary, do-not-do rules) and grow it as the weeks go on.</li>
+  <li>Pick one tiny numerical experiment that <em>previews Phase 2</em> — e.g. simulate a damped harmonic oscillator with sinusoidal forcing and plot its resonance curve. Implement it <strong>twice</strong>: once solo, once pair-programming with Claude. Write a half-page note comparing the two sessions: what was faster, what was wrong, what you learnt about prompting.</li>
+  <li>Open <code>CLAUDE.md</code> in your repo and add the first three or four rules you want Claude to follow (vocabulary, style, things not to do). Grow it as the weeks go on.</li>
 </ul>
+
 <h4>End-of-week mini-deliverable</h4>
 <ul>
-  <li>A 2-page memo (Markdown, in the shared Drive folder) titled <em>"What I now think a neural network / LLM is"</em> — your own words, your own analogies, mathematician-to-mathematician. Francesca and Giulio will read it before Week 2 kickoff.</li>
+  <li>A 2-page memo titled <em>"What I now think a neural network / LLM is"</em> — your own words, your own analogies, mathematician-to-mathematician. Write it in your Overleaf notebook and drop a PDF in the shared Drive. Francesca and Giulio will read it before Week 2 kickoff.</li>
+</ul>
+
+<h4>Stretch (optional, for the weekend or whenever)</h4>
+<ul>
+  <li>Karpathy, <a href="https://www.youtube.com/watch?v=kCc8FmEb1nY">Let's build GPT: from scratch, in code, spelled out</a> — build a tiny character-level transformer on Shakespeare. <span class="pillkey">~2 h work-along</span></li>
+  <li>Finish Vicki Boykis's <em>What are embeddings?</em> beyond §3.</li>
 </ul>
 </div>
 </details>
 
 <h2 id="phase2">4 · Phase 2 · Rosetta Stone implementation</h2>
 
-<p>The paper (<code>resources/TN0366___Rosetta_Stone_of_Neural_models/main.tex</code>) walks a ladder of neural mass models, each rung introduced first as an isolated node, then under forcing, then in coupled networks. Phase 2 asks you to walk that same ladder in code.</p>
+<p>The paper — <a href="https://www.overleaf.com/read/mkkmzhrmqkvc#f4db5e"><em>Rosetta Stone of Neural Mass Models</em></a> (view-only Overleaf; LaTeX source also in <code>resources/TN0366___Rosetta_Stone_of_Neural_models/main.tex</code>) — walks a ladder of neural mass models, each rung introduced first as an isolated node, then under forcing, then in coupled networks. Phase 2 asks you to walk that same ladder in code.</p>
+
+<p><strong>Friendly entry points to read first</strong>, before diving into the paper:</p>
+<ul>
+  <li>Giulio Ruffini, <a href="https://giulioruffini.github.io/assets/blogs/rosetta-stone-neural-mass-models.html"><em>The Rosetta Stone of Neural Mass Models</em></a> — a short blog companion to the paper. Read it before §1 of the paper to know what you're getting into.</li>
+  <li>Giulio Ruffini, <a href="https://giulioruffini.github.io/assets/blogs/oscillations-topology-and-simplicity.html"><em>What Is an Oscillation, Really? Topology, Compression, and the Circle at the Heart of Brain Rhythms</em></a> — the deep structure of oscillations. This is the conceptual frame for every rung of the ladder; read it on the first Monday of Phase 2.</li>
+</ul>
 
 <table class="ladder-table">
   <thead><tr><th>Rung</th><th>Model</th><th>Key idea</th><th>§</th></tr></thead>
@@ -424,62 +515,65 @@
 
 <div class="lucia-box">
   <div class="label">Mission · Lucia</div>
-  <p>Read the paper carefully and build a website that <em>is</em> the paper — a navigable, illustrated, runnable companion to the Rosetta Stone, in BCOM style (Lively Blue / Coral, Lato, the patterns used across <a href="https://bcom.one">bcom.one</a>). Aim for the standard set by <a href="https://distill.pub/">Distill</a> and the <a href="https://transformer-circuits.pub/">Transformer Circuits</a> threads. The site must include three working model simulations (the minimum spanning set, see Week 4).</p>
+  <p>Read the paper carefully and push <em>down the ladder</em> as far as you can: NMM1 (Jansen–Rit, and the laminar variant if time allows) and then NMM2 (Montbrió–Pazó–Roxin). You also maintain a simple BCOM-styled companion website — but keep it spartan; the implementations are the headline. Two clean simulation pages with one runnable demo each is enough.</p>
 </div>
 
 <details class="week" open>
-<summary>Week 2 — Read the paper, set up the site</summary>
+<summary>Week 2 — Read the paper end-to-end + set up the scaffold</summary>
 <div class="week-body">
 <h4>Read</h4>
 <ul>
-  <li>Rosetta Stone paper §1 (Introduction) and §2 (Linear response and phase-only limits) — slowly, with pen and paper. Reproduce every equation in §2.</li>
-  <li>Cabral, Hlinka et al., <a href="https://doi.org/10.1016/j.neuroimage.2017.03.045">Functional connectivity dynamically evolves on multiple time-scales over a static structural connectome</a> — for context on why anyone cares about whole-brain coupled oscillators.</li>
+  <li>Rosetta Stone paper §1–§5 lightly (you already covered §2 conceptually in Phase 1), then §6 (NMM1) carefully — slowly, with pen and paper. Reproduce the second-order PSP equation and the Jansen–Rit closed loop on paper.</li>
+  <li>Giulio Ruffini, <a href="https://giulioruffini.github.io/assets/blogs/linear-operators-green-laplace-ei-oscillations.html"><em>Synapses as Springs: Linear Operators, Green–Laplace Tools, and the Origin of E–I Oscillations</em></a> — read this before tackling §6. The second-order PSP filter in JR is exactly the "spring" the blog describes.</li>
 </ul>
 <h4>Do</h4>
 <ul>
-  <li>Implement the damped harmonic oscillator with sinusoidal forcing in Python. Reproduce the resonance-curve figure from §2. Commit to a fresh repo <code>rosetta-stone-site</code>.</li>
-  <li>Choose the website stack (recommended: <strong>Quarto</strong> for the math-heavy text, with MathJax + <code>matplotlib</code> figures exported as SVG; or <strong>Astro</strong> + KaTeX if you want full control of layout).</li>
-  <li>Stand up the empty site skeleton in BCOM style: one page per paper section, blue header + coral accent, footer, deploy to GitHub Pages.</li>
+  <li>Spin up a fresh repo <code>rosetta-nmm-site</code>. Set up the site skeleton in BCOM style (one page each for §6 and §7, blue header + coral accent), deployed to GitHub Pages on push. <em>Don't fuss over visuals yet.</em></li>
+  <li>Implement a sanity-check DHO with forcing in <code>code/</code>, just to confirm <code>scipy.integrate.solve_ivp</code> works on your machine. Reproduce the §2 resonance curve. One day max.</li>
 </ul>
 <h4>Milestone</h4>
-<ul><li>Friday demo: skeleton site online; first interactive figure embedded.</li></ul>
+<ul><li>Friday demo: skeleton site online, integrator stack working, §6 read and summarised in 1 page.</li></ul>
 </div>
 </details>
 
 <details class="week">
-<summary>Week 3 — Stuart–Landau and Wilson–Cowan</summary>
+<summary>Week 3 — NMM1 (Jansen–Rit, with a laminar stretch)</summary>
 <div class="week-body">
 <h4>Read</h4>
 <ul>
-  <li>Rosetta Stone §3 (Stuart–Landau) and §5 (Wilson–Cowan), and the §4 interlude on synapses and transfer functionals.</li>
-  <li>Wilson &amp; Cowan (1972), <a href="https://www.cell.com/biophysj/fulltext/S0006-3495(72)86068-5">Excitatory and inhibitory interactions in localized populations of model neurons</a>.</li>
+  <li>Re-read Rosetta Stone §6 in full, including the laminar extension. <em>Rosetta §6 is the whole reading on JR — don't go back to the original Jansen &amp; Rit 1995 paper.</em></li>
+  <li><em>Optional, only if you go for the laminar stretch:</em> Sanchez-Todo, Bastos, Lopez-Sola, Mercadal et&nbsp;al. (2023), <a href="https://doi.org/10.1016/j.neuroimage.2023.120096">A physical neural mass model framework for the analysis of oscillatory generators from laminar electrophysiological recordings</a> — the LaNMM paper.</li>
 </ul>
 <h4>Do</h4>
 <ul>
-  <li>Implement single-node SL: integrate the complex Stuart–Landau equation, reproduce the Hopf bifurcation diagram as you sweep μ.</li>
-  <li>Implement single-node Wilson–Cowan: reproduce the limit cycle in the (E,I) plane for canonical parameters.</li>
-  <li>Add both to the site as interactive figures (sliders for μ, gains, time constants — vanilla JS or <a href="https://observablehq.com/">Observable</a> embeds are fine).</li>
+  <li>Implement single-column Jansen–Rit: three populations (E, P, I), second-order PSP filters, static sigmoid. Reproduce the alpha-rhythm output for canonical parameters.</li>
+  <li>Add an interactive page to the site — three sliders (synaptic gains, time constants) and the live LFP trace.</li>
+  <li><em>Stretch:</em> implement the laminar variant from Sanchez-Todo et al. — even a stripped two-layer version is meaningful.</li>
 </ul>
 <h4>Milestone</h4>
-<ul><li>Friday demo: §2, §3 and §5 of the paper are all live pages with at least one runnable figure each.</li></ul>
+<ul><li>Friday demo: a JR simulation runs in the browser-embedded notebook, alpha peak visible.</li></ul>
 </div>
 </details>
 
 <details class="week">
-<summary>Week 4 — Coupled networks + write-up + presentation</summary>
+<summary>Week 4 — NMM2 if you can + write-up + presentation</summary>
 <div class="week-body">
+<h4>Read</h4>
+<ul>
+  <li>Rosetta Stone §7 (NMM2) — the hardest section. <em>This is enough; you do not need to go back to Montbrió–Pazó–Roxin (2015) directly.</em></li>
+  <li><em>Optional reference only if Rosetta §7 leaves something unclear:</em> Montbrió, Pazó &amp; Roxin (2015), <a href="https://doi.org/10.1103/PhysRevX.5.021028">Macroscopic description for networks of spiking neurons</a>.</li>
+</ul>
 <h4>Do</h4>
 <ul>
-  <li>Extend SL or WILCO to a coupled network on a small toy connectome (e.g. 6 Kuramoto-style nodes, or a 2-node E–I motif). Reproduce the "coupling" subsection figure of the corresponding model.</li>
-  <li>Write the §6/§7 pages of the site as careful expositions (you do not need to implement NMM1/NMM2 — handing the baton to Claudia — but the pages must summarise the derivations correctly).</li>
-  <li>Polish: typography, citations (BibTeX → bibliography page), an "About this site" page crediting Castaldo, Ruffini, de Palma Aristides, Clusella, Garcia-Ojalvo.</li>
-  <li>Prepare a 20-minute final presentation: what you read, what you built, what you would do next.</li>
+  <li>Implement the Montbrió–Pazó–Roxin (r, v) mean-field equations for a QIF population. Reproduce one figure from §7 (e.g. the spiking-vs-mean-field comparison). <em>If time runs short, document where you got to — partial NMM2 with honest commentary beats a rushed full implementation.</em></li>
+  <li>Polish the site to a clean MVP: README, citation page crediting Castaldo, de Palma Aristides, Clusella, Garcia-Ojalvo &amp; Ruffini, MIT or CC-BY licence, and one short "what I learnt" page.</li>
+  <li>Prepare a 20-minute final presentation: what you read, what you built, the failure modes you hit, what you would do with another four weeks.</li>
 </ul>
 <h4>Final deliverables (Lucia)</h4>
 <ol>
-  <li>Public website (GitHub Pages) covering all six paper sections, in BCOM style, with three runnable simulations (DHO, SL, WILCO).</li>
-  <li>Source repo, well-documented README, MIT or CC-BY licence.</li>
-  <li>Final presentation + a short reflection memo (1 page).</li>
+  <li>A clean (not heavily polished) BCOM-styled site on GitHub Pages with at least the NMM1 page live, NMM2 page if reached.</li>
+  <li>Working implementations of Jansen–Rit (required) and Montbrió–Pazó–Roxin (target). Laminar NMM1 is a stretch goal.</li>
+  <li>Source repo with README and licence; final presentation + 1-page reflection memo.</li>
 </ol>
 </div>
 </details>
@@ -489,83 +583,78 @@
 
 <div class="claudia-box">
   <div class="label">Mission · Claudia</div>
-  <p>Take the scaffold Lucia builds and push the implementations down the ladder, all the way to NMM2. Your deliverable is a Python package <code>nmmlab</code> with clean implementations of every model in the paper, plus a notebook gallery reproducing the key figures, woven into Lucia's site as an interactive companion.</p>
+  <p>Build a clean, well-tested foundation: a Python package <code>nmmlab</code> that implements the <em>lower</em> rungs of the ladder — harmonic oscillator (HO), damped HO, Stuart–Landau (SL), and optionally Wilson–Cowan (WC). Quality over breadth: type hints, <code>pytest</code> coverage, CI green, a notebook gallery reproducing each paper figure, and clear documentation so future students (or Lucia mid-internship) can build on it.</p>
 </div>
 
 <details class="week" open>
-<summary>Weeks 2–3 — Foundations: read the whole paper once + DHO, SL</summary>
+<summary>Weeks 2–3 — Read the paper + scaffold the package + HO/DHO</summary>
 <div class="week-body">
 <h4>Read</h4>
 <ul>
   <li>The full Rosetta Stone paper, end-to-end, lightly. Write a 2-page "map of the paper" showing which sections you understand fully, partially, or not at all.</li>
-  <li>Pikovsky, Rosenblum &amp; Kurths, <em>Synchronization</em>, Chapters 1–3 (in the resources folder).</li>
+  <li>Rosetta Stone §2 (linear response, phase-only limits) — carefully, pen-and-paper.</li>
+  <li>Strogatz, <em>Nonlinear Dynamics and Chaos</em>, Chs. 4–5 (phase plane and bifurcations) — reference as needed.</li>
 </ul>
 <h4>Do</h4>
 <ul>
-  <li>Set up <code>nmmlab</code>: poetry/uv-managed Python package, <code>pytest</code> from day 1, type hints, GitHub Actions CI.</li>
-  <li>Implement <code>nmmlab.dho</code> (damped harmonic oscillator) and <code>nmmlab.sl</code> (Stuart–Landau) with a shared <code>Simulator</code> interface.</li>
-  <li>Reproduce Figs. 2.x and 3.x of the paper as <code>matplotlib</code> notebooks. Pixel-comparable, not exact.</li>
+  <li>Set up <code>nmmlab</code>: <code>uv</code>- or <code>poetry</code>-managed Python package; <code>pytest</code> + <code>ruff</code> from day 1; type hints; GitHub Actions CI; one-line install.</li>
+  <li>Design a shared <code>Simulator</code> interface (<code>state</code>, <code>step</code>, <code>integrate</code>) that every later model will subclass — this is your reusable substrate.</li>
+  <li>Implement <code>nmmlab.ho</code> and <code>nmmlab.dho</code> (undamped + damped harmonic oscillators, with and without sinusoidal forcing). Reproduce §2 figures: phase portrait, resonance curve, transient + steady-state traces.</li>
 </ul>
 <h4>Milestone (end of W3)</h4>
-<ul><li>Two models, full test coverage, two reproduced figures, CI green.</li></ul>
+<ul><li>Two models, ≥90% test coverage, two reproduced figures, CI green, README rendered nicely on GitHub.</li></ul>
 </div>
 </details>
 
 <details class="week">
-<summary>Weeks 4–5 — Wilson–Cowan + the synapse/transfer interlude</summary>
+<summary>Weeks 4–5 — Stuart–Landau + the synapse/transfer interlude</summary>
 <div class="week-body">
 <h4>Read</h4>
 <ul>
-  <li>Rosetta Stone §4 (synapses) and §5 (WILCO) carefully — these are the conceptual bridge to NMM1/NMM2.</li>
-  <li>Cowan, Neuman &amp; van Drongelen (2016), <a href="https://doi.org/10.1186/s13408-015-0034-5">Wilson–Cowan equations for neocortical dynamics</a>.</li>
+  <li>Rosetta Stone §3 (Stuart–Landau) and §4 (synapses and transfer functionals) carefully.</li>
+  <li>Giulio Ruffini, <a href="https://giulioruffini.github.io/assets/blogs/linear-operators-green-laplace-ei-oscillations.html"><em>Synapses as Springs: Linear Operators, Green–Laplace Tools, and the Origin of E–I Oscillations</em></a> — read alongside §4; it makes the operator formalism click.</li>
+  <li>Pikovsky, Rosenblum &amp; Kurths, <em>Synchronization</em>, Chs. 1–3 (in the resources folder).</li>
 </ul>
 <h4>Do</h4>
 <ul>
-  <li>Implement <code>nmmlab.synapse</code>: first- and second-order linear filters, with the operator formalism from §4.1.</li>
-  <li>Implement <code>nmmlab.wilco</code>: single-node WILCO with sigmoidal transfer; reproduce the limit cycle and Hopf-locus figure.</li>
-  <li>Extend to coupled WILCO on a toy 4-node network with delays (use <code>jitcdde</code>).</li>
+  <li>Implement <code>nmmlab.sl</code>: integrate the complex Stuart–Landau equation. Reproduce the Hopf bifurcation diagram sweeping μ; the limit-cycle radius vs. μ; the phase-amplitude decomposition.</li>
+  <li>Implement <code>nmmlab.synapse</code>: first- and second-order linear filters with the operator formalism from §4.1 — even though you don't reach NMM1 yourself, the synapse module is the bridge Lucia will use.</li>
+  <li>Extend SL to a coupled-oscillator network on a small toy connectome (e.g. 6 Kuramoto-style nodes) and reproduce the corresponding §3 coupling subsection figure.</li>
 </ul>
 <h4>Milestone (end of W5)</h4>
-<ul><li>Mid-internship presentation (45 min) to Francesca and Giulio: what the ladder looks like in code so far, what surprised you, what you're worried about for NMM2.</li></ul>
+<ul><li>Mid-internship presentation (45 min) to Francesca and Giulio: walk through <code>nmmlab</code>'s API design, the three models so far, what surprised you, where you would push next.</li></ul>
 </div>
 </details>
 
 <details class="week">
-<summary>Weeks 6–7 — NMM1 (Jansen–Rit, laminar)</summary>
+<summary>Weeks 6–7 — Coupled networks, notebook gallery, optional Wilson–Cowan</summary>
 <div class="week-body">
 <h4>Read</h4>
 <ul>
-  <li>Rosetta Stone §6 (NMM1) in full.</li>
-  <li>Jansen &amp; Rit (1995), <a href="https://doi.org/10.1007/BF00199471">Electroencephalogram and visual evoked potential generation in a mathematical model of coupled cortical columns</a>.</li>
-  <li>Sanchez-Todo, Bastos, Lopez-Sola, Mercadal et&nbsp;al. (2023), <a href="https://doi.org/10.1016/j.neuroimage.2023.120096">A physical neural mass model framework for the analysis of oscillatory generators from laminar electrophysiological recordings</a> — the LaNMM paper.</li>
+  <li>Rosetta Stone §5 (Wilson–Cowan) — read it carefully; whether you implement it depends on Week 5's progress. <em>Rosetta is enough on the model; don't go back to Wilson &amp; Cowan 1972 unless you're curious.</em></li>
 </ul>
 <h4>Do</h4>
 <ul>
-  <li>Implement <code>nmmlab.nmm1</code>: Jansen–Rit canonical (E, P, I) populations with second-order PSP filters and static sigmoid. Reproduce alpha-rhythm output for default parameters.</li>
-  <li>Stretch: implement the laminar variant from Sanchez-Todo et al. — even a stripped-down two-layer version.</li>
+  <li>Build the notebook gallery: one Jupyter notebook per model (<code>ho</code>, <code>dho</code>, <code>sl</code>), each reproducing the §2/§3 figures and including a short narrative cell explaining the model in your own words. These notebooks are what Lucia's site will embed.</li>
+  <li>Add coupled-network experiments: extend HO/DHO/SL to small graphs, document phase synchronisation onset.</li>
+  <li><em>Optional, if pace allows:</em> implement <code>nmmlab.wilco</code> (single-node Wilson–Cowan with sigmoid transfer; reproduce the limit cycle in the (E, I) plane and the Hopf locus).</li>
 </ul>
 </div>
 </details>
 
 <details class="week">
-<summary>Week 8 — NMM2 (next-generation mean field) + final write-up</summary>
+<summary>Week 8 — Polish, write-up, presentation</summary>
 <div class="week-body">
-<h4>Read</h4>
-<ul>
-  <li>Rosetta Stone §7 (NMM2) carefully — this is the hardest section.</li>
-  <li>Montbrió, Pazó &amp; Roxin (2015), <a href="https://doi.org/10.1103/PhysRevX.5.021028">Macroscopic description for networks of spiking neurons</a>.</li>
-  <li>Coombes &amp; Byrne (2019), <a href="https://link.springer.com/chapter/10.1007/978-3-319-99103-0_1">Next generation neural mass models</a>.</li>
-</ul>
 <h4>Do</h4>
 <ul>
-  <li>Implement <code>nmmlab.nmm2</code>: the Montbrió–Pazó–Roxin (r, v) mean-field equations for a QIF network. Reproduce one figure from the paper (e.g. the spiking-vs-mean-field comparison in §7).</li>
-  <li>Wire the gallery into Lucia's site (one notebook per model, exported to HTML; or use Quarto's native Python execution).</li>
-  <li>Final presentation (45 min), final reflection memo (2 pages): what would NMM3 need to look like, given what you have built?</li>
+  <li>Ship <code>nmmlab</code> v0.1: tagged release on GitHub, optional PyPI publication. Final README with install instructions, model overview, and a "how to extend up the ladder" section pointing at Lucia's NMM1/NMM2 work.</li>
+  <li>Wire the gallery into Lucia's site — one notebook per model, exported to plain HTML with <code>jupyter nbconvert</code>.</li>
+  <li>Final presentation (45 min) + reflection memo (2 pages): what would the next student need to do to climb to NMM1/NMM2 cleanly, given the substrate you built?</li>
 </ul>
 <h4>Final deliverables (Claudia)</h4>
 <ol>
-  <li><code>nmmlab</code> Python package on PyPI (or at minimum installable from GitHub) with all six rungs of the ladder.</li>
-  <li>Notebook gallery reproducing the key figures, embedded in Lucia's website.</li>
+  <li><code>nmmlab</code> Python package, tagged v0.1, installable from GitHub, with HO + DHO + SL (and optionally WC). Type hints, tests, CI.</li>
+  <li>Notebook gallery reproducing the key §2 and §3 figures, embedded in Lucia's website.</li>
   <li>Final presentation + reflection memo.</li>
 </ol>
 </div>
@@ -577,9 +666,9 @@
   <thead><tr><th></th><th>Lucia <span class="badge lucia">4 wk</span></th><th>Claudia <span class="badge claudia">8 wk</span></th></tr></thead>
   <tbody>
     <tr><td>Week-1 memo</td><td>✓ (shared)</td><td>✓ (shared)</td></tr>
-    <tr><td>Public website</td><td>Owner</td><td>Contributor</td></tr>
-    <tr><td>Implementations</td><td>DHO, SL, WILCO</td><td>DHO, SL, WILCO, NMM1, NMM2</td></tr>
-    <tr><td>Python package</td><td>—</td><td><code>nmmlab</code></td></tr>
+    <tr><td>Public website</td><td>Owner — simple BCOM site</td><td>Contributor — notebook gallery</td></tr>
+    <tr><td>Implementations</td><td>JR (NMM1) required; laminar NMM1 stretch; NMM2 target</td><td>HO, DHO, SL required; WC optional</td></tr>
+    <tr><td>Python package</td><td>—</td><td><code>nmmlab</code> (tagged v0.1)</td></tr>
     <tr><td>Mid-internship demo</td><td>—</td><td>End of week 5</td></tr>
     <tr><td>Final presentation</td><td>End of week 4</td><td>End of week 8</td></tr>
     <tr><td>Reflection memo</td><td>1 page</td><td>2 pages</td></tr>
@@ -592,40 +681,61 @@
 
 <h3>Required reading (Phase 1)</h3>
 <ul>
-  <li>Nielsen, <a href="http://neuralnetworksanddeeplearning.com/">Neural Networks and Deep Learning</a> — Chs. 1–3.</li>
-  <li>Vaswani et al. (2017), <a href="https://arxiv.org/abs/1706.03762">Attention is All You Need</a>.</li>
-  <li>Phuong &amp; Hutter (2022), <a href="https://arxiv.org/abs/2207.09238">Formal Algorithms for Transformers</a>.</li>
-  <li>LeCun, Bengio &amp; Hinton (2015), <a href="https://www.nature.com/articles/nature14539">Deep learning</a>, <em>Nature</em>.</li>
+  <li>Nielsen, <a href="http://neuralnetworksanddeeplearning.com/">Neural Networks and Deep Learning</a> — Chs. 1–2.</li>
+  <li>Phuong &amp; Hutter (2022), <a href="https://arxiv.org/abs/2207.09238">Formal Algorithms for Transformers</a> — §1–3.</li>
+  <li>Vicki Boykis, <a href="https://vickiboykis.com/what_are_embeddings/"><em>What are embeddings?</em></a> — §1–3 required, rest recommended.</li>
   <li>Anthropic, <a href="https://www.anthropic.com/research/mapping-mind-language-model">Mapping the mind of a large language model</a>.</li>
-  <li>Giulio Ruffini, <em>How Claude Works</em> — <a href="https://docs.google.com/presentation/d/1AqUj15_PIDWMGYqtNHQ5PYiRatUO6298CGNnSiLkFH0">Google Slides</a> · <a href="https://www.youtube.com/watch?v=wGNq2zR0IWA">YouTube</a>.</li>
+  <li>Giulio Ruffini, <em>How Claude Works</em> — <a href="https://docs.google.com/presentation/d/1AqUj15_PIDWMGYqtNHQ5PYiRatUO6298CGNnSiLkFH0">Google Slides</a> · <code>resources/How_Claude_Works final.pptx</code>. <span class="pillkey">video link TBD</span></li>
+</ul>
+
+<h3>Optional / reference (Phase 1)</h3>
+<ul>
+  <li>Vaswani et al. (2017), <a href="https://arxiv.org/abs/1706.03762">Attention is All You Need</a> — historical original.</li>
+  <li>LeCun, Bengio &amp; Hinton (2015), <a href="https://www.nature.com/articles/nature14539">Deep learning</a>, <em>Nature</em>.</li>
+  <li>Jay Alammar, <a href="https://jalammar.github.io/illustrated-word2vec/">The Illustrated Word2vec</a>.</li>
+  <li>Roberts, Yaida &amp; Hanin, <a href="https://arxiv.org/abs/2106.10165">The Principles of Deep Learning Theory</a> — for the mathematically curious.</li>
 </ul>
 
 <h3>Required viewing (Phase 1)</h3>
 <ul>
-  <li>3Blue1Brown, <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi">Neural Networks</a> series.</li>
-  <li>3Blue1Brown, <a href="https://www.youtube.com/watch?v=wjZofJX0v4M">But what is a GPT?</a></li>
-  <li>Karpathy, <a href="https://www.youtube.com/watch?v=VMj-3S1tku0">micrograd</a>, <a href="https://www.youtube.com/watch?v=kCc8FmEb1nY">Let's build GPT</a>, <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g">[1hr] Intro to LLMs</a>.</li>
-  <li><strong>Giulio Ruffini, <a href="https://www.youtube.com/watch?v=wGNq2zR0IWA">How Claude Works</a></strong>.</li>
+  <li>3Blue1Brown — <a href="https://www.youtube.com/watch?v=aircAruvnKk">What is a neural network?</a> and <a href="https://www.youtube.com/watch?v=IHZwWFHWa-w">Gradient descent</a> (Days 1).</li>
+  <li>Karpathy, <a href="https://www.youtube.com/watch?v=VMj-3S1tku0">Building micrograd</a> (Day 2, work-along).</li>
+  <li>3Blue1Brown, <a href="https://www.youtube.com/watch?v=wjZofJX0v4M">But what is a GPT?</a> (Day 3, embeddings).</li>
+  <li>3Blue1Brown, <a href="https://www.youtube.com/watch?v=eMlx5fFNoYc">Attention in transformers, visually explained</a> (Day 4).</li>
+  <li>Karpathy, <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g">[1hr] Intro to LLMs</a> (Day 5).</li>
+  <li><em>Optional / stretch:</em> Karpathy, <a href="https://www.youtube.com/watch?v=kCc8FmEb1nY">Let's build GPT</a>.</li>
 </ul>
 
-<h3>Anthropic courses (Phase 1)</h3>
+<h3>Anthropic Academy courses (Phase 1 — start Day 0, in parallel)</h3>
 <ul>
-  <li><a href="https://github.com/anthropics/courses">anthropics/courses</a> on GitHub: API fundamentals → Prompt engineering → Tool use.</li>
-  <li><a href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview">Prompt-engineering documentation</a>.</li>
+  <li><strong><a href="https://anthropic.skilljar.com/claude-101">Claude 101</a></strong> — everyday Claude.</li>
+  <li><strong><a href="https://anthropic.skilljar.com/claude-code-101">Claude Code 101</a></strong> — Claude Code from install to daily workflow.</li>
+  <li><strong><a href="https://anthropic.skilljar.com/introduction-to-claude-cowork">Introduction to Claude Cowork</a></strong> — Cowork task loop, plugins, file workflows.</li>
+  <li><em>Optional:</em> <a href="https://anthropic.skilljar.com/claude-code-in-action">Claude Code in Action</a>.</li>
+  <li>Index: <a href="https://anthropic.skilljar.com/">anthropic.skilljar.com</a>. Reference: <a href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview">Prompt-engineering documentation</a>.</li>
+</ul>
+
+<h3>Giulio's blogs (recommended throughout)</h3>
+<ul>
+  <li><a href="https://giulioruffini.github.io/assets/blogs/consciousness-is-not-computation-blog.html"><em>"Consciousness Is Not Computation" — A Confusion of Terms</em></a> — different meanings of computation.</li>
+  <li><a href="https://giulioruffini.github.io/assets/blogs/rosetta-stone-neural-mass-models.html"><em>The Rosetta Stone of Neural Mass Models</em></a> — short companion to the paper. <span class="pillkey">Phase 2, first read</span></li>
+  <li><a href="https://giulioruffini.github.io/assets/blogs/oscillations-topology-and-simplicity.html"><em>What Is an Oscillation, Really? Topology, Compression, and the Circle at the Heart of Brain Rhythms</em></a> — deep structure of oscillations. <span class="pillkey">Phase 2 opener</span></li>
+  <li><a href="https://giulioruffini.github.io/assets/blogs/linear-operators-green-laplace-ei-oscillations.html"><em>Synapses as Springs: Linear Operators, Green–Laplace Tools, and the Origin of E–I Oscillations</em></a> — linear operators meet E–I dynamics. <span class="pillkey">read before §4 / §6</span></li>
+  <li>More at <a href="https://giulioruffini.github.io/blogs/">giulioruffini.github.io/blogs</a>.</li>
 </ul>
 
 <h3>Phase 2 — primary source</h3>
 <ul>
-  <li>Castaldo, de Palma Aristides, Clusella, Garcia-Ojalvo &amp; Ruffini (2025), <em>Rosetta Stone of Neural Mass Models</em> (TN0366). LaTeX source and PDF in the shared folder.</li>
+  <li>Castaldo, de Palma Aristides, Clusella, Garcia-Ojalvo &amp; Ruffini (2025), <em>Rosetta Stone of Neural Mass Models</em> (TN0366). Read it on Overleaf (view-only): <a href="https://www.overleaf.com/read/mkkmzhrmqkvc#f4db5e">overleaf.com/read/mkkmzhrmqkvc</a>. LaTeX source and PDF are also in the shared folder.</li>
 </ul>
 
-<h3>Phase 2 — supporting reading</h3>
+<h3>Phase 2 — optional supplementary reading</h3>
+<p><em>The Rosetta Stone paper is the only required NMM reading. The papers below are pointers if you want the original source for a specific model, but you should not feel obliged to open any of them.</em></p>
 <ul>
-  <li>Wilson &amp; Cowan (1972), <a href="https://www.cell.com/biophysj/fulltext/S0006-3495(72)86068-5">Excitatory and inhibitory interactions in localized populations of model neurons</a>.</li>
-  <li>Jansen &amp; Rit (1995), <a href="https://doi.org/10.1007/BF00199471">Electroencephalogram and visual evoked potential generation</a>.</li>
-  <li>Montbrió, Pazó &amp; Roxin (2015), <a href="https://doi.org/10.1103/PhysRevX.5.021028">Macroscopic description for networks of spiking neurons</a>, <em>Phys. Rev. X</em>.</li>
+  <li>Sanchez-Todo et al. (2023), <a href="https://doi.org/10.1016/j.neuroimage.2023.120096">A physical neural mass model framework…</a>, <em>NeuroImage</em> — only if Lucia attempts the laminar NMM1 stretch.</li>
+  <li>Wilson &amp; Cowan (1972), <a href="https://www.cell.com/biophysj/fulltext/S0006-3495(72)86068-5">Excitatory and inhibitory interactions in localized populations of model neurons</a> — only if Claudia goes for the WC stretch goal.</li>
+  <li>Montbrió, Pazó &amp; Roxin (2015), <a href="https://doi.org/10.1103/PhysRevX.5.021028">Macroscopic description for networks of spiking neurons</a>, <em>Phys. Rev. X</em> — only if Rosetta §7 leaves something unclear.</li>
   <li>Coombes &amp; Byrne (2019), Next generation neural mass models, in <em>Nonlinear Dynamics in Computational Neuroscience</em>.</li>
-  <li>Sanchez-Todo et al. (2023), <a href="https://doi.org/10.1016/j.neuroimage.2023.120096">A physical neural mass model framework…</a>, <em>NeuroImage</em>.</li>
   <li>Breakspear (2017), <a href="https://www.nature.com/articles/nn.4497">Dynamic models of large-scale brain activity</a>, <em>Nat. Neurosci.</em></li>
   <li>Deco et al. (2008), <a href="https://doi.org/10.1371/journal.pcbi.1000092">The dynamic brain: from spiking neurons to neural masses and cortical fields</a>, <em>PLOS CB</em>.</li>
 </ul>
@@ -644,7 +754,7 @@
 <footer>
   <div>Tutors: <a href="mailto:francesca.castaldo@neuroelectrics.com">Francesca Castaldo</a> &amp; <a href="mailto:giulio.ruffini@neuroelectrics.com">Giulio Ruffini</a> &middot; Neuroelectrics / BCOM</div>
   <div>Shared resources: <a href="https://drive.google.com/open?id=1xHM9b4LfXRflceheB_g2ADZewa_EOt9n&usp=drive_fs">Google Drive</a></div>
-  <div class="small">v0.2 · BCOM style · last updated 21 May 2026</div>
+  <div class="small">v0.8 · BCOM style · last updated 23 May 2026</div>
 </footer>
 
 </body>
