@@ -30,9 +30,11 @@
   .header-bar{background:var(--blue);padding:16px 0}
   .header-bar .wrap{max-width:1080px;margin:0 auto;padding:0 32px;
     display:flex;justify-content:space-between;align-items:center}
-  .header-bar .logo{color:#fff;font-size:18px;font-weight:900;
-    letter-spacing:0.04em;text-decoration:none}
-  .header-bar .logo span{color:var(--orange)}
+  .cobrand{display:flex;align-items:center;gap:18px}
+  .cobrand img{height:42px;width:auto;display:block;
+    filter:brightness(0) invert(1);opacity:0.95}
+  .cobrand .sep{color:rgba(255,255,255,0.45);font-weight:300;font-size:22px;
+    line-height:1}
   .header-bar nav a{color:rgba(255,255,255,0.75);text-decoration:none;
     margin-left:28px;font-size:12px;font-weight:700}
   .header-bar nav a:hover{color:#fff}
@@ -196,7 +198,17 @@
 
 <div class="header-bar">
   <div class="wrap">
-    <a href="https://bcom.one" class="logo">BCOM<span>.one</span></a>
+    <div class="cobrand">
+      <a href="https://neuroelectrics.com" aria-label="Neuroelectrics">
+        <img alt="Neuroelectrics"
+          src="https://static.wixstatic.com/media/fb9608_9922141b734c4e4ba608bbb9cd46e666~mv2.png">
+      </a>
+      <span class="sep">×</span>
+      <a href="https://bcom.one" aria-label="BCOM — Barcelona Computational Foundation">
+        <img alt="BCOM — Barcelona Computational Foundation"
+          src="https://bcom.one/wp-content/uploads/2025/11/Logo-BCOM_BluWhite.png">
+      </a>
+    </div>
     <nav>
       <a href="https://bcom.one">Foundation</a>
       <a href="https://neuroelectrics.com">Neuroelectrics</a>
@@ -217,7 +229,7 @@
   <div class="wrap">
     <span><b>Start:</b> June 2026 (Week 1 shared)</span>
     <span><b>Duration:</b> Lucia 4&nbsp;wks &middot; Claudia 8&nbsp;wks</span>
-    <span><b>Location:</b> Neuroelectrics, Barcelona</span>
+    <span><b>Hosted by:</b> Neuroelectrics × BCOM, Barcelona</span>
     <span><b>Shared folder:</b> <a href="https://drive.google.com/open?id=1xHM9b4LfXRflceheB_g2ADZewa_EOt9n&usp=drive_fs" style="color:var(--orange)">Google Drive</a></span>
   </div>
 </div>
@@ -230,7 +242,7 @@
   <p class="attribution">— R. P. Feynman, opening of the <em>Rosetta Stone</em> paper</p>
 </div>
 
-<p>This internship has two parts. <strong>Week 1</strong> is a shared crash course in AI, neural networks, large language models, and the practical use of Claude as a research tool — calibrated to a strong pure-mathematics / mathematical-physics background. From <strong>Week 2</strong> onward you each work on the <em>Rosetta Stone of Neural Mass Models</em> paper: reading it carefully, then implementing the model ladder it describes and producing a public-facing artefact. Lucia's headline deliverable is a BCOM-style website that <em>is</em> the paper; Claudia's is a deeper implementation that extends Lucia's scaffold.</p>
+<p>This internship has two parts. <strong>Week 1</strong> is a shared crash course in AI, neural networks, large language models, and the practical use of Claude as a research tool — calibrated to a strong pure-mathematics / mathematical-physics background. From <strong>Week 2</strong> onward you each work on the <em>Rosetta Stone of Neural Mass Models</em> paper: reading it carefully, then implementing the model ladder it describes. Lucia pushes down the ladder to NMM1 and NMM2; Claudia builds a clean foundational <code>nmmlab</code> package for the lower rungs (HO, DHO, SL). The <strong>public website</strong> is a <strong>joint deliverable</strong>: one shared repo, both interns push, NE × BCOM co-branded.</p>
 
 <div class="toc">
   <div class="label">Contents</div>
@@ -257,7 +269,7 @@
   <li>Use Claude (and one other frontier coding assistant of your choice) as a working collaborator — reading code, designing experiments, drafting documentation — without losing your own grasp of the problem.</li>
   <li>Read the <em>Rosetta Stone</em> paper closely enough to reconstruct its derivation ladder: harmonic oscillator → Stuart–Landau → Wilson–Cowan → NMM1 (Jansen–Rit / laminar) → NMM2 (Montbrió–Pazó–Roxin).</li>
   <li>Implement at least three models from that ladder in clean, tested Python, with reproducible figures, and embed them in a small open-source repository.</li>
-  <li>Produce a public-facing artefact — Lucia owns a simple BCOM-styled site presenting her NMM1/NMM2 implementations; Claudia contributes the <code>nmmlab</code> package and a notebook gallery for the lower-rung models.</li>
+  <li>Produce a public-facing artefact — a joint Lucia + Claudia website in BCOM / Neuroelectrics co-branded style, with Lucia's NMM1/NMM2 pages and Claudia's <code>nmmlab</code> + notebook gallery for the lower-rung models living in the same repo and deployed together.</li>
 </ol>
 
 <h2 id="logistics">2 · Logistics &amp; working rhythm</h2>
@@ -515,7 +527,7 @@ memo/              ← end-of-week memo source</code></pre>
 
 <div class="lucia-box">
   <div class="label">Mission · Lucia</div>
-  <p>Read the paper carefully and push <em>down the ladder</em> as far as you can: NMM1 (Jansen–Rit, and the laminar variant if time allows) and then NMM2 (Montbrió–Pazó–Roxin). You also maintain a simple BCOM-styled companion website — but keep it spartan; the implementations are the headline. Two clean simulation pages with one runnable demo each is enough.</p>
+  <p>Read the paper carefully and push <em>down the ladder</em> as far as you can: NMM1 (Jansen–Rit, and the laminar variant if time allows) and then NMM2 (Montbrió–Pazó–Roxin). The <strong>shared website</strong> is a joint deliverable with Claudia (one repo, both push) — you scaffold it in Week 2 and own the NMM1/NMM2 pages. Keep it spartan; the implementations are the headline. Two clean simulation pages with one runnable demo each is enough.</p>
 </div>
 
 <details class="week" open>
@@ -528,7 +540,7 @@ memo/              ← end-of-week memo source</code></pre>
 </ul>
 <h4>Do</h4>
 <ul>
-  <li>Spin up a fresh repo <code>rosetta-nmm-site</code>. Set up the site skeleton in BCOM style (one page each for §6 and §7, blue header + coral accent), deployed to GitHub Pages on push. <em>Don't fuss over visuals yet.</em></li>
+  <li>Spin up the <strong>shared site repo</strong> <code>rosetta-stone-site</code> (Claudia gets push access from day 1). Set up the skeleton in joint NE × BCOM style — co-branded header, blue background, coral accents, one section page per ladder rung (HO/DHO from Claudia, JR and NMM2 from you). Deploy to GitHub Pages on every push. <em>Don't fuss over visuals yet.</em></li>
   <li>Implement a sanity-check DHO with forcing in <code>code/</code>, just to confirm <code>scipy.integrate.solve_ivp</code> works on your machine. Reproduce the §2 resonance curve. One day max.</li>
 </ul>
 <h4>Milestone</h4>
@@ -571,9 +583,9 @@ memo/              ← end-of-week memo source</code></pre>
 </ul>
 <h4>Final deliverables (Lucia)</h4>
 <ol>
-  <li>A clean (not heavily polished) BCOM-styled site on GitHub Pages with at least the NMM1 page live, NMM2 page if reached.</li>
   <li>Working implementations of Jansen–Rit (required) and Montbrió–Pazó–Roxin (target). Laminar NMM1 is a stretch goal.</li>
-  <li>Source repo with README and licence; final presentation + 1-page reflection memo.</li>
+  <li>Your NMM1 and NMM2 pages live on the joint Lucia + Claudia site, on GitHub Pages, in NE × BCOM style.</li>
+  <li>Source code in the shared repo with README and licence; final presentation + 1-page reflection memo.</li>
 </ol>
 </div>
 </details>
@@ -583,7 +595,7 @@ memo/              ← end-of-week memo source</code></pre>
 
 <div class="claudia-box">
   <div class="label">Mission · Claudia</div>
-  <p>Build a clean, well-tested foundation: a Python package <code>nmmlab</code> that implements the <em>lower</em> rungs of the ladder — harmonic oscillator (HO), damped HO, Stuart–Landau (SL), and optionally Wilson–Cowan (WC). Quality over breadth: type hints, <code>pytest</code> coverage, CI green, a notebook gallery reproducing each paper figure, and clear documentation so future students (or Lucia mid-internship) can build on it.</p>
+  <p>Build a clean, well-tested foundation: a Python package <code>nmmlab</code> that implements the <em>lower</em> rungs of the ladder — harmonic oscillator (HO), damped HO, Stuart–Landau (SL), and optionally Wilson–Cowan (WC). Quality over breadth: type hints, <code>pytest</code> coverage, CI green, a notebook gallery reproducing each paper figure, and clear documentation. You and Lucia <strong>co-own the shared website</strong> (one repo, both push) — Lucia scaffolds it in her Week 2; you contribute the HO / DHO / SL / WC pages and the notebook gallery from Week 4 on.</p>
 </div>
 
 <details class="week" open>
@@ -648,7 +660,7 @@ memo/              ← end-of-week memo source</code></pre>
 <h4>Do</h4>
 <ul>
   <li>Ship <code>nmmlab</code> v0.1: tagged release on GitHub, optional PyPI publication. Final README with install instructions, model overview, and a "how to extend up the ladder" section pointing at Lucia's NMM1/NMM2 work.</li>
-  <li>Wire the gallery into Lucia's site — one notebook per model, exported to plain HTML with <code>jupyter nbconvert</code>.</li>
+  <li>Push the gallery to the joint site — one notebook per model, exported to plain HTML with <code>jupyter nbconvert</code>, dropped into the shared <code>rosetta-stone-site</code> repo alongside Lucia's NMM1/NMM2 pages.</li>
   <li>Final presentation (45 min) + reflection memo (2 pages): what would the next student need to do to climb to NMM1/NMM2 cleanly, given the substrate you built?</li>
 </ul>
 <h4>Final deliverables (Claudia)</h4>
@@ -666,7 +678,7 @@ memo/              ← end-of-week memo source</code></pre>
   <thead><tr><th></th><th>Lucia <span class="badge lucia">4 wk</span></th><th>Claudia <span class="badge claudia">8 wk</span></th></tr></thead>
   <tbody>
     <tr><td>Week-1 memo</td><td>✓ (shared)</td><td>✓ (shared)</td></tr>
-    <tr><td>Public website</td><td>Owner — simple BCOM site</td><td>Contributor — notebook gallery</td></tr>
+    <tr><td>Public website</td><td colspan="2" style="text-align:center"><strong>Joint deliverable</strong> — shared repo, NE × BCOM co-branded; Lucia scaffolds in Wk 2, both push their pages</td></tr>
     <tr><td>Implementations</td><td>JR (NMM1) required; laminar NMM1 stretch; NMM2 target</td><td>HO, DHO, SL required; WC optional</td></tr>
     <tr><td>Python package</td><td>—</td><td><code>nmmlab</code> (tagged v0.1)</td></tr>
     <tr><td>Mid-internship demo</td><td>—</td><td>End of week 5</td></tr>
@@ -754,7 +766,7 @@ memo/              ← end-of-week memo source</code></pre>
 <footer>
   <div>Tutors: <a href="mailto:francesca.castaldo@neuroelectrics.com">Francesca Castaldo</a> &amp; <a href="mailto:giulio.ruffini@neuroelectrics.com">Giulio Ruffini</a> &middot; Neuroelectrics / BCOM</div>
   <div>Shared resources: <a href="https://drive.google.com/open?id=1xHM9b4LfXRflceheB_g2ADZewa_EOt9n&usp=drive_fs">Google Drive</a></div>
-  <div class="small">v0.8 · BCOM style · last updated 23 May 2026</div>
+  <div class="small">v0.10 · Neuroelectrics × BCOM · last updated 23 May 2026</div>
 </footer>
 
 </body>
