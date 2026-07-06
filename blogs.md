@@ -11,6 +11,9 @@ A collection of blog posts on computation, neuroscience, AI, and related topics.
 
 ### Hosted here
 
+- [Pattern, Persist!](/assets/blogs/pattern-persist-blog.html) — Algorithmic information conservation and the thermodynamics of agency: why a flame, a cell, a mind, and an AI are graded cases of one imperative
+- [The Things That Stay](/assets/blogs/the-things-that-stay-blog.html) — A philosophical lineage from Pythagoras to Kolmogorov Theory: persistent form, from Plato and Aristotle to algorithmic agents
+- [Las cosas que permanecen](/assets/blogs/las-cosas-que-permanecen-blog.html) — (Español) Un linaje filosófico de Pitágoras a la Teoría de Kolmogórov: la forma persistente
 - [Pattern, Persist: The Algorithmic Agent and the Alignment Problem](/assets/blogs/algorithmic-agent-alignment-blog.html) — Why a bacterium, a brain, a corporation, and an AI are the same kind of thing, and what that tells us about alignment
 - [A Gentle Introduction to the Algorithmic Agent and Kolmogorov Theory](/assets/blogs/Gentle_Introduction_KT.html) — Minds compress, evaluate, and act: the central insight, the minimal architecture, and what KT buys us
 - [Who Is Klaus? Agent Authorship at BCOM](/assets/blogs/BLOG-Who_Is_Klaus-Agent_Authorship.html) — On BCOM's WP0084 agent-authorship policy and how it is operationalized in CALLIOPE
