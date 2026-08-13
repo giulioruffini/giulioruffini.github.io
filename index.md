@@ -11,6 +11,11 @@ I am a theoretical physicist and computational neuroscientist researching consci
   <figcaption style="text-align:center;"></figcaption>
 </figure>
 
+### News
+- **2026** — *The Rosetta Stone of Neural Mass Models* is out in [Physics Reports](https://doi.org/10.1016/j.physrep.2026.05.004) ([arXiv](https://arxiv.org/abs/2512.10982)) — explore the [interactive companion site](https://bcom-foundation.github.io/bcom-rosetta-stone-web/).
+- **Aug 2026** — New preprint: *The Algorithmic Regulation Balance: Model It, Transmit It, or Leave It in the World* ([Zenodo](https://doi.org/10.5281/zenodo.21840363)).
+- **Jul 2026** — Three KT papers now on Preprints.org: [*Pattern, Persist!*](https://doi.org/10.20944/preprints202607.0418.v2), [*Navigating Complexity*](https://doi.org/10.20944/preprints202607.0265.v1), and [*From "More Is Different" to Algorithmic Emergence*](https://doi.org/10.20944/preprints202607.0210.v1).
+
 ### Feel free to explore:
 - Papers on [Kolmogorov theory / algorithmic neuroscience (KT)](/kt/) (chat with my KT papers [here](https://giulioruffini.github.io/chat))
 - Papers on [Computational neuroscience (neurotwins, LaNMM)](/lanmm/)
