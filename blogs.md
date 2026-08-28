@@ -11,6 +11,8 @@ A collection of blog posts on computation, neuroscience, AI, and related topics.
 
 ### Hosted here
 
+- [The Laws Don't Write the Textbook](/assets/blogs/the-laws-dont-write-the-textbook-blog.html) — Anderson said more is different; algorithmic information theory says why: generation is not construction, and finding the macroscopic theory is provably hard
+- [Truth Without Proof? Gödel, Turing, and Algorithmic Information](/assets/blogs/truth-without-proof-godel-turing-ait-blog.html) — Separating truth, proof, computation, and observer access: what the incompleteness theorems do and do not say, and how science certifies improvement without certifying finality
 - [The Price of Staying Yourself](/assets/blogs/pattern-persist-general-en.html) — A general-audience essay on WP0162: why a flame, a bacterium and a person are patterns held against time, and why it costs heat ([Español](/assets/blogs/pattern-persist-general-es.html) · [Italiano](/assets/blogs/pattern-persist-general-it.html))
 - [Pattern, Persist!](/assets/blogs/pattern-persist-blog.html) — Algorithmic information conservation and the thermodynamics of agency: why a flame, a cell, a mind, and an AI are graded cases of one imperative
 - [The Things That Stay](/assets/blogs/the-things-that-stay-blog.html) — A philosophical lineage from Pythagoras to Kolmogorov Theory: persistent form, from Plato and Aristotle to algorithmic agents
