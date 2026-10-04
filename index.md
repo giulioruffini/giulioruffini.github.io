@@ -12,10 +12,12 @@ I am a theoretical physicist and computational neuroscientist researching consci
 </figure>
 
 ### News
+- **Oct 2026** — *From "More Is Different" to Algorithmic Emergence: Regularity, Compression, and the Limits of Discovery* accepted in *Entropy* ([Zenodo](https://doi.org/10.5281/zenodo.21008465), [Preprints.org](https://doi.org/10.20944/preprints202607.0210.v1), [code and examples](https://github.com/giulioruffini/WP0007-algorithmic-emergence)).
+- **Sep 2026** — *The Good Algorithmic Regulator Theorem: Model It, Transmit It, or Leave It in the World* submitted to *Entropy*; preprint on [Preprints.org](https://doi.org/10.20944/preprints202609.1967.v1) and [Zenodo](https://doi.org/10.5281/zenodo.21840363).
+- **Aug 2026** — New preprint: *Persistent infection and chronic neurological disease: reservoirs, CNS seeding, entrenchment, and neural erosion* ([Zenodo](https://doi.org/10.5281/zenodo.22131446)).
+- **Aug 2026** — New preprint: *From Kolmogorov to Free Energy: Data Compression as a Common Problem for AIT, MDL, Bayes, and the FEP* ([Zenodo](https://doi.org/10.5281/zenodo.22084394)).
+- **Aug 2026** — Two KT preprints: *Pattern, Persist!* review article ([Zenodo](https://doi.org/10.5281/zenodo.22033426)) and *What Flows When Information Is Conserved?* ([Zenodo](https://doi.org/10.5281/zenodo.21976830)).
 - **2026** — *The Rosetta Stone of Neural Mass Models* is out in [Physics Reports](https://doi.org/10.1016/j.physrep.2026.05.004) ([arXiv](https://arxiv.org/abs/2512.10982)) — explore the [interactive companion site](https://bcom-foundation.github.io/bcom-rosetta-stone-web/).
-- **Aug 2026** — New preprint: *The Algorithmic Regulation Balance: Model It, Transmit It, or Leave It in the World* ([Zenodo](https://doi.org/10.5281/zenodo.21840363)).
-- **Jul 2026** — New preprint: *The cortical column as a tuned receiver: a network mechanism for temporal-interference stimulation* ([Zenodo](https://doi.org/10.5281/zenodo.21009618)).
-- **Jul 2026** — Three KT papers now on Preprints.org: [*Pattern, Persist!*](https://doi.org/10.20944/preprints202607.0418.v2), [*Navigating Complexity*](https://doi.org/10.20944/preprints202607.0265.v1), and [*From "More Is Different" to Algorithmic Emergence*](https://doi.org/10.20944/preprints202607.0210.v1).
 
 ### Feel free to explore:
 - Papers on [Kolmogorov theory / algorithmic neuroscience (KT)](/kt/) (chat with my KT papers [here](https://giulioruffini.github.io/chat))
