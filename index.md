@@ -12,9 +12,11 @@ I am a theoretical physicist and computational neuroscientist researching consci
 </figure>
 
 ### News
-- **Oct 2026** — *From "More Is Different" to Algorithmic Emergence: Regularity, Compression, and the Limits of Discovery* accepted in *Entropy* ([Zenodo](https://doi.org/10.5281/zenodo.21008465), [Preprints.org](https://doi.org/10.20944/preprints202607.0210.v1), [code and examples](https://github.com/giulioruffini/WP0007-algorithmic-emergence)).
+- **Oct 2026** — *The Good Algorithmic Regulator Theorem: Model It, Transmit It, or Leave It in the World* is out in [*Entropy* 28, 1182](https://doi.org/10.3390/e28111182) ([Preprints.org](https://doi.org/10.20944/preprints202609.1967.v1), [Zenodo](https://doi.org/10.5281/zenodo.21840363)).
+- **Oct 2026** — *From "More Is Different" to Algorithmic Emergence: Regularity, Compression, and the Limits of Discovery* is out in [*Entropy* 28, 1090](https://doi.org/10.3390/e28101090) ([Zenodo](https://doi.org/10.5281/zenodo.21008465), [Preprints.org](https://doi.org/10.20944/preprints202607.0210.v1), [code and examples](https://github.com/giulioruffini/WP0007-algorithmic-emergence)).
+- **Oct 2026** — New preprint: *cyto7: an open, vertex-level cortical type atlas of the human cortex* ([bioRxiv](https://doi.org/10.64898/2026.10.01.755866), [Zenodo](https://doi.org/10.5281/zenodo.23063166)).
 - **Sep 2026** — New preprint: *A whole-brain modeling framework for tDCS montage optimization in drug-resistant epilepsy* ([medRxiv](https://doi.org/10.64898/2026.09.22.26363221)).
-- **Sep 2026** — *The Good Algorithmic Regulator Theorem: Model It, Transmit It, or Leave It in the World* submitted to *Entropy*; preprint on [Preprints.org](https://doi.org/10.20944/preprints202609.1967.v1) and [Zenodo](https://doi.org/10.5281/zenodo.21840363).
+- **Sep 2026** — New preprint: *Large-Language Models as a Cognitive Virus*, with Ricard Solé and colleagues ([arXiv](https://arxiv.org/abs/2609.03344), [Preprints.org](https://doi.org/10.20944/preprints202609.1536.v1)).
 - **Aug 2026** — New preprint: *Persistent infection and chronic neurological disease: reservoirs, CNS seeding, entrenchment, and neural erosion* ([Zenodo](https://doi.org/10.5281/zenodo.22131446)).
 - **Aug 2026** — New preprint: *From Kolmogorov to Free Energy: Data Compression as a Common Problem for AIT, MDL, Bayes, and the FEP* ([Zenodo](https://doi.org/10.5281/zenodo.22084394)).
 - **Aug 2026** — Two KT preprints: *Pattern, Persist!* review article ([Zenodo](https://doi.org/10.5281/zenodo.22033426)) and *What Flows When Information Is Conserved?* ([Zenodo](https://doi.org/10.5281/zenodo.21976830)).
