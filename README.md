@@ -1,5 +1,7 @@
 # Giulio Ruffini Research site!
 
+This site and www.giulioruffini.com share a GoatCounter visit counter (dashboard: https://giulioruffini.goatcounter.com), set up on 2026-11-26. Jekyll pages get it through `analytics.provider: "custom"` in `_config.yml` and `_includes/analytics-providers/custom.html`; the standalone pages in `assets/blogs/` and `assets/collab/mathematics/` carry the same two script tags before `</head>`, and a new standalone page needs them added by hand. Paths are recorded with the host prefixed, e.g. `giulioruffini.github.io/assets/blogs/sorcerer.html`.
+
 Built from:
 
 # [Minimal Mistakes Jekyll theme](https://mmistakes.github.io/minimal-mistakes/)

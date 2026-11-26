@@ -127,7 +127,7 @@ social:
 
 # Analytics
 analytics:
-  provider               : # false (default), "google", "google-universal", "google-gtag", "custom"
+  provider               : "custom" # GoatCounter, in _includes/analytics-providers/custom.html
   google:
     tracking_id          :
     anonymize_ip         : # true, false (default)
